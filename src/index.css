@@ -273,7 +273,7 @@ button:hover {
 }
 
 .recipe-card:hover {
-  transform: scale(1.25);
+  transform: scale(1.27);
   transition: all 0.5s ease;
 }
 
