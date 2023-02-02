@@ -1,2 +1,2 @@
 node_modules
-firestore.config.js
+.env
