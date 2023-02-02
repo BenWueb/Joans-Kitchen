@@ -21,27 +21,29 @@ function Category() {
   });
 
   return (
-    <div>
+    <div className="container">
       <Navbar />
-      <h1 className="category-header">{categoryName}</h1>
-      {filteredRecipes.map((recipe) => {
-        console.log(recipe);
-        const recipeUrl = recipe.data.title
-          .toLowerCase()
-          .replace(/[^a-zA-Z0-9-._~:/?#[\]@!$&'()*+,;=%]/g, "_")
-          .replace(/\s/gi, "");
+      <div className="page-container">
+        <h1 className="category-header">{categoryName}</h1>
+        {filteredRecipes.map((recipe) => {
+          console.log(recipe);
+          const recipeUrl = recipe.data.title
+            .toLowerCase()
+            .replace(/[^a-zA-Z0-9-._~:/?#[\]@!$&'()*+,;=%]/g, "_")
+            .replace(/\s/gi, "");
 
-        return (
-          <Link to={`/recipes/${recipeUrl}`}>
-            <RecipeCard
-              title={recipe.data.title}
-              ingredients={recipe.data.ingredients}
-              recipe={recipe.data.recipe}
-              notes={recipe.data.notes}
-            />
-          </Link>
-        );
-      })}
+          return (
+            <Link className="link" to={`/recipes/${recipeUrl}`}>
+              <RecipeCard
+                title={recipe.data.title}
+                ingredients={recipe.data.ingredients}
+                recipe={recipe.data.recipe}
+                notes={recipe.data.notes}
+              />
+            </Link>
+          );
+        })}
+      </div>
     </div>
   );
 }

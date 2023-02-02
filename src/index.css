@@ -9,6 +9,12 @@
 :root {
   --fs-400: clamp(0.5rem, 1vw + 0.5rem, 2rem);
   --fs-600: clamp(0.25rem, 1vw + 0.5rem, 1rem);
+  --secondary-dark: #ed6a5aff;
+  --secondary: #f4f1bbff;
+  --primary-light: #9bc1bcff;
+  --primary: #5ca4a9ff;
+  --background: #e6ebe0ff;
+  --bs: rgba(0, 0, 0, 0.25) 0px 14px 28px, rgba(0, 0, 0, 0.22) 0px 10px 10px;
 }
 
 body {
@@ -16,18 +22,54 @@ body {
   font-size: 16px;
 }
 
+section {
+  background-image: url("./assets/brooke-lark-kXQ3J7_2fpc-unsplash.jpg");
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+  background-size: cover;
+  position: absolute;
+  min-height: 100vh;
+  z-index: -1;
+  width: 100%;
+  filter: blur(2px) brightness(40%);
+}
+
+.container {
+  background-image: url("./assets/brooke-lark-kXQ3J7_2fpc-unsplash.jpg");
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+  background-size: cover;
+
+  min-height: 100vh;
+}
+
+.page-container {
+  padding: 200px;
+}
+
 button {
   font-family: inherit;
   cursor: pointer;
   text-decoration: none;
   display: inline-block;
+  border: none;
+  border-radius: 5px;
+  font-weight: 600;
+}
+
+button:hover {
+  transform: scale(1.05);
+  opacity: 0.9;
 }
 
 .btn {
-  padding: 0.5em 2em;
+  padding: 1em 3em;
   text-transform: uppercase;
   font-size: var(--fs-600);
+  box-shadow: var(--bs);
 }
+
+/***** Navbar *****/
 
 .nav-container {
   height: 6rem;
@@ -38,16 +80,132 @@ button {
   font-size: 2rem;
 }
 
-.container {
-  display: flex;
+.search {
+  padding: 1rem 2rem;
+  border-radius: 5px;
+  border: none;
+  font-family: inherit;
+  width: 600px;
+  box-shadow: var(--bs);
+  position: relative;
+}
+
+.search:focus {
+  outline: none;
+  transform: scale(1.1);
+}
+
+.search-container {
+  position: relative;
+}
+
+.search-results {
+  position: absolute;
+  background-color: white;
+  padding: 1rem;
+  height: 200px;
+  overflow: hidden;
+  overflow-y: auto;
+  border-radius: 10px;
+  box-shadow: var(--bs);
+
+  top: 70px;
+  width: 100%;
+}
+
+.search-result {
+  font-size: 16px;
+  color: black;
+  list-style: none;
+  text-transform: capitalize;
+}
+
+.search-link {
+  text-decoration: none;
+}
+
+.search-result:hover {
+  background-color: rgb(197, 197, 197);
+}
+
+.link {
+  text-decoration: none;
+  color: black;
+}
+
+/***** Sidebar *****/
+
+.sidebar-wrapper {
+  display: grid;
+  grid-auto-rows: min-content;
+  justify-items: center;
+  padding-top: 10rem;
+  font-size: 24px;
+  position: fixed;
+  top: 0;
+  right: 0;
+  background-color: var(--secondary);
+  min-height: 100vh;
+  width: 250px;
+  transform: translatex(100%);
+  transition: all 1s ease;
+  z-index: 5;
 }
 
 .sidebar {
-  padding: 4rem;
   display: grid;
-  grid-auto-rows: min-content;
   gap: 2rem;
 }
+
+.sidebar-button {
+  position: absolute;
+  top: 35px;
+  right: 35px;
+  width: 30px;
+  height: 30px;
+  cursor: pointer;
+}
+
+.sidebar-button:hover {
+  transform: scale(1.1);
+}
+
+.menu {
+  cursor: pointer;
+}
+
+.menu-item {
+  position: relative;
+  width: max-content;
+}
+
+.menu-item:hover {
+  transform: scale(1.1);
+}
+
+.menu-item::after {
+  content: "";
+  display: inline-block;
+  width: 100%;
+  border: solid 2px black;
+  position: absolute;
+  left: 0;
+  bottom: -4px;
+  transform: scaleX(0);
+  transform-origin: right;
+  transition: all 0.5s ease;
+  border-radius: 10%;
+}
+
+.menu-item:hover::after {
+  transform: scaleX(1);
+}
+
+.show-sidebar {
+  transform: translatex(0%);
+}
+
+/***** Main Page *****/
 
 .header-container {
   background-image: url("./assets/brooke-lark-kXQ3J7_2fpc-unsplash.jpg");
@@ -76,18 +234,61 @@ button {
   gap: 2rem;
 }
 
-.recipe-container {
-  padding: 200px;
+.browse {
+  background-color: var(--secondary-dark);
 }
 
+/***** Categories / Category *****/
+
+.category-header {
+  text-align: center;
+  margin-bottom: 4rem;
+}
+
+/***** Category Card *****/
+
+.category-card {
+  background-color: var(--background);
+  padding: 2rem;
+  border-radius: 5px;
+  box-shadow: var(--bs);
+  margin-bottom: 4rem;
+  text-align: center;
+}
+
+.category-card:hover {
+  transform: scale(1.27);
+  transition: all 0.5s ease;
+}
+
+/***** Recipe Card *****/
+
 .recipe-card {
-  border: 1px solid blue;
+  background-color: var(--background);
+  padding: 2rem;
+  border-radius: 5px;
+  box-shadow: var(--bs);
+  margin-bottom: 4rem;
+  position: relative;
+}
+
+.recipe-card:hover {
+  transform: scale(1.25);
+  transition: all 0.5s ease;
+}
+
+.share {
+  position: absolute;
+  right: 20px;
+  top: 20px;
+  height: 20px;
+  width: 20px;
 }
 
 .title {
   text-align: center;
-  margin-bottom: 2rem;
-  font-size: 24px;
+
+  font-size: var(--fs-400);
   text-transform: capitalize;
 }
 
@@ -95,6 +296,12 @@ button {
   display: grid;
   grid-template-columns: 1fr 1fr;
   gap: 4rem;
+  font-size: var(--fs-600);
+  display: none;
+}
+
+.card-details h5 {
+  margin-bottom: 1rem;
 }
 
 .ingredients > * {
@@ -106,26 +313,159 @@ button {
   margin-bottom: 0.5rem;
 }
 
-.search-results {
-  position: absolute;
-  background-color: white;
-  padding-right: 1rem;
-  height: 200px;
-  overflow: hidden;
-  overflow-y: auto;
+.notes-container {
+  text-align: center;
 }
 
-.search-result {
-  font-size: 16px;
-  color: black;
-  list-style: none;
+.recipe-header {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-content: center;
+}
+
+/***** Individual Recipe *****/
+
+/***** Single Recipe *****/
+
+.single-recipe-card {
+  background-color: var(--background);
+  padding: 4rem;
+  border-radius: 5px;
+  box-shadow: var(--bs);
+  margin-bottom: 4rem;
+  position: relative;
+}
+
+.single-recipe-header {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-content: center;
+  margin-bottom: 4rem;
+  padding: 0 10rem;
+}
+
+.single-share {
+  position: absolute;
+  right: 20px;
+  top: 20px;
+  height: 20px;
+  width: 20px;
+}
+
+.single-title {
+  text-align: center;
+  margin-bottom: 1rem;
+  font-size: var(--fs-400);
   text-transform: capitalize;
 }
 
-.search-link {
-  text-decoration: none;
+.subtitle {
+  font-size: var(--fs-600);
 }
 
-.search-result:hover {
-  background-color: rgb(153, 153, 153);
+.single-card-details {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 4rem;
+  font-size: var(--fs-600);
+}
+
+.single-card-details h5 {
+  margin-bottom: 1rem;
+}
+
+.single-ingredients > * {
+  margin-bottom: 0.5rem;
+  list-style: none;
+}
+
+.single-recipe > * {
+  margin-bottom: 0.5rem;
+}
+
+.single-notes-container {
+  text-align: center;
+}
+
+/***** Login *****/
+
+.form-page-container {
+  padding: 200px;
+  display: flex;
+  justify-content: center;
+  align-content: center;
+}
+
+.form-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  background-color: var(--background);
+  padding: 4rem 6rem;
+  border-radius: 5px;
+  box-shadow: var(--bs);
+}
+
+.form-container h1 {
+  margin-bottom: 2rem;
+}
+
+.form-container p {
+  text-align: center;
+}
+
+.form {
+  display: grid;
+}
+
+.form label {
+  margin-bottom: 0.2rem;
+}
+
+.form button {
+  margin: 2rem 0;
+  letter-spacing: 1px;
+  background-color: var(--secondary-dark);
+}
+
+.form-link {
+  text-align: center;
+}
+
+.input {
+  font-family: inherit;
+  padding: 1rem;
+  border-radius: 5px;
+  border: none;
+  margin-bottom: 1rem;
+}
+
+.input:focus {
+  outline: none;
+  border: 1px solid var(--primary) inset;
+  color: var(--primary);
+  transition: all 0.3s ease;
+  transform: scale(1.1);
+}
+
+.input:focus::placeholder {
+  color: var(--primary);
+  transition: all 0.3s ease;
+  padding-left: 4px;
+}
+
+/***** Profile *****/
+
+.profile-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  background-color: var(--background);
+  padding: 4rem 6rem;
+  border-radius: 5px;
+  box-shadow: var(--bs);
 }

@@ -7,9 +7,9 @@ function Recipes() {
   const { recipes } = useContext(RecipesContext);
 
   return (
-    <div>
+    <div className="container">
       <Navbar />
-      <div className="recipe-container">
+      <div className="page-container">
         {recipes
           .sort((a, b) => {
             return a.data.title < b.data.title

@@ -3,10 +3,12 @@ import { useContext, useState, useEffect } from "react";
 import RecipeContext from "../context/RecipesContext";
 import { limit } from "firebase/firestore";
 import { Link } from "react-router-dom";
+import { MdOutlineEast } from "react-icons/md";
 
 function Navbar() {
   const [search, setSearch] = useState("");
   const [searchedRecipes, setSearchedRecipes] = useState([]);
+  const [showSidebar, setShowSidebar] = useState(false);
 
   const { recipes } = useContext(RecipeContext);
 
@@ -14,40 +16,77 @@ function Navbar() {
     setSearch(e.target.value);
 
     const newFilter = recipes.filter((el) => {
-      if (el.data.title) {
-        return el.data.title.toLowerCase().includes(search);
-      }
+      return el.data.title.toLowerCase().includes(search);
     });
 
     setSearchedRecipes(newFilter.slice(0, 15));
   };
 
+  const toggleSidebar = () => {
+    setShowSidebar((prev) => !prev);
+  };
+
   return (
     <div className="nav-container">
-      <Link to="/">
+      <Link className="link" to="/">
         <div className="logo">JK</div>
       </Link>
       <div className="search-container">
         <input
           type="text"
           className="search"
-          placeholder="Search"
+          placeholder="Search for a recipe"
           onChange={onChange}
           value={search}
         />
-        {search !== "" && (
+        {search !== "" && searchedRecipes.length !== 0 && (
           <ul className="search-results">
-            {searchedRecipes.map((result) => (
-              <Link className="search-link" to="/">
-                <li className="search-result">
-                  {result.data.title.toLowerCase()}
-                </li>
-              </Link>
-            ))}
+            {searchedRecipes.map((result) => {
+              const searchUrl = result.data.title
+                .toLowerCase()
+                .replace(/[^a-zA-Z0-9-._~:/?#[\]@!$&'()*+,;=%]/g, "_")
+                .replace(/\s/gi, "");
+              return (
+                <Link className="search-link" to={`/recipes/${searchUrl}`}>
+                  <li className="search-result">
+                    {result.data.title.toLowerCase()}
+                  </li>
+                </Link>
+              );
+            })}
           </ul>
         )}
       </div>
-      <MdMenu style={{ width: "40px", height: "40px" }} />
+
+      <MdMenu
+        className="menu"
+        onClick={toggleSidebar}
+        style={{ width: "40px", height: "40px" }}
+      />
+      <div
+        className={
+          showSidebar ? "sidebar-wrapper show-sidebar" : "sidebar-wrapper"
+        }
+      >
+        <div className="sidebar">
+          <MdOutlineEast className="sidebar-button" onClick={toggleSidebar} />
+          <Link className="link " to="/">
+            <h4 className="menu-item">Home</h4>
+          </Link>
+          <Link className="link " to="/categories">
+            <h4 className="menu-item">Categories</h4>
+          </Link>
+          <Link className="link " to="/recipes">
+            <h4 className="menu-item">Recipes</h4>
+          </Link>
+          <Link className="link " to="/">
+            <h4 className="menu-item">About</h4>
+          </Link>
+          <Link className="link " to="/login">
+            <h4 className="menu-item">Login</h4>
+          </Link>
+        </div>
+      </div>
     </div>
   );
 }

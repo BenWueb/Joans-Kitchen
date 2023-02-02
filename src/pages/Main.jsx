@@ -15,24 +15,14 @@ function Main() {
               minima consequuntur.
             </p>
             <div className="btn-container">
-              <Link to="/recipes">
-                <button className="btn">Browse Recipes</button>
+              <Link className="link" to="/recipes">
+                <button className="btn browse">Browse Recipes</button>
               </Link>
 
               <button className="btn">Random Recipe</button>
             </div>
           </div>
         </header>
-        <div className="sidebar">
-          <Link to="/categories">
-            <h4>Categories</h4>
-          </Link>
-          <Link to="/recipes">
-            <h4>Recipes</h4>
-          </Link>
-          <h4>About</h4>
-          <h4>Login</h4>
-        </div>
       </div>
     </>
   );

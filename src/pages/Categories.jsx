@@ -10,13 +10,16 @@ function Categories() {
     return;
   }
   return (
-    <>
+    <div className="container">
       <Navbar />
-
-      {categories.map((category) => (
-        <CategoryCard name={category} />
-      ))}
-    </>
+      <div className="page-container">
+        <div className="categories-container">
+          {categories.map((category) => (
+            <CategoryCard name={category} />
+          ))}
+        </div>
+      </div>
+    </div>
   );
 }
 export default Categories;

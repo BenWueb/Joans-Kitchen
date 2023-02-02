@@ -7,8 +7,8 @@ function CategoryCard({ name }) {
 
   return (
     <div>
-      <Link to={`/categories/${name.replace(/\s/gi, "_")}`}>
-        <div className="category-container">
+      <Link className="link" to={`/categories/${name.replace(/\s/gi, "_")}`}>
+        <div className="category-card">
           <h1>{name}</h1>
         </div>
       </Link>
