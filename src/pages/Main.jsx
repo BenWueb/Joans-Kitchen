@@ -1,19 +1,21 @@
 import { Link } from "react-router-dom";
 import Navbar from "../components/Navbar";
+import BrowseSection from "../components/BrowseSection";
+import CategorySection from "../components/CategorySection";
+import AddRecipeSection from "../components/AddRecipeSection";
 
 function Main() {
   return (
     <>
       <div className="container">
+        <Navbar />
         <header className="header-container">
-          <Navbar />
           <div className="header-content">
-            <h1>Joan's Kitchen</h1>
-            <p>
-              Lorem ipsum dolor sit, amet consectetur adipisicing elit. Cumque
-              perspiciatis ab, dolorem soluta debitis odit veritatis ea est
-              minima consequuntur.
-            </p>
+            <div className="main-title">
+              <h1>Joan's</h1>
+              <h1 className="kitchen">Kitchen</h1>
+            </div>
+
             <div className="btn-container">
               <Link className="link" to="/recipes">
                 <button className="btn browse">Browse Recipes</button>
@@ -23,6 +25,9 @@ function Main() {
             </div>
           </div>
         </header>
+        <CategorySection />
+        <BrowseSection />
+        <AddRecipeSection />
       </div>
     </>
   );

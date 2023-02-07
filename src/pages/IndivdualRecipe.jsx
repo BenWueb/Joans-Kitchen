@@ -12,7 +12,6 @@ function IndividualRecipe() {
   if (!recipes) {
     return;
   }
-
   //Edit url to match database name
   const recipeName = params.recipeName.replace(/_/g, " ");
 
@@ -21,18 +20,27 @@ function IndividualRecipe() {
     return el.data.title.toLowerCase() === recipeName;
   });
 
+  if (!recipe) {
+    return;
+  }
+
   return (
-    <div className="container">
-      <Navbar />
-      <div className="page-container">
-        <SingleRecipe
-          title={recipe[0].data.title}
-          ingredients={recipe[0].data.ingredients}
-          recipe={recipe[0].data.recipe}
-          notes={recipe[0].data.notes}
-        />
+    <>
+      <section></section>
+      <div className="container">
+        <Navbar />
+        <div className="page-container">
+          <SingleRecipe
+            title={recipe[0].data.title}
+            ingredients={recipe[0].data.ingredients}
+            recipe={recipe[0].data.recipe}
+            notes={recipe[0].data.notes}
+            createdBy={recipe[0].data.createdBy}
+            imageUrls={recipe[0].data.imageUrls}
+          />
+        </div>
       </div>
-    </div>
+    </>
   );
 }
 export default IndividualRecipe;

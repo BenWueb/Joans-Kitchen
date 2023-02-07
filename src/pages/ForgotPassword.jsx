@@ -1,42 +1,33 @@
-import { useState, useEffect, useContext } from "react";
+import { useState } from "react";
 import { useNavigate, Link } from "react-router-dom";
-import { getAuth, signInWithEmailAndPassword } from "firebase/auth";
-import CreateAccount from "../pages/CreateAccount";
+import { getAuth, sendPasswordResetEmail } from "firebase/auth";
 import Navbar from "../components/Navbar";
-import RecipesContext from "../context/RecipesContext";
 import { toast } from "react-toastify";
 
-function Login() {
+function ForgotPassword() {
   const [formData, setFormData] = useState({
     email: "",
-    password: "",
   });
 
-  const { email, password } = formData;
-
-  const { setCurrentUser } = useContext(RecipesContext);
+  const { email } = formData;
 
   const navigate = useNavigate();
+  const auth = getAuth();
 
   const onChange = (e) => {
-    setFormData((prevState) => ({
-      ...prevState,
-      [e.target.id]: e.target.value,
-    }));
+    setFormData({
+      email: e.target.value,
+    });
   };
 
   const onSubmit = async (e) => {
-    e.preventDefault();
-
     try {
-      const auth = getAuth();
-      const userCredential = await signInWithEmailAndPassword(
-        auth,
-        email,
-        password
-      );
-      setFormData({ email: "", password: "" });
-      setTimeout(() => navigate("/profile"), 1000);
+      e.preventDefault();
+
+      await sendPasswordResetEmail(auth, email);
+      setFormData({ email: "" });
+      toast.success("Email sent!");
+      navigate("/login");
     } catch (error) {
       toast.error("Invalid Credentials", {
         position: toast.POSITION.BOTTOM_RIGHT,
@@ -50,7 +41,7 @@ function Login() {
       <Navbar />
       <div className="form-page-container">
         <div className="form-container">
-          <h1>Login</h1>
+          <h1>Forgot Password</h1>
           <form className="form" onSubmit={onSubmit}>
             <label htmlFor="email">Email</label>
             <input
@@ -62,24 +53,16 @@ function Login() {
               onChange={onChange}
               required
             />
-            <label htmlFor="password">Password</label>
-            <input
-              className="input"
-              id="password"
-              value={password}
-              type="password"
-              placeholder="Password"
-              onChange={onChange}
-              required
-            />
+
             <button type="submit" className="btn submit-btn">
               Submit
             </button>
-            <Link className="link form-link" to="/forgot-password">
-              <p>Forgot Password</p>
-            </Link>
+
             <Link className="link form-link" to="/create-account">
               Create an Account
+            </Link>
+            <Link className="link form-link" to="/login">
+              <p>Login</p>
             </Link>
           </form>
         </div>
@@ -87,4 +70,4 @@ function Login() {
     </div>
   );
 }
-export default Login;
+export default ForgotPassword;

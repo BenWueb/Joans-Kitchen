@@ -1,42 +1,91 @@
-import { useState, useEffect } from "react";
-import { getDoc, doc } from "firebase/firestore";
-import { getAuth } from "firebase/auth";
-import { db } from "../firestore.config";
+import { useState, useEffect, useContext } from "react";
+import { Navigate, useNavigate, Link } from "react-router-dom";
 import Navbar from "../components/Navbar";
+import RecipesContext from "../context/RecipesContext";
+import { getAuth } from "firebase/auth";
+import RecipeCardMobile from "../components/RecipeCardMobile";
+import ProfileRecipeCard from "../components/ProfileRecipeCard";
+import { MdEmail, MdPerson } from "react-icons/md";
 
 function Profile() {
-  const [userData, setUserData] = useState({});
+  const navigate = useNavigate();
+  const auth = getAuth();
+  const { currentUserData, recipes, setCurrentUser } =
+    useContext(RecipesContext);
 
-  const { name, email, favorites, recipes } = userData;
+  if (!currentUserData) {
+    return;
+  }
 
-  useEffect(() => {
-    try {
-      const getUserData = async () => {
-        const auth = getAuth();
-        const user = auth.currentUser.uid;
+  const { name, email, favorites } = currentUserData;
 
-        const docRef = doc(db, "Users", user);
-        const docSnap = await getDoc(docRef);
+  const currentUserRecipes = recipes.filter((recipe) => {
+    return recipe.data.createdBy === currentUserData.name;
+  });
 
-        setUserData(docSnap.data());
-      };
-      getUserData();
-    } catch (error) {
-      console.log(error);
-    }
-  }, []);
   return (
     <div>
       <section></section>
       <Navbar />
       <div className="page-container">
+        <h1 className="page-title">{currentUserData.name}'s Profile</h1>
         <div className="profile-container">
-          <h1>{name}</h1>
-          <div className="favorites-container">
-            <h4>Favorites</h4>
+          <div className="account-info-container">
+            <h2>Account Info</h2>
+            <div className="account-info">
+              <h4>Name</h4>
+              <div className="name-input">
+                <input
+                  className="input"
+                  type="text"
+                  value={name}
+                  id="email"
+                  disabled
+                />
+                <MdPerson className="md-person" />
+              </div>
+              <h4>Email</h4>
+              <div className="email-input">
+                <input
+                  className="input"
+                  type="text"
+                  value={email}
+                  id="email"
+                  disabled
+                />
+                <MdEmail className="md-email" />
+              </div>
+            </div>
           </div>
-          <div className="recipes-container">
-            <h4>Recipes</h4>
+
+          <div className="favorites-container">
+            <h2>Favorites</h2>
+            <div className="favorites-grid">
+              {favorites.map((fav) => (
+                <RecipeCardMobile title={fav.replace(/_/g, " ")} key={fav} />
+              ))}
+            </div>
+          </div>
+          <div className="profile-recipes-container">
+            <h2>Recipes</h2>
+            <div className="favorites-grid">
+              {currentUserRecipes.map((recipe) => (
+                <>
+                  <ProfileRecipeCard
+                    title={recipe.data.title}
+                    category={recipe.parent}
+                    id={recipe.id}
+                    setCurrentUser={setCurrentUser()}
+                  />
+                </>
+              ))}
+            </div>
+            <button
+              onClick={() => navigate("/add-recipe")}
+              className="btn submit-btn profile-btn"
+            >
+              Add Recipe
+            </button>
           </div>
         </div>
       </div>

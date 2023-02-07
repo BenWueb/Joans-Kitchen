@@ -2,15 +2,19 @@ import { MdMenu } from "react-icons/md";
 import { useContext, useState, useEffect } from "react";
 import RecipeContext from "../context/RecipesContext";
 import { limit } from "firebase/firestore";
-import { Link } from "react-router-dom";
-import { MdOutlineEast } from "react-icons/md";
+import { getAuth } from "firebase/auth";
+import { Link, useNavigate } from "react-router-dom";
+import { MdOutlineEast, MdSearch } from "react-icons/md";
 
 function Navbar() {
   const [search, setSearch] = useState("");
   const [searchedRecipes, setSearchedRecipes] = useState([]);
   const [showSidebar, setShowSidebar] = useState(false);
 
-  const { recipes } = useContext(RecipeContext);
+  const { recipes, Logout, currentUser } = useContext(RecipeContext);
+
+  const navigate = useNavigate();
+  const auth = getAuth();
 
   const onChange = (e) => {
     setSearch(e.target.value);
@@ -26,6 +30,11 @@ function Navbar() {
     setShowSidebar((prev) => !prev);
   };
 
+  const signOut = () => {
+    Logout();
+    navigate("/");
+  };
+
   return (
     <div className="nav-container">
       <Link className="link" to="/">
@@ -35,10 +44,12 @@ function Navbar() {
         <input
           type="text"
           className="search"
-          placeholder="Search for a recipe"
+          placeholder="Search for a recipe..."
           onChange={onChange}
           value={search}
         />
+        <MdSearch className="search-icon" />
+
         {search !== "" && searchedRecipes.length !== 0 && (
           <ul className="search-results">
             {searchedRecipes.map((result) => {
@@ -82,9 +93,23 @@ function Navbar() {
           <Link className="link " to="/">
             <h4 className="menu-item">About</h4>
           </Link>
-          <Link className="link " to="/login">
-            <h4 className="menu-item">Login</h4>
-          </Link>
+          {currentUser ? (
+            <>
+              <Link className="link" to="/profile">
+                <h4 className="menu-item">Profile</h4>
+              </Link>
+              <Link className="link" to="/add-recipe">
+                <h4 className="menu-item">Add Recipe</h4>
+              </Link>
+              <h4 className="menu-item" onClick={signOut}>
+                Sign Out
+              </h4>
+            </>
+          ) : (
+            <Link className="link " to="/login">
+              <h4 className="menu-item">Login</h4>
+            </Link>
+          )}
         </div>
       </div>
     </div>

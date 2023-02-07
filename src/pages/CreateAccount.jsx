@@ -4,6 +4,7 @@ import { getAuth, createUserWithEmailAndPassword } from "firebase/auth";
 import { setDoc, doc, serverTimestamp, getDoc } from "firebase/firestore";
 import { db } from "../firestore.config";
 import Navbar from "../components/Navbar";
+import { toast } from "react-toastify";
 
 function CreateAccount() {
   const [formData, setFormData] = useState({
@@ -46,7 +47,14 @@ function CreateAccount() {
 
       navigate("/");
     } catch (error) {
-      console.log(error);
+      setFormData({
+        name: "",
+        email: "",
+        password: "",
+      });
+      toast.error("Unable to create account", {
+        position: toast.POSITION.BOTTOM_RIGHT,
+      });
     }
   };
 
@@ -83,12 +91,12 @@ function CreateAccount() {
               className="input"
               id="password"
               value={password}
-              type="text"
+              type="password"
               placeholder="Password"
               onChange={onChange}
               required
             />
-            <button type="submit" className="btn">
+            <button type="submit" className="btn submit-btn">
               Submit
             </button>
             <Link className="link form-link" to="/login">

@@ -2,32 +2,42 @@ import { useContext } from "react";
 import RecipeCard from "../components/RecipeCard";
 import RecipesContext from "../context/RecipesContext";
 import Navbar from "../components/Navbar";
+import Filter from "../components/Filter";
 
 function Recipes() {
   const { recipes } = useContext(RecipesContext);
 
+  if (!recipes) {
+    return;
+  }
+
   return (
-    <div className="container">
+    <>
+      <section></section>
+
       <Navbar />
       <div className="page-container">
-        {recipes
-          .sort((a, b) => {
-            return a.data.title < b.data.title
-              ? -1
-              : a.data.title > b.data.title
-              ? 1
-              : 0;
-          })
-          .map((recipe) => (
-            <RecipeCard
-              title={recipe.data.title}
-              ingredients={recipe.data.ingredients}
-              recipe={recipe.data.recipe}
-              notes={recipe.data.notes}
-            />
-          ))}
+        <h1 className="page-title">Recipes</h1>
+        <Filter />
+        <div className="recipes-container">
+          {recipes
+            .sort((a, b) => {
+              return a.data.title < b.data.title
+                ? -1
+                : a.data.title > b.data.title
+                ? 1
+                : 0;
+            })
+            .map((recipe) => (
+              <RecipeCard
+                title={recipe.data.title}
+                key={recipe.id}
+                imgUrl={recipe.data.imgUrl}
+              />
+            ))}
+        </div>
       </div>
-    </div>
+    </>
   );
 }
 export default Recipes;

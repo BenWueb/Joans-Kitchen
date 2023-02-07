@@ -21,30 +21,34 @@ function Category() {
   });
 
   return (
-    <div className="container">
-      <Navbar />
-      <div className="page-container">
-        <h1 className="category-header">{categoryName}</h1>
-        {filteredRecipes.map((recipe) => {
-          console.log(recipe);
-          const recipeUrl = recipe.data.title
-            .toLowerCase()
-            .replace(/[^a-zA-Z0-9-._~:/?#[\]@!$&'()*+,;=%]/g, "_")
-            .replace(/\s/gi, "");
+    <>
+      <section></section>
+      <div className="container">
+        <Navbar />
+        <div className="page-container">
+          <h1 className="page-title">{categoryName}</h1>
+          <div className="category-container">
+            {filteredRecipes.map((recipe) => {
+              const recipeUrl = recipe.data.title
+                .toLowerCase()
+                .replace(/[^a-zA-Z0-9-._~:/?#[\]@!$&'()*+,;=%]/g, "_")
+                .replace(/\s/gi, "");
 
-          return (
-            <Link className="link" to={`/recipes/${recipeUrl}`}>
-              <RecipeCard
-                title={recipe.data.title}
-                ingredients={recipe.data.ingredients}
-                recipe={recipe.data.recipe}
-                notes={recipe.data.notes}
-              />
-            </Link>
-          );
-        })}
+              return (
+                <Link className="link" to={`/recipes/${recipeUrl}`}>
+                  <RecipeCard
+                    title={recipe.data.title}
+                    ingredients={recipe.data.ingredients}
+                    recipe={recipe.data.recipe}
+                    notes={recipe.data.notes}
+                  />
+                </Link>
+              );
+            })}
+          </div>
+        </div>
       </div>
-    </div>
+    </>
   );
 }
 export default Category;
