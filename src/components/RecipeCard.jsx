@@ -18,7 +18,7 @@ function RecipeCard({ title }) {
       <Link className="link category-link" to={`/recipes/${searchUrl}`}>
         <div className="category-card">
           <img
-            src="https://images.unsplash.com/photo-1621852003709-763b0b32da0b?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxzZWFyY2h8Mnx8YW50aXBhc3RvfGVufDB8fDB8fA%3D%3D&auto=format&fit=crop&w=500&q=60"
+            src="https://firebasestorage.googleapis.com/v0/b/joans-recipes.appspot.com/o/images%2Fanh-nguyen-kcA-c3f_3FE-unsplash_800x800.webp?alt=media&token=198179f2-7f57-41fb-8467-788ddcf73e74"
             alt=""
             className="category-image"
           />

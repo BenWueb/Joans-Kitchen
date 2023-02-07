@@ -1,16 +1,22 @@
-import { useState, useEffect, useContext } from "react";
-import { useNavigate, Link, useParams } from "react-router-dom";
-import { getAuth, signInWithEmailAndPassword } from "firebase/auth";
-import { collection, doc, updateDoc, arrayUnion } from "firebase/firestore";
+import { useState, useEffect } from "react";
+import { useNavigate, useParams } from "react-router-dom";
+import { getAuth } from "firebase/auth";
+import {
+  collectionGroup,
+  query,
+  where,
+  getDocs,
+  doc,
+  updateDoc,
+  arrayUnion,
+} from "firebase/firestore";
 import {
   getStorage,
   ref,
   uploadBytesResumable,
   getDownloadURL,
 } from "firebase/storage";
-import CreateAccount from "../pages/CreateAccount";
 import Navbar from "../components/Navbar";
-import RecipesContext from "../context/RecipesContext";
 import { db } from "../firestore.config";
 import { v4 as uuidv4 } from "uuid";
 
@@ -40,35 +46,36 @@ function EditRecipe() {
     imageUrls,
   } = formData;
 
-  const { setCurrentUser, categories, currentUserData, recipes } =
-    useContext(RecipesContext);
-
   const auth = getAuth();
   const navigate = useNavigate();
   const params = useParams();
 
+  const recipeName = params.recipeName.replace(/_/g, " ").toUpperCase();
+
   useEffect(() => {
-    const setCurrentRecipe = () => {
-      //Filter recipes by recipe
-      const currentRecipe = recipes.filter((el) => {
-        return el.data.title.toLowerCase() === recipeName;
-      });
-      setFormData(currentRecipe[0].data);
+    const fetchRecipe = async () => {
+      try {
+        const recipeRef = collectionGroup(db, "recipes");
+        const q = query(recipeRef, where("title", "==", recipeName));
 
-      setFormData((prevState) => ({
-        ...prevState,
-        id: currentRecipe[0].id,
-        category: currentRecipe[0].parent,
-        updatedBy: currentUserData.name,
-        imageUrls: currentRecipe[0].data.imageUrls || [],
-        tags: currentRecipe[0].data.tags || [],
-      }));
+        const recipeSnap = await getDocs(q);
+
+        recipeSnap.forEach((doc) => {
+          setFormData(doc.data());
+          setFormData((prevState) => ({
+            ...prevState,
+            category: doc.ref.parent.parent.id,
+            id: doc.id,
+            tags: doc.data.tags || [],
+          }));
+        });
+      } catch (error) {
+        console.log(error);
+      }
     };
-    setCurrentRecipe();
-  }, []);
 
-  //Edit url to match database name
-  const recipeName = params.recipeName.replace(/_/g, " ");
+    fetchRecipe();
+  }, []);
 
   const onChange = (e) => {
     if (e.target.id === "tags") {

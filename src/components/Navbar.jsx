@@ -93,7 +93,7 @@ function Navbar() {
           <Link className="link " to="/">
             <h4 className="menu-item">About</h4>
           </Link>
-          {currentUser ? (
+          {auth.currentUser ? (
             <>
               <Link className="link" to="/profile">
                 <h4 className="menu-item">Profile</h4>

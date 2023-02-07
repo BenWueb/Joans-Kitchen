@@ -30,17 +30,20 @@
 body {
   font-family: var(--font);
   font-size: 20px;
+
+  width: 100%;
 }
 
 section {
   background-image: url("./assets/brooke-lark-kXQ3J7_2fpc-unsplash.jpg");
   background-repeat: no-repeat;
   background-attachment: fixed;
-  background-size: cover;
+  background-size: fill;
+  background-position: cover;
   position: fixed;
   min-height: 100vh;
   z-index: -1;
-  width: 100%;
+  width: 100vw;
   filter: brightness(50%);
 }
 
@@ -52,7 +55,7 @@ section {
 
 .page-container {
   padding: 50px;
-
+  min-height: 100vh;
   display: flex;
 
   align-items: center;
@@ -82,7 +85,8 @@ button:hover {
 }
 
 .btn {
-  padding: 1em 3em;
+  padding: 1.2em 3em 1em 3em;
+
   text-transform: uppercase;
   font-size: var(--fs-600);
   box-shadow: var(--bs);
@@ -521,6 +525,7 @@ button:hover {
   display: grid;
 
   gap: 2rem 0.5rem;
+  height: 100%;
 
   grid-template-columns: repeat(auto-fit, minmax(275px, 1fr));
   width: 100%;
@@ -672,6 +677,22 @@ button:hover {
   margin: auto;
 }
 
+.tags-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 1rem;
+}
+
+.tags-container button {
+  background-color: var(--secondary-dark);
+}
+.tags-container button:hover {
+  transform: scale(1);
+  cursor: default;
+  opacity: 1;
+}
+
 .single-recipe-image-grid {
   width: 100%;
   display: grid;
@@ -696,6 +717,10 @@ button:hover {
 .single-recipe-img-container img {
   object-fit: cover;
   height: 100%;
+  width: 100%;
+}
+
+.add-photos-button {
   width: 100%;
 }
 

@@ -8,8 +8,6 @@ import {
 } from "firebase/firestore";
 import { getAuth, signOut, onAuthStateChanged } from "firebase/auth";
 import { db } from "../firestore.config";
-import { Navigate, useNavigate } from "react-router-dom";
-import { MdTry } from "react-icons/md";
 
 const RecipesContext = createContext("test");
 const auth = getAuth();

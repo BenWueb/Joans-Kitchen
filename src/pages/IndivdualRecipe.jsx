@@ -1,28 +1,44 @@
-import { useContext } from "react";
+import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
-import RecipesContext from "../context/RecipesContext";
 import Navbar from "../components/Navbar";
-import RecipeCard from "../components/RecipeCard";
 import SingleRecipe from "../components/SingleRecipe";
+import { collectionGroup, query, where, getDocs } from "firebase/firestore";
+import { db } from "../firestore.config";
 
 function IndividualRecipe() {
-  const params = useParams();
-  const { recipes } = useContext(RecipesContext);
-
-  if (!recipes) {
-    return;
-  }
-  //Edit url to match database name
-  const recipeName = params.recipeName.replace(/_/g, " ");
-
-  //Filter recipes by recipe
-  const recipe = recipes.filter((el) => {
-    return el.data.title.toLowerCase() === recipeName;
+  const [recipe, setRecipe] = useState({
+    title: "",
+    ingredients: "",
+    recipe: "",
+    notes: "",
+    imageUrls: [],
+    tags: [],
   });
 
-  if (!recipe) {
-    return;
-  }
+  const params = useParams();
+
+  //Edit url to match database name
+  const recipeName = params.recipeName.replace(/_/g, " ").toUpperCase();
+  console.log(recipeName);
+
+  useEffect(() => {
+    const fetchRecipe = async () => {
+      try {
+        const recipeRef = collectionGroup(db, "recipes");
+        const q = query(recipeRef, where("title", "==", recipeName));
+
+        const recipeSnap = await getDocs(q);
+
+        recipeSnap.forEach((doc) => {
+          setRecipe(doc.data());
+        });
+      } catch (error) {
+        console.log(error);
+      }
+    };
+
+    fetchRecipe();
+  }, []);
 
   return (
     <>
@@ -31,12 +47,13 @@ function IndividualRecipe() {
         <Navbar />
         <div className="page-container">
           <SingleRecipe
-            title={recipe[0].data.title}
-            ingredients={recipe[0].data.ingredients}
-            recipe={recipe[0].data.recipe}
-            notes={recipe[0].data.notes}
-            createdBy={recipe[0].data.createdBy}
-            imageUrls={recipe[0].data.imageUrls}
+            title={recipe.title}
+            ingredients={recipe.ingredients}
+            recipe={recipe.recipe}
+            notes={recipe.notes}
+            createdBy={recipe.createdBy}
+            imageUrls={recipe.imageUrls}
+            tags={recipe.tags}
           />
         </div>
       </div>

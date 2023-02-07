@@ -14,6 +14,7 @@ function SingleRecipe({
   notes,
   createdBy,
   imageUrls,
+  tags,
 }) {
   const { recipes, loading, currentUserData } = useContext(RecipesContext);
   const [like, setLike] = useState(false);
@@ -129,16 +130,31 @@ function SingleRecipe({
             </ol>
           </div>
         </div>
+        {tags && (
+          <div className="tags-container">
+            {tags.map((tag) => (
+              <button className=" tag-btn">{tag}</button>
+            ))}
+          </div>
+        )}
       </div>
       <div className="single-recipe-image-grid">
-        {imageUrls &&
+        {imageUrls ? (
           imageUrls.map((img) => (
             <div className="single-recipe-img-container">
               <a href={img} target="_blank">
                 <img src={img} />
               </a>
             </div>
-          ))}
+          ))
+        ) : (
+          <button
+            onClick={() => navigate(`/edit-recipe/${params.recipeName}`)}
+            className="btn submit-btn add-photos-button"
+          >
+            Add Photo(s)
+          </button>
+        )}
       </div>
     </>
   );

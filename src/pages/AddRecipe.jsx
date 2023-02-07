@@ -110,6 +110,7 @@ function AddRecipe() {
 
     const formDataCopy = {
       ...formData,
+      title: title.toUpperCase(),
       imageUrls,
       createdBy: currentUserData.name,
       owner: auth.currentUser.uid,
@@ -124,7 +125,7 @@ function AddRecipe() {
 
     const newRecipeRef = collection(db, `Recipes/${category}/recipes`);
     await addDoc(newRecipeRef, formDataCopy);
-    window.location.reload();
+    navigate(`/recipes/${searchUrl}`);
   };
 
   return (

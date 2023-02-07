@@ -74,6 +74,7 @@ function Profile() {
                   <ProfileRecipeCard
                     title={recipe.data.title}
                     category={recipe.parent}
+                    imageUrls={recipe.data.imageUrls}
                     id={recipe.id}
                     setCurrentUser={setCurrentUser()}
                   />
