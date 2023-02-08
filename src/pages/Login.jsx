@@ -45,46 +45,48 @@ function Login() {
   };
 
   return (
-    <div>
+    <>
       <section></section>
-      <Navbar />
-      <div className="form-page-container">
-        <div className="form-container">
-          <h1>Login</h1>
-          <form className="form" onSubmit={onSubmit}>
-            <label htmlFor="email">Email</label>
-            <input
-              className="input"
-              id="email"
-              value={email}
-              type="email"
-              placeholder="Email"
-              onChange={onChange}
-              required
-            />
-            <label htmlFor="password">Password</label>
-            <input
-              className="input"
-              id="password"
-              value={password}
-              type="password"
-              placeholder="Password"
-              onChange={onChange}
-              required
-            />
-            <button type="submit" className="btn submit-btn">
-              Submit
-            </button>
-            <Link className="link form-link" to="/forgot-password">
-              <p>Forgot Password</p>
-            </Link>
-            <Link className="link form-link" to="/create-account">
-              Create an Account
-            </Link>
-          </form>
+      <div className="container">
+        <Navbar />
+        <div className="form-page-container">
+          <div className="form-container">
+            <h1>Login</h1>
+            <form className="form" onSubmit={onSubmit}>
+              <label htmlFor="email">Email</label>
+              <input
+                className="input"
+                id="email"
+                value={email}
+                type="email"
+                placeholder="Email"
+                onChange={onChange}
+                required
+              />
+              <label htmlFor="password">Password</label>
+              <input
+                className="input"
+                id="password"
+                value={password}
+                type="password"
+                placeholder="Password"
+                onChange={onChange}
+                required
+              />
+              <button type="submit" className="btn submit-btn">
+                Submit
+              </button>
+              <Link className="link form-link" to="/forgot-password">
+                <p>Forgot Password</p>
+              </Link>
+              <Link className="link form-link" to="/create-account">
+                Create an Account
+              </Link>
+            </form>
+          </div>
         </div>
       </div>
-    </div>
+    </>
   );
 }
 export default Login;

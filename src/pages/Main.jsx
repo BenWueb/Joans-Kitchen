@@ -20,14 +20,13 @@ function Main() {
               <Link className="link" to="/recipes">
                 <button className="btn browse">Browse Recipes</button>
               </Link>
-
-              <button className="btn">Random Recipe</button>
+              <Link to="/" className="link">
+                <button className="btn">Random Recipe</button>
+              </Link>
             </div>
           </div>
         </header>
         <CategorySection />
-        <BrowseSection />
-        <AddRecipeSection />
       </div>
     </>
   );

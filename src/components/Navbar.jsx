@@ -4,12 +4,12 @@ import RecipeContext from "../context/RecipesContext";
 import { limit } from "firebase/firestore";
 import { getAuth } from "firebase/auth";
 import { Link, useNavigate } from "react-router-dom";
-import { MdOutlineEast, MdSearch } from "react-icons/md";
+import { MdClose, MdSearch } from "react-icons/md";
 
 function Navbar() {
   const [search, setSearch] = useState("");
   const [searchedRecipes, setSearchedRecipes] = useState([]);
-  const [showSidebar, setShowSidebar] = useState(false);
+  const [showMenu, setShowMenu] = useState(false);
 
   const { recipes, Logout, currentUser } = useContext(RecipeContext);
 
@@ -26,8 +26,8 @@ function Navbar() {
     setSearchedRecipes(newFilter.slice(0, 15));
   };
 
-  const toggleSidebar = () => {
-    setShowSidebar((prev) => !prev);
+  const toggleMenu = () => {
+    setShowMenu((prev) => !prev);
   };
 
   const signOut = () => {
@@ -36,51 +36,50 @@ function Navbar() {
   };
 
   return (
-    <div className="nav-container">
-      <Link className="link" to="/">
-        <div className="logo">JK</div>
-      </Link>
-      <div className="search-container">
-        <input
-          type="text"
-          className="search"
-          placeholder="Search for a recipe..."
-          onChange={onChange}
-          value={search}
-        />
-        <MdSearch className="search-icon" />
+    <>
+      <div className="nav-container">
+        <Link className="link" to="/">
+          <div className="logo">JK</div>
+        </Link>
+        <div className="search-container">
+          <input
+            type="text"
+            className="search"
+            placeholder="Search for a recipe..."
+            onChange={onChange}
+            value={search}
+          />
 
-        {search !== "" && searchedRecipes.length !== 0 && (
-          <ul className="search-results">
-            {searchedRecipes.map((result) => {
-              const searchUrl = result.data.title
-                .toLowerCase()
-                .replace(/[^a-zA-Z0-9-._~:/?#[\]@!$&'()*+,;=%]/g, "_")
-                .replace(/\s/gi, "");
-              return (
-                <Link className="search-link" to={`/recipes/${searchUrl}`}>
-                  <li className="search-result">
-                    {result.data.title.toLowerCase()}
-                  </li>
-                </Link>
-              );
-            })}
-          </ul>
-        )}
+          <MdSearch className="search-icon" />
+
+          {search !== "" && searchedRecipes.length !== 0 && (
+            <ul className="search-results">
+              {searchedRecipes.map((result) => {
+                const searchUrl = result.data.title
+                  .toLowerCase()
+                  .replace(/[^a-zA-Z0-9-._~:/?#[\]@!$&'()*+,;=%]/g, "_")
+                  .replace(/\s/gi, "");
+                return (
+                  <Link className="search-link" to={`/recipes/${searchUrl}`}>
+                    <li className="search-result">
+                      {result.data.title.toLowerCase()}
+                    </li>
+                  </Link>
+                );
+              })}
+            </ul>
+          )}
+        </div>
+        <MdMenu
+          className="menu-icon"
+          onClick={toggleMenu}
+          style={{ width: "40px", height: "40px" }}
+        />
       </div>
 
-      <MdMenu
-        className="menu"
-        onClick={toggleSidebar}
-        style={{ width: "40px", height: "40px" }}
-      />
-      <div
-        className={
-          showSidebar ? "sidebar-wrapper show-sidebar" : "sidebar-wrapper"
-        }
-      >
-        <div className="sidebar">
-          <MdOutlineEast className="sidebar-button" onClick={toggleSidebar} />
+      <div className="menu-container">
+        <div className={showMenu ? "menu-active" : "menu"}>
+          <MdClose onClick={toggleMenu} className="close-menu-icon" />
           <Link className="link " to="/">
             <h4 className="menu-item">Home</h4>
           </Link>
@@ -112,7 +111,7 @@ function Navbar() {
           )}
         </div>
       </div>
-    </div>
+    </>
   );
 }
 export default Navbar;
