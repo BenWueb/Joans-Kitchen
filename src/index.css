@@ -92,6 +92,10 @@ button:hover {
   opacity: 0.9;
 }
 
+button:active {
+  outline: none;
+}
+
 .btn {
   padding: 1.2em 3em 1em 3em;
 
