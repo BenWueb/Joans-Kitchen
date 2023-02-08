@@ -13,7 +13,11 @@ function CategorySection() {
         <h2 className="category-section-title">Categories</h2>
         <div className="category-cards-container">
           {shuffled.slice(0, 5).map((category) => (
-            <CategoryCard name={category.id} imgUrl={category.imgUrl} />
+            <CategoryCard
+              name={category.id}
+              key={category.id}
+              imgUrl={category.imgUrl}
+            />
           ))}
         </div>
       </div>

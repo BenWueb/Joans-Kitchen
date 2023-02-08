@@ -95,7 +95,7 @@ function SingleRecipe({
         </div>
         <div className="single-recipe-header">
           <h4 className="single-title">{title.toLowerCase()}</h4>
-          <h5>{createdBy}</h5>
+          <h4 className="created-by">Created By: {createdBy}</h4>
 
           {notes && (
             <div className="single-notes-container">
@@ -114,7 +114,7 @@ function SingleRecipe({
                   {ingredients
                     .split(/(?<!\d)\s(?=(?<!x)\d(?![x]))/gm)
                     .map((ing) => (
-                      <li>{ing}</li>
+                      <li key={ing}>{ing}</li>
                     ))}
                 </ul>
               </div>
@@ -125,7 +125,7 @@ function SingleRecipe({
             <h5 className="subtitle">Steps</h5>
             <ol className="single-recipe">
               {steps.map((step) => (
-                <li>{step}</li>
+                <li key={step}>{step}</li>
               ))}
             </ol>
           </div>
@@ -133,7 +133,9 @@ function SingleRecipe({
         {tags && (
           <div className="tags-container">
             {tags.map((tag) => (
-              <button className=" tag-btn">{tag}</button>
+              <button key={tag} className=" tag-btn">
+                {tag}
+              </button>
             ))}
           </div>
         )}
@@ -141,7 +143,7 @@ function SingleRecipe({
       <div className="single-recipe-image-grid">
         {imageUrls ? (
           imageUrls.map((img) => (
-            <div className="single-recipe-img-container">
+            <div key={img} className="single-recipe-img-container">
               <a href={img} target="_blank">
                 <img src={img} />
               </a>

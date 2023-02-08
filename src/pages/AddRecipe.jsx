@@ -135,9 +135,9 @@ function AddRecipe() {
       <div className="container">
         {window.innerWidth <= 810 ? <MobileNavbar /> : <Navbar />}
 
+        <h1 className="page-title">Add Recipe</h1>
         <div className="form-page-container">
           <div className="form-container">
-            <h1>Add Recipe</h1>
             <form className="form" onSubmit={onSubmit}>
               <label htmlFor="category">Category</label>
               <select
@@ -149,7 +149,9 @@ function AddRecipe() {
               >
                 <option>Please select a Category...</option>
                 {categories.map((cat) => (
-                  <option value={cat.id}>{cat.id}</option>
+                  <option key={cat.id} value={cat.id}>
+                    {cat.id}
+                  </option>
                 ))}
               </select>
               <label htmlFor="tags">Tags</label>

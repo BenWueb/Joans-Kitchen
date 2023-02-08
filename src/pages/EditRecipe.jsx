@@ -67,7 +67,6 @@ function EditRecipe() {
             ...prevState,
             category: doc.ref.parent.parent.id,
             id: doc.id,
-            tags: doc.data.tags || [],
           }));
         });
       } catch (error) {
@@ -166,7 +165,7 @@ function EditRecipe() {
         .replace(/\s/gi, "");
 
       const newRecipeRef = doc(db, `Recipes/${category}/recipes/${id}`);
-      console.log(formDataCopy);
+
       await updateDoc(newRecipeRef, formDataCopy);
       navigate(`/recipes/${searchUrl}`);
     } else {
@@ -190,9 +189,9 @@ function EditRecipe() {
       <section></section>
       <div className="container">
         {window.innerWidth <= 810 ? <MobileNavbar /> : <Navbar />}
+        <h1 className="page-title">Edit Recipe</h1>
         <div className="form-page-container">
           <div className="form-container">
-            <h1>Edit Recipe</h1>
             <form className="form" onSubmit={onSubmit}>
               <label htmlFor="category">Category</label>
               <select

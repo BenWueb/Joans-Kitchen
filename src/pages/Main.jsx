@@ -1,7 +1,7 @@
 import { Link } from "react-router-dom";
 import Navbar from "../components/Navbar";
 import MobileNavbar from "../components/MobileNavbar";
-import BrowseSection from "../components/BrowseSection";
+
 import CategorySection from "../components/CategorySection";
 import AddRecipeSection from "../components/AddRecipeSection";
 
@@ -10,7 +10,11 @@ function Main() {
     <>
       <div className="main-container">
         <header className="header-container">
-          {window.innerWidth <= 810 ? <MobileNavbar /> : <Navbar />}
+          {window.innerWidth <= 810 ? (
+            <MobileNavbar className="main-navbar" />
+          ) : (
+            <Navbar className="main-navbar" />
+          )}
           <div className="header-content">
             <div className="main-title">
               <h1>Joan's</h1>
@@ -21,13 +25,14 @@ function Main() {
               <Link className="link" to="/recipes">
                 <button className="btn browse">Browse Recipes</button>
               </Link>
-              <Link to="/" className="link">
-                <button className="btn">Random Recipe</button>
+              <Link to="/add-recipe" className="link">
+                <button className="btn add">Add Recipe</button>
               </Link>
             </div>
           </div>
         </header>
         <CategorySection />
+        <AddRecipeSection />
       </div>
     </>
   );

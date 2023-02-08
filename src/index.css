@@ -6,6 +6,7 @@
   margin: 0;
   padding: 0;
   box-sizing: border-box;
+  scrollbar-width: none;
 }
 
 :root {
@@ -57,6 +58,7 @@ section {
   margin: auto;
   padding: 0 2rem;
   max-width: 2000px;
+  position: relative;
 }
 
 .page-container {
@@ -138,6 +140,7 @@ button:hover {
   font-size: var(--fs-900);
   max-width: 2000px;
   width: 100%;
+  color: black;
 }
 
 .search {
@@ -199,10 +202,19 @@ button:hover {
   color: black;
 }
 
+.link:focus {
+  outline: none;
+}
+
 /***** Sidebar *****/
 
 .sidebar-button:hover {
   transform: scale(1.1);
+}
+
+.menu-container-pos {
+  position: relative;
+  height: 100vh;
 }
 
 .menu-container {
@@ -221,15 +233,20 @@ button:hover {
   background-color: var(--secondary);
   box-shadow: var(--bs);
   padding: 2rem;
-  border-radius: 15px;
+
   display: flex;
   flex-direction: column;
+
+  padding-top: 10%;
   gap: 1rem;
-  position: fixed;
+  position: absolute;
   z-index: 5;
   opacity: 1;
   transform: translateY(-4.5rem);
-  transition: opacity 0.15s ease, transform 0.15s ease;
+  transition: opacity 0.3s ease, transform 0.15s ease;
+  height: 100vh;
+  top: 4.5rem;
+  right: 0;
 }
 
 .menu {
@@ -240,13 +257,14 @@ button:hover {
   background-color: var(--secondary);
   box-shadow: var(--bs);
   padding: 2rem;
-  border-radius: 15px;
-  display: none;
+  position: absolute;
+  pointer-events: none;
   flex-direction: column;
   gap: 1rem;
+  height: 100vh;
+  top: 4.5rem;
+  right: 0;
 
-  top: 1.5rem;
-  right: 2rem;
   z-index: 5;
 }
 
@@ -257,8 +275,8 @@ button:hover {
 
 .close-menu-icon {
   position: absolute;
-  top: 0.5rem;
-  right: 0.5rem;
+  top: 2rem;
+  right: 3.5rem;
   height: 40px;
   width: 40px;
   cursor: pointer;
@@ -298,7 +316,7 @@ button:hover {
 
 .main-container {
   margin: auto;
-
+  height: 100vh;
   max-width: 2000px;
 }
 
@@ -307,8 +325,10 @@ button:hover {
   background-repeat: no-repeat;
   background-attachment: fixed;
   background-size: cover;
-  height: 50vh;
+  position: relative;
   max-width: 2000px;
+  padding: 0 2rem;
+  padding-bottom: 4rem;
 }
 
 .header-content {
@@ -320,7 +340,7 @@ button:hover {
   width: 80%;
   margin-bottom: 2rem;
   max-width: 2000px;
-  margin: auto auto;
+  margin: 4rem auto;
   height: 100%;
 }
 
@@ -457,6 +477,33 @@ button:hover {
   width: 100%;
 }
 
+/***** Recipes Section *****/
+
+.recipes-section-container {
+  padding: 4rem 2rem;
+  position: relative;
+  background-color: var(--background);
+  min-height: 400px;
+  max-width: 2000px;
+  margin: auto;
+}
+
+.recipes-section-title {
+  position: absolute;
+  top: -40px;
+  left: 40px;
+  font-size: var(--fs-600);
+  font-family: var(--font);
+}
+
+.recipes-cards-container {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(275px, 1fr));
+  justify-items: center;
+  gap: 2rem 0.5rem;
+  width: 100%;
+}
+
 /***** Category Card *****/
 
 .category-card {
@@ -470,7 +517,7 @@ button:hover {
 
   line-height: 1.1;
   font-size: fs(--fs-800);
-  height: 21rem;
+  height: 22rem;
   width: 16rem;
   border-radius: 15px;
   overflow: hidden;
@@ -485,7 +532,7 @@ button:hover {
 
   line-height: 1.1;
 
-  width: 16rem;
+  max-width: 400px;
   border-radius: 15px;
 
   flex-direction: row;
@@ -616,7 +663,7 @@ button:hover {
 
 .single-icons {
   display: flex;
-  justify-content: end;
+  justify-content: flex-end;
   padding: 0.5rem 0.5rem 0 0;
 }
 
@@ -688,6 +735,10 @@ button:hover {
   text-align: center;
   width: 80%;
   margin: auto;
+}
+
+.created-by {
+  text-align: center;
 }
 
 .tags-container {
@@ -921,7 +972,7 @@ button:hover {
 
 .favorites-grid {
   display: grid;
-  margin-top: 2rem;
+  margin: 2rem 0;
   gap: 2rem;
   justify-items: center;
   grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
@@ -991,6 +1042,10 @@ button:hover {
   .container {
     height: 100vh;
   }
+
+  .page-title {
+    margin: 1rem 0;
+  }
   /***** Navbar *****/
 
   .nav-container {
@@ -1008,6 +1063,10 @@ button:hover {
     box-shadow: var(--bs);
     position: relative;
     margin-bottom: 2rem;
+  }
+
+  .search:focus {
+    transform: scale(1);
   }
   .search-icon {
     position: absolute;
@@ -1115,14 +1174,14 @@ button:hover {
     background-repeat: no-repeat;
     background-attachment: fixed;
     background-size: cover;
-    height: 50vh;
+
     padding: 1rem;
   }
 
   .header-content h1 {
     font-size: var(--fs-400);
     text-transform: uppercase;
-    line-height: 6rem;
+    line-height: 4rem;
   }
 
   .header-content p {
@@ -1143,6 +1202,11 @@ button:hover {
     flex: 2;
   }
 
+  .category-cards-container,
+  .recipes-cards-container {
+    gap: 1rem;
+  }
+
   .header-content {
     width: 100%;
     margin-bottom: 2rem;
@@ -1159,11 +1223,13 @@ button:hover {
     text-align: center;
   }
 
-  .category-section-container {
-    padding: 1rem 0;
+  .category-section-container,
+  .recipes-section-container {
+    padding: 1rem;
   }
 
-  .category-section-title {
+  .category-section-title,
+  .recipes-section-title {
     position: relative;
     top: 0;
     left: 0;
@@ -1208,6 +1274,7 @@ button:hover {
 
   .profile-container {
     gap: 1rem;
+    padding-bottom: 1rem;
   }
 
   .account-info-container {
@@ -1228,6 +1295,7 @@ button:hover {
 
   .favorites-grid {
     margin-top: 1rem;
+    margin-bottom: 1rem;
     gap: 1rem;
   }
 
@@ -1265,13 +1333,20 @@ button:hover {
 
   .form-page-container {
     margin: 1rem auto;
-    height: 100%;
+    /* height: 100%; */
   }
 
   .form-container {
     padding: 1rem;
     margin: auto;
+    margin-bottom: 1rem;
   }
+
+  /* .form-container {
+    padding: 1rem;
+    margin: auto;
+    margin-bottom: 1rem;
+  } */
 
   .form-container h1 {
     margin-bottom: 1rem;
@@ -1305,5 +1380,37 @@ button:hover {
 
   .subtitle {
     text-align: center;
+  }
+
+  .recipes-container,
+  .categories-container,
+  .category-container {
+    padding: 1rem;
+    gap: 1rem;
+    margin-bottom: 1rem;
+  }
+
+  .recipes-container > * {
+    width: 100%;
+  }
+
+  .category-card {
+    width: 100%;
+  }
+
+  .input-margin {
+    margin-bottom: 1rem;
+  }
+
+  .instructions {
+    margin-bottom: 1rem;
+  }
+
+  .edit-recipe-tags-container {
+    margin-bottom: 1rem;
+  }
+
+  .submit-btn {
+    margin: 1rem 0;
   }
 }

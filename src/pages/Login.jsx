@@ -50,9 +50,9 @@ function Login() {
       <section></section>
       <div className="container">
         {window.innerWidth <= 810 ? <MobileNavbar /> : <Navbar />}
+        <h1 className="page-title">Login</h1>
         <div className="form-page-container">
           <div className="form-container">
-            <h1>Login</h1>
             <form className="form" onSubmit={onSubmit}>
               <label htmlFor="email">Email</label>
               <input

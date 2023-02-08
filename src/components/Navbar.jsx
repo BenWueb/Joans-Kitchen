@@ -1,7 +1,6 @@
 import { MdMenu } from "react-icons/md";
-import { useContext, useState, useEffect } from "react";
+import { useContext, useState } from "react";
 import RecipeContext from "../context/RecipesContext";
-import { limit } from "firebase/firestore";
 import { getAuth } from "firebase/auth";
 import { Link, useNavigate } from "react-router-dom";
 import { MdClose, MdSearch } from "react-icons/md";
@@ -11,7 +10,7 @@ function Navbar() {
   const [searchedRecipes, setSearchedRecipes] = useState([]);
   const [showMenu, setShowMenu] = useState(false);
 
-  const { recipes, Logout, currentUser } = useContext(RecipeContext);
+  const { recipes, Logout } = useContext(RecipeContext);
 
   const navigate = useNavigate();
   const auth = getAuth();
@@ -75,9 +74,7 @@ function Navbar() {
           onClick={toggleMenu}
           style={{ width: "40px", height: "40px" }}
         />
-      </div>
 
-      <div className="menu-container">
         <div className={showMenu ? "menu-active" : "menu"}>
           <MdClose onClick={toggleMenu} className="close-menu-icon" />
           <Link className="link " to="/">

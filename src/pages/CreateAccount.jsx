@@ -64,9 +64,9 @@ function CreateAccount() {
       <section></section>
       <div className="container">
         {window.innerWidth <= 810 ? <MobileNavbar /> : <Navbar />}
+        <h1 className="page-title">Create Account</h1>
         <div className="form-page-container">
           <div className="form-container">
-            <h1>Create Account</h1>
             <form className="form" onSubmit={onSubmit}>
               <label htmlFor="name">Name</label>
               <input
