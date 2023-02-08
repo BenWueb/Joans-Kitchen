@@ -92,7 +92,7 @@ button:hover {
   opacity: 0.9;
 }
 
-button:active {
+button:focus {
   outline: none;
 }
 
