@@ -4,6 +4,7 @@ import { getAuth, createUserWithEmailAndPassword } from "firebase/auth";
 import { setDoc, doc, serverTimestamp, getDoc } from "firebase/firestore";
 import { db } from "../firestore.config";
 import Navbar from "../components/Navbar";
+import MobileNavbar from "../components/MobileNavbar";
 import { toast } from "react-toastify";
 
 function CreateAccount() {
@@ -59,53 +60,55 @@ function CreateAccount() {
   };
 
   return (
-    <div>
+    <>
       <section></section>
-      <Navbar />
-      <div className="form-page-container">
-        <div className="form-container">
-          <h1>Create Account</h1>
-          <form className="form" onSubmit={onSubmit}>
-            <label htmlFor="name">Name</label>
-            <input
-              className="input"
-              id="name"
-              value={name}
-              type="text"
-              placeholder="Name"
-              onChange={onChange}
-              required
-            />
-            <label htmlFor="email">Email</label>
-            <input
-              className="input"
-              id="email"
-              value={email}
-              type="email"
-              placeholder="Email"
-              onChange={onChange}
-              required
-            />
-            <label htmlFor="password">Password</label>
-            <input
-              className="input"
-              id="password"
-              value={password}
-              type="password"
-              placeholder="Password"
-              onChange={onChange}
-              required
-            />
-            <button type="submit" className="btn submit-btn">
-              Submit
-            </button>
-            <Link className="link form-link" to="/login">
-              <p>Login</p>
-            </Link>
-          </form>
+      <div className="container">
+        {window.innerWidth <= 810 ? <MobileNavbar /> : <Navbar />}
+        <div className="form-page-container">
+          <div className="form-container">
+            <h1>Create Account</h1>
+            <form className="form" onSubmit={onSubmit}>
+              <label htmlFor="name">Name</label>
+              <input
+                className="input"
+                id="name"
+                value={name}
+                type="text"
+                placeholder="Name"
+                onChange={onChange}
+                required
+              />
+              <label htmlFor="email">Email</label>
+              <input
+                className="input"
+                id="email"
+                value={email}
+                type="email"
+                placeholder="Email"
+                onChange={onChange}
+                required
+              />
+              <label htmlFor="password">Password</label>
+              <input
+                className="input"
+                id="password"
+                value={password}
+                type="password"
+                placeholder="Password"
+                onChange={onChange}
+                required
+              />
+              <button type="submit" className="btn submit-btn">
+                Submit
+              </button>
+              <Link className="link form-link" to="/login">
+                <p>Login</p>
+              </Link>
+            </form>
+          </div>
         </div>
       </div>
-    </div>
+    </>
   );
 }
 export default CreateAccount;

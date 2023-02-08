@@ -10,6 +10,7 @@ import {
 } from "firebase/storage";
 import CreateAccount from "../pages/CreateAccount";
 import Navbar from "../components/Navbar";
+import MobileNavbar from "../components/MobileNavbar";
 import RecipesContext from "../context/RecipesContext";
 import { db } from "../firestore.config";
 import { v4 as uuidv4 } from "uuid";
@@ -132,7 +133,7 @@ function AddRecipe() {
     <>
       <section></section>
       <div className="container">
-        <Navbar />
+        {window.innerWidth <= 810 ? <MobileNavbar /> : <Navbar />}
 
         <div className="form-page-container">
           <div className="form-container">

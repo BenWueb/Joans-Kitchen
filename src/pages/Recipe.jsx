@@ -2,6 +2,7 @@ import { useContext } from "react";
 import { useParams } from "react-router-dom";
 import RecipesContext from "../context/RecipesContext";
 import Navbar from "../components/Navbar";
+import MobileNavbar from "../components/MobileNavbar";
 import RecipeCard from "../components/RecipeCard";
 
 function Recipe() {
@@ -22,7 +23,7 @@ function Recipe() {
 
   return (
     <div className="container">
-      <Navbar />
+      {window.innerWidth <= 810 ? <MobileNavbar /> : <Navbar />}
 
       <RecipeCard
         title={recipe[0].data.title}

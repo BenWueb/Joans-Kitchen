@@ -1,6 +1,7 @@
 import { useState, useEffect, useContext } from "react";
 import { Navigate, useNavigate, Link } from "react-router-dom";
 import Navbar from "../components/Navbar";
+import MobileNavbar from "../components/MobileNavbar";
 import RecipesContext from "../context/RecipesContext";
 import { getAuth } from "firebase/auth";
 import RecipeCardMobile from "../components/RecipeCardMobile";
@@ -27,7 +28,7 @@ function Profile() {
     <>
       <section></section>
       <div className="container">
-        <Navbar />
+        {window.innerWidth <= 810 ? <MobileNavbar /> : <Navbar />}
         <div className="page-container">
           <h1 className="page-title">{currentUserData.name}'s Profile</h1>
           <div className="profile-container">

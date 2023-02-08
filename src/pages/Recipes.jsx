@@ -1,6 +1,7 @@
 import { useContext, useState, useEffect } from "react";
 import RecipeCard from "../components/RecipeCard";
 import Navbar from "../components/Navbar";
+import MobileNavbar from "../components/MobileNavbar";
 import Filter from "../components/Filter";
 import RecipesContext from "../context/RecipesContext";
 import {
@@ -58,7 +59,7 @@ function Recipes() {
     <>
       <section></section>
       <div className="container">
-        <Navbar />
+        {window.innerWidth <= 810 ? <MobileNavbar /> : <Navbar />}
         <div className="page-container">
           <h1 className="page-title">Recipes</h1>
           <Filter />

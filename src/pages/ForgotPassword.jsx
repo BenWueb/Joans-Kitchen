@@ -2,6 +2,7 @@ import { useState } from "react";
 import { useNavigate, Link } from "react-router-dom";
 import { getAuth, sendPasswordResetEmail } from "firebase/auth";
 import Navbar from "../components/Navbar";
+import MobileNavbar from "../components/MobileNavbar";
 import { toast } from "react-toastify";
 
 function ForgotPassword() {
@@ -36,38 +37,40 @@ function ForgotPassword() {
   };
 
   return (
-    <div>
+    <>
       <section></section>
-      <Navbar />
-      <div className="form-page-container">
-        <div className="form-container">
-          <h1>Forgot Password</h1>
-          <form className="form" onSubmit={onSubmit}>
-            <label htmlFor="email">Email</label>
-            <input
-              className="input"
-              id="email"
-              value={email}
-              type="email"
-              placeholder="Email"
-              onChange={onChange}
-              required
-            />
+      <div className="container">
+        {window.innerWidth <= 810 ? <MobileNavbar /> : <Navbar />}
+        <div className="form-page-container">
+          <div className="form-container">
+            <h1>Forgot Password</h1>
+            <form className="form" onSubmit={onSubmit}>
+              <label htmlFor="email">Email</label>
+              <input
+                className="input"
+                id="email"
+                value={email}
+                type="email"
+                placeholder="Email"
+                onChange={onChange}
+                required
+              />
 
-            <button type="submit" className="btn submit-btn">
-              Submit
-            </button>
+              <button type="submit" className="btn submit-btn">
+                Submit
+              </button>
 
-            <Link className="link form-link" to="/create-account">
-              Create an Account
-            </Link>
-            <Link className="link form-link" to="/login">
-              <p>Login</p>
-            </Link>
-          </form>
+              <Link className="link form-link" to="/create-account">
+                Create an Account
+              </Link>
+              <Link className="link form-link" to="/login">
+                <p>Login</p>
+              </Link>
+            </form>
+          </div>
         </div>
       </div>
-    </div>
+    </>
   );
 }
 export default ForgotPassword;

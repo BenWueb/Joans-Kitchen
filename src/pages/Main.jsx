@@ -1,5 +1,6 @@
 import { Link } from "react-router-dom";
 import Navbar from "../components/Navbar";
+import MobileNavbar from "../components/MobileNavbar";
 import BrowseSection from "../components/BrowseSection";
 import CategorySection from "../components/CategorySection";
 import AddRecipeSection from "../components/AddRecipeSection";
@@ -7,9 +8,9 @@ import AddRecipeSection from "../components/AddRecipeSection";
 function Main() {
   return (
     <>
-      <div className="container">
-        <Navbar />
+      <div className="main-container">
         <header className="header-container">
+          {window.innerWidth <= 810 ? <MobileNavbar /> : <Navbar />}
           <div className="header-content">
             <div className="main-title">
               <h1>Joan's</h1>

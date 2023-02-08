@@ -3,6 +3,7 @@ import { useNavigate, Link } from "react-router-dom";
 import { getAuth, signInWithEmailAndPassword } from "firebase/auth";
 import CreateAccount from "../pages/CreateAccount";
 import Navbar from "../components/Navbar";
+import MobileNavbar from "../components/MobileNavbar";
 import RecipesContext from "../context/RecipesContext";
 import { toast } from "react-toastify";
 
@@ -48,7 +49,7 @@ function Login() {
     <>
       <section></section>
       <div className="container">
-        <Navbar />
+        {window.innerWidth <= 810 ? <MobileNavbar /> : <Navbar />}
         <div className="form-page-container">
           <div className="form-container">
             <h1>Login</h1>

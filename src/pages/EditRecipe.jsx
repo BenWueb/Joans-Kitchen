@@ -17,6 +17,7 @@ import {
   getDownloadURL,
 } from "firebase/storage";
 import Navbar from "../components/Navbar";
+import MobileNavbar from "../components/MobileNavbar";
 import { db } from "../firestore.config";
 import { v4 as uuidv4 } from "uuid";
 
@@ -185,209 +186,215 @@ function EditRecipe() {
   };
 
   return (
-    <div>
+    <>
       <section></section>
-      <Navbar />
-      <div className="form-page-container">
-        <div className="form-container">
-          <h1>Edit Recipe</h1>
-          <form className="form" onSubmit={onSubmit}>
-            <label htmlFor="category">Category</label>
-            <select
-              className="recipe-input input-margin"
-              id="category"
-              value={category}
-              onChange={onChange}
-              required
-              disabled
-            >
-              <option>{category}</option>
-            </select>
-            <label htmlFor="tags">Tags</label>
-            <div className="edit-recipe-tags-container">
-              <button
-                type="button"
-                id="tags"
-                onClick={onChange}
-                className={
-                  tags && tags.includes("Appetizer")
-                    ? "tag-btn-active"
-                    : "tag-btn"
-                }
+      <div className="container">
+        {window.innerWidth <= 810 ? <MobileNavbar /> : <Navbar />}
+        <div className="form-page-container">
+          <div className="form-container">
+            <h1>Edit Recipe</h1>
+            <form className="form" onSubmit={onSubmit}>
+              <label htmlFor="category">Category</label>
+              <select
+                className="recipe-input input-margin"
+                id="category"
+                value={category}
+                onChange={onChange}
+                required
+                disabled
               >
-                Appetizer
-              </button>
-              <button
-                type="button"
-                id="tags"
-                onClick={onChange}
-                className={
-                  tags && tags.includes("Salad") ? "tag-btn-active" : "tag-btn"
-                }
-              >
-                Salad
-              </button>
-              <button
-                type="button"
-                id="tags"
-                onClick={onChange}
-                className={
-                  tags && tags.includes("Main") ? "tag-btn-active" : "tag-btn"
-                }
-              >
-                Main
-              </button>
-              <button
-                type="button"
-                id="tags"
-                onClick={onChange}
-                className={
-                  tags && tags.includes("Dessert")
-                    ? "tag-btn-active"
-                    : "tag-btn"
-                }
-              >
-                Dessert
-              </button>
-              <button
-                type="button"
-                id="tags"
-                onClick={onChange}
-                className={
-                  tags && tags.includes("Vegetarian")
-                    ? "tag-btn-active"
-                    : "tag-btn"
-                }
-              >
-                Vegetarian
-              </button>
-              <button
-                type="button"
-                id="tags"
-                onClick={onChange}
-                className={
-                  tags && tags.includes("Chicken")
-                    ? "tag-btn-active"
-                    : "tag-btn"
-                }
-              >
-                Chicken
-              </button>
-              <button
-                type="button"
-                id="tags"
-                onClick={onChange}
-                className={
-                  tags && tags.includes("Beef") ? "tag-btn-active" : "tag-btn"
-                }
-              >
-                Beef
-              </button>
-              <button
-                type="button"
-                id="tags"
-                onClick={onChange}
-                className={
-                  tags && tags.includes("Pork") ? "tag-btn-active" : "tag-btn"
-                }
-              >
-                Pork
-              </button>
-              <button
-                type="button"
-                id="tags"
-                onClick={onChange}
-                className={
-                  tags && tags.includes("Seafood")
-                    ? "tag-btn-active"
-                    : "tag-btn"
-                }
-              >
-                Seafood
-              </button>
-              <button
-                type="button"
-                id="tags"
-                onClick={onChange}
-                className={
-                  tags && tags.includes("Lamb") ? "tag-btn-active" : "tag-btn"
-                }
-              >
-                Lamb
-              </button>
-              <button
-                type="button"
-                id="tags"
-                onClick={onChange}
-                className={
-                  tags && tags.includes("Notes") ? "tag-btn-active" : "tag-btn"
-                }
-              >
-                Notes
-              </button>
-            </div>
+                <option>{category}</option>
+              </select>
+              <label htmlFor="tags">Tags</label>
+              <div className="edit-recipe-tags-container">
+                <button
+                  type="button"
+                  id="tags"
+                  onClick={onChange}
+                  className={
+                    tags && tags.includes("Appetizer")
+                      ? "tag-btn-active"
+                      : "tag-btn"
+                  }
+                >
+                  Appetizer
+                </button>
+                <button
+                  type="button"
+                  id="tags"
+                  onClick={onChange}
+                  className={
+                    tags && tags.includes("Salad")
+                      ? "tag-btn-active"
+                      : "tag-btn"
+                  }
+                >
+                  Salad
+                </button>
+                <button
+                  type="button"
+                  id="tags"
+                  onClick={onChange}
+                  className={
+                    tags && tags.includes("Main") ? "tag-btn-active" : "tag-btn"
+                  }
+                >
+                  Main
+                </button>
+                <button
+                  type="button"
+                  id="tags"
+                  onClick={onChange}
+                  className={
+                    tags && tags.includes("Dessert")
+                      ? "tag-btn-active"
+                      : "tag-btn"
+                  }
+                >
+                  Dessert
+                </button>
+                <button
+                  type="button"
+                  id="tags"
+                  onClick={onChange}
+                  className={
+                    tags && tags.includes("Vegetarian")
+                      ? "tag-btn-active"
+                      : "tag-btn"
+                  }
+                >
+                  Vegetarian
+                </button>
+                <button
+                  type="button"
+                  id="tags"
+                  onClick={onChange}
+                  className={
+                    tags && tags.includes("Chicken")
+                      ? "tag-btn-active"
+                      : "tag-btn"
+                  }
+                >
+                  Chicken
+                </button>
+                <button
+                  type="button"
+                  id="tags"
+                  onClick={onChange}
+                  className={
+                    tags && tags.includes("Beef") ? "tag-btn-active" : "tag-btn"
+                  }
+                >
+                  Beef
+                </button>
+                <button
+                  type="button"
+                  id="tags"
+                  onClick={onChange}
+                  className={
+                    tags && tags.includes("Pork") ? "tag-btn-active" : "tag-btn"
+                  }
+                >
+                  Pork
+                </button>
+                <button
+                  type="button"
+                  id="tags"
+                  onClick={onChange}
+                  className={
+                    tags && tags.includes("Seafood")
+                      ? "tag-btn-active"
+                      : "tag-btn"
+                  }
+                >
+                  Seafood
+                </button>
+                <button
+                  type="button"
+                  id="tags"
+                  onClick={onChange}
+                  className={
+                    tags && tags.includes("Lamb") ? "tag-btn-active" : "tag-btn"
+                  }
+                >
+                  Lamb
+                </button>
+                <button
+                  type="button"
+                  id="tags"
+                  onClick={onChange}
+                  className={
+                    tags && tags.includes("Notes")
+                      ? "tag-btn-active"
+                      : "tag-btn"
+                  }
+                >
+                  Notes
+                </button>
+              </div>
 
-            <label htmlFor="title">Title</label>
-            <input
-              className="recipe-input input-margin"
-              id="title"
-              value={title}
-              type="text"
-              onChange={onChange}
-              required
-            />
-            <label htmlFor="ingredients">Ingredients</label>
-            <textarea
-              className="recipe-input"
-              id="ingredients"
-              value={ingredients}
-              type="text"
-              onChange={onChange}
-              required
-            />
-            <p className="instructions">
-              Format is (Number) followed by (Text) e.g. 1 Cup 2 Oranges
-            </p>
-            <label htmlFor="recipe">Recipe</label>
-            <textarea
-              className="recipe-input"
-              id="recipe"
-              value={recipe}
-              type="text"
-              onChange={onChange}
-              required
-            />
-            <p className="instructions">
-              Format is (Number)(Period) followed by (Text) e.g. 1. Preheat oven
-              2. Prep Veg
-            </p>
-            <label htmlFor="notes">Notes</label>
-            <textarea
-              className="recipe-input input-margin"
-              id="notes"
-              value={notes}
-              type="text"
-              onChange={onChange}
-              disabled
-            />
-            <label htmlFor="images">Add Images</label>
-            <input
-              className="recipe-input input-margin"
-              id="images"
-              type="file"
-              onChange={onChange}
-              max="6"
-              accept=".jpg,.png,.jpeg"
-              multiple
-              placeholder={imageUrls}
-            />
-            <button type="submit" className="btn submit-btn">
-              Submit
-            </button>
-          </form>
+              <label htmlFor="title">Title</label>
+              <input
+                className="recipe-input input-margin"
+                id="title"
+                value={title}
+                type="text"
+                onChange={onChange}
+                required
+              />
+              <label htmlFor="ingredients">Ingredients</label>
+              <textarea
+                className="recipe-input"
+                id="ingredients"
+                value={ingredients}
+                type="text"
+                onChange={onChange}
+                required
+              />
+              <p className="instructions">
+                Format is (Number) followed by (Text) e.g. 1 Cup 2 Oranges
+              </p>
+              <label htmlFor="recipe">Recipe</label>
+              <textarea
+                className="recipe-input"
+                id="recipe"
+                value={recipe}
+                type="text"
+                onChange={onChange}
+                required
+              />
+              <p className="instructions">
+                Format is (Number)(Period) followed by (Text) e.g. 1. Preheat
+                oven 2. Prep Veg
+              </p>
+              <label htmlFor="notes">Notes</label>
+              <textarea
+                className="recipe-input input-margin"
+                id="notes"
+                value={notes}
+                type="text"
+                onChange={onChange}
+                disabled
+              />
+              <label htmlFor="images">Add Images</label>
+              <input
+                className="recipe-input input-margin"
+                id="images"
+                type="file"
+                onChange={onChange}
+                max="6"
+                accept=".jpg,.png,.jpeg"
+                multiple
+                placeholder={imageUrls}
+              />
+              <button type="submit" className="btn submit-btn">
+                Submit
+              </button>
+            </form>
+          </div>
         </div>
       </div>
-    </div>
+    </>
   );
 }
 export default EditRecipe;

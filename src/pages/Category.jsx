@@ -3,6 +3,7 @@ import { useContext } from "react";
 import RecipesContext from "../context/RecipesContext";
 import RecipeCard from "../components/RecipeCard";
 import Navbar from "../components/Navbar";
+import MobileNavbar from "../components/MobileNavbar";
 
 function Category() {
   const params = useParams();
@@ -24,7 +25,7 @@ function Category() {
     <>
       <section></section>
       <div className="container">
-        <Navbar />
+        {window.innerWidth <= 810 ? <MobileNavbar /> : <Navbar />}
         <div className="page-container">
           <h1 className="page-title">{categoryName}</h1>
           <div className="category-container">
