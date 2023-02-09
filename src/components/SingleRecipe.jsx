@@ -149,14 +149,14 @@ function SingleRecipe({
               </a>
             </div>
           ))}
-        {auth.currentUser && (
+        {/* {auth.currentUser && (
           <button
             onClick={() => navigate(`/edit-recipe/${params.recipeName}`)}
             className="btn submit-btn add-photos-button"
           >
             Add Photo(s)
           </button>
-        )}
+        )} */}
       </div>
     </>
   );
