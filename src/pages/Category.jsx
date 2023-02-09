@@ -32,7 +32,7 @@ function Category() {
             {filteredRecipes.map((recipe) => {
               const recipeUrl = recipe.data.title
                 .toLowerCase()
-                .replace(/[^a-zA-Z0-9-._~:/?#[\]@!$&'()*+,;=%]/g, "_")
+                .replace(/[\s0-9._~:\/?#[\]@!$+,;=%]/g, "_")
                 .replace(/\s/gi, "");
 
               return (

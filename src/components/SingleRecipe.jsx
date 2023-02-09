@@ -43,7 +43,7 @@ function SingleRecipe({
 
   const searchUrl = title
     .toLowerCase()
-    .replace(/[^a-zA-Z0-9-._~:/?#[\]@!$&'()*+,;=%]/g, "_")
+    .replace(/[\s0-9._~:\/?#[\]@!$+,;=%]/g, "_")
     .replace(/\s/gi, "");
 
   // Like Button
