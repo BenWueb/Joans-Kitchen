@@ -14,7 +14,7 @@ function RecipeCard({ title }) {
     .replace(/\s/gi, "");
 
   return (
-    <div>
+    <>
       <Link className="link category-link" to={`/recipes/${searchUrl}`}>
         <div className="category-card">
           <img
@@ -27,7 +27,7 @@ function RecipeCard({ title }) {
           </div>
         </div>
       </Link>
-    </div>
+    </>
   );
 }
 export default RecipeCard;

@@ -401,6 +401,10 @@ button:focus {
   justify-items: center;
 }
 
+.category-link {
+  width: 100%;
+}
+
 .category-header {
   text-align: center;
   margin-bottom: 4rem;

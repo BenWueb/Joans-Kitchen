@@ -6,7 +6,7 @@ function CategoryCard({ name, imgUrl }) {
   }
 
   return (
-    <div>
+    <>
       <Link
         className="link category-link"
         to={`/categories/${name.replace(/\s/gi, "_")}`}
@@ -25,7 +25,7 @@ function CategoryCard({ name, imgUrl }) {
           </div>
         </div>
       </Link>
-    </div>
+    </>
   );
 }
 export default CategoryCard;

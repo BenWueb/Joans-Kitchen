@@ -36,14 +36,12 @@ function Category() {
                 .replace(/\s/gi, "");
 
               return (
-                <Link className="link" to={`/recipes/${recipeUrl}`}>
-                  <RecipeCard
-                    title={recipe.data.title}
-                    ingredients={recipe.data.ingredients}
-                    recipe={recipe.data.recipe}
-                    notes={recipe.data.notes}
-                  />
-                </Link>
+                <RecipeCard
+                  title={recipe.data.title}
+                  ingredients={recipe.data.ingredients}
+                  recipe={recipe.data.recipe}
+                  notes={recipe.data.notes}
+                />
               );
             })}
           </div>
