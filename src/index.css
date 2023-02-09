@@ -37,7 +37,7 @@
 body {
   font-family: var(--font);
   font-size: (--fs-600);
-
+  -webkit-font-smoothing: subpixel-antialiased;
   width: 100%;
 }
 
@@ -357,6 +357,7 @@ button:focus {
 .header-content h1 {
   font-size: var(--fs-400);
   text-transform: uppercase;
+  font-weight: bold;
 }
 
 .header-content p {
@@ -530,6 +531,7 @@ button:focus {
 
   text-align: center;
   display: flex;
+
   flex-direction: column;
 
   line-height: 1.1;
