@@ -141,15 +141,15 @@ function SingleRecipe({
         )}
       </div>
       <div className="single-recipe-image-grid">
-        {imageUrls ? (
+        {imageUrls &&
           imageUrls.map((img) => (
             <div key={img} className="single-recipe-img-container">
               <a href={img} target="_blank">
                 <img src={img} />
               </a>
             </div>
-          ))
-        ) : (
+          ))}
+        {auth.currentUser && (
           <button
             onClick={() => navigate(`/edit-recipe/${params.recipeName}`)}
             className="btn submit-btn add-photos-button"
