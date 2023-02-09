@@ -1,7 +1,7 @@
 import { useState, useEffect, useContext } from "react";
 import { useNavigate, Link } from "react-router-dom";
 import { getAuth, signInWithEmailAndPassword } from "firebase/auth";
-import { collection, doc, addDoc } from "firebase/firestore";
+import { collection, doc, addDoc, serverTimestamp } from "firebase/firestore";
 import {
   getStorage,
   ref,
@@ -115,6 +115,7 @@ function AddRecipe() {
       imageUrls,
       createdBy: currentUserData.name,
       owner: auth.currentUser.uid,
+      timstamp: serverTimestamp(),
     };
 
     delete formDataCopy.images;

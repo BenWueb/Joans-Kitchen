@@ -107,6 +107,12 @@ button:focus {
   text-justify: center;
 }
 
+.icon {
+  height: 30px;
+  width: 30px;
+  vertical-align: bottom;
+}
+
 /***** Filter *****/
 .filter-container {
   display: flex;
@@ -471,12 +477,17 @@ button:focus {
 /***** Categories Section *****/
 
 .category-section-container {
-  padding: 4rem 2rem;
+  padding: 3rem 2rem 2rem 2rem;
   position: relative;
   background-color: var(--secondary);
   min-height: 400px;
   max-width: 2000px;
   margin: auto;
+}
+
+.category-cards-container > * {
+  display: flex;
+  justify-content: center;
 }
 
 .category-section-title {
@@ -495,6 +506,12 @@ button:focus {
   width: 100%;
 }
 
+.section-btn-container {
+  display: flex;
+  justify-content: flex-end;
+  margin: 2rem 0 0 0;
+}
+
 /***** Recipes Section *****/
 
 .recipes-section-container {
@@ -504,6 +521,7 @@ button:focus {
   min-height: 400px;
   max-width: 2000px;
   margin: auto;
+  justify-items: center;
 }
 
 .recipes-section-title {
@@ -520,6 +538,11 @@ button:focus {
   justify-items: center;
   gap: 2rem 0.5rem;
   width: 100%;
+}
+
+.recipes-cards-container > * {
+  display: flex;
+  justify-content: center;
 }
 
 /***** Category Card *****/
@@ -1263,6 +1286,21 @@ button:focus {
   .category-cards-container,
   .recipes-cards-container {
     gap: 1rem;
+  }
+
+  .section-btn-container {
+    display: flex;
+    justify-content: center;
+    margin: 2rem 0 0 0;
+  }
+
+  .section-btn {
+    width: 100%;
+  }
+
+  .icon {
+    height: 20px;
+    width: 20px;
   }
 
   .header-content {

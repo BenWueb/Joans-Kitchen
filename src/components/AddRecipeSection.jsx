@@ -1,6 +1,8 @@
 import { useContext } from "react";
 import RecipesContext from "../context/RecipesContext";
 import RecipeCard from "../components/RecipeCard";
+import { Link } from "react-router-dom";
+import { MdKeyboardArrowRight } from "react-icons/md";
 
 function AddRecipeSection() {
   const { recipes } = useContext(RecipesContext);
@@ -22,6 +24,14 @@ function AddRecipeSection() {
               key={category.id}
             />
           ))}
+        </div>
+        <div className="section-btn-container">
+          <Link to="/recipes" className="link">
+            <button className="btn btn-submit section-btn">
+              Browse all Recipes
+              <MdKeyboardArrowRight className="icon" />
+            </button>
+          </Link>
         </div>
       </div>
     </div>
