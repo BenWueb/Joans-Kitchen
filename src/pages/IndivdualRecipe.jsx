@@ -14,13 +14,13 @@ function IndividualRecipe() {
     notes: "",
     imageUrls: [],
     tags: [],
+    created: "",
   });
 
   const params = useParams();
 
   //Edit url to match database name
   const recipeName = params.recipeName.replace(/_/g, " ").toUpperCase();
-  console.log(recipeName);
 
   useEffect(() => {
     const fetchRecipe = async () => {
@@ -31,7 +31,12 @@ function IndividualRecipe() {
         const recipeSnap = await getDocs(q);
 
         recipeSnap.forEach((doc) => {
+          const date = doc.data().created.toDate().toDateString();
           setRecipe(doc.data());
+          setRecipe((prevState) => ({
+            ...prevState,
+            created: date,
+          }));
         });
       } catch (error) {
         console.log(error);
@@ -40,6 +45,10 @@ function IndividualRecipe() {
 
     fetchRecipe();
   }, []);
+
+  if (!recipe) {
+    return;
+  }
 
   return (
     <>
@@ -55,6 +64,7 @@ function IndividualRecipe() {
             createdBy={recipe.createdBy}
             imageUrls={recipe.imageUrls}
             tags={recipe.tags}
+            created={recipe.created}
           />
         </div>
       </div>

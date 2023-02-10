@@ -24,9 +24,11 @@ function AddRecipe() {
     createdBy: "",
     images: {},
     tags: [],
+    notes: "",
   });
 
-  const { category, title, ingredients, recipe, images, tags } = formData;
+  const { category, title, ingredients, recipe, images, tags, notes } =
+    formData;
 
   const { setCurrentUser, getUserData, categories, currentUserData } =
     useContext(RecipesContext);
@@ -115,7 +117,7 @@ function AddRecipe() {
       imageUrls,
       createdBy: currentUserData.name,
       owner: auth.currentUser.uid,
-      timstamp: serverTimestamp(),
+      created: serverTimestamp(),
     };
 
     delete formDataCopy.images;
@@ -136,7 +138,9 @@ function AddRecipe() {
       <div className="container">
         {window.innerWidth <= 810 ? <MobileNavbar /> : <Navbar />}
 
-        <h1 className="page-title">Add Recipe</h1>
+        <h1 style={{ marginTop: "2rem" }} className="page-title">
+          Add Recipe
+        </h1>
         <div className="form-page-container">
           <div className="form-container">
             <form className="form" onSubmit={onSubmit}>
@@ -286,24 +290,38 @@ function AddRecipe() {
                 value={ingredients}
                 type="text"
                 onChange={onChange}
+                placeholder="e.g. 
+                1 Cup
+                1 1/4 Tbs
+                4 pinches"
                 required
               />
-              <p className="instructions">
-                Format is (Number) followed by (Text) e.g. 1 Cup 2 Oranges
-              </p>
+              <p className="instructions">Use a new line for each ingredient</p>
               <label htmlFor="recipe">Recipe</label>
               <textarea
                 className="recipe-input"
                 id="recipe"
                 value={recipe}
                 type="text"
+                placeholder="e.g. 
+                1. Prep
+                2. Cook
+                3. Eat"
                 onChange={onChange}
                 required
               />
               <p className="instructions">
-                Format is (Number)(Period) followed by (Text) e.g. 1. Preheat
-                oven 2. Prep Veg
+                Format is (Number)(Period) followed by (Text)
               </p>
+
+              <label htmlFor="notes">Notes</label>
+              <textarea
+                className="recipe-input input-margin"
+                id="notes"
+                value={notes}
+                type="text"
+                onChange={onChange}
+              />
 
               <label htmlFor="images">Images</label>
               <input

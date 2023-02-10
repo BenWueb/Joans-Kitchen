@@ -15,6 +15,7 @@ function SingleRecipe({
   createdBy,
   imageUrls,
   tags,
+  created,
 }) {
   const { recipes, loading, currentUserData } = useContext(RecipesContext);
   const [like, setLike] = useState(false);
@@ -96,6 +97,9 @@ function SingleRecipe({
         <div className="single-recipe-header">
           <h4 className="single-title">{title.toLowerCase()}</h4>
           <h4 className="created-by">Created By: {createdBy}</h4>
+          {createdBy !== "Joan" && (
+            <h4 className="created-by">Created: {created}</h4>
+          )}
 
           {notes && (
             <div className="single-notes-container">

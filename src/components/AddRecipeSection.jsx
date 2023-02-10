@@ -17,7 +17,7 @@ function AddRecipeSection() {
       <div className="recipes-section-container">
         <h2 className="recipes-section-title">Recipes</h2>
         <div className="recipes-cards-container">
-          {shuffled.slice(0, 5).map((category) => (
+          {shuffled.slice(0, 8).map((category) => (
             <RecipeCard
               title={category.data.title.toLowerCase()}
               imgUrl={category.imgUrl}
@@ -29,7 +29,6 @@ function AddRecipeSection() {
           <Link to="/recipes" className="link">
             <button className="btn btn-submit section-btn">
               Browse all Recipes
-              <MdKeyboardArrowRight className="icon" />
             </button>
           </Link>
         </div>

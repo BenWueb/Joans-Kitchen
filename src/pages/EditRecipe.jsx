@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, useContext } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 import { getAuth } from "firebase/auth";
 import {
@@ -9,6 +9,7 @@ import {
   doc,
   updateDoc,
   arrayUnion,
+  serverTimestamp,
 } from "firebase/firestore";
 import {
   getStorage,
@@ -20,8 +21,10 @@ import Navbar from "../components/Navbar";
 import MobileNavbar from "../components/MobileNavbar";
 import { db } from "../firestore.config";
 import { v4 as uuidv4 } from "uuid";
+import RecipesContext from "../context/RecipesContext";
 
 function EditRecipe() {
+  const { currentUserData } = useContext(RecipesContext);
   const [formData, setFormData] = useState({
     id: "",
     tags: ["Please select a tag..."],
@@ -31,6 +34,7 @@ function EditRecipe() {
     recipe: "",
     notes: "",
     updatedBy: "",
+    updated: "",
     images: {},
     imageUrls: [],
   });
@@ -45,6 +49,7 @@ function EditRecipe() {
     notes,
     images,
     imageUrls,
+    updatedBy,
   } = formData;
 
   const auth = getAuth();
@@ -155,6 +160,8 @@ function EditRecipe() {
       const formDataCopy = {
         ...formData,
         imageUrls: arrayUnion(...newImageUrls),
+        updatedBy: currentUserData.name,
+        updated: serverTimestamp(),
       };
 
       delete formDataCopy.images;
@@ -171,6 +178,8 @@ function EditRecipe() {
     } else {
       const formDataCopy = {
         ...formData,
+        updatedBy: currentUserData.name,
+        updated: serverTimestamp(),
       };
 
       const searchUrl = title
@@ -189,7 +198,9 @@ function EditRecipe() {
       <section></section>
       <div className="container">
         {window.innerWidth <= 810 ? <MobileNavbar /> : <Navbar />}
-        <h1 className="page-title">Edit Recipe</h1>
+        <h1 style={{ marginTop: "2rem" }} className="page-title">
+          Edit Recipe
+        </h1>
         <div className="form-page-container">
           <div className="form-container">
             <form className="form" onSubmit={onSubmit}>
@@ -350,9 +361,7 @@ function EditRecipe() {
                 onChange={onChange}
                 required
               />
-              <p className="instructions">
-                Format is (Number) followed by (Text) e.g. 1 Cup 2 Oranges
-              </p>
+              <p className="instructions">Use a new line for each ingredient</p>
               <label htmlFor="recipe">Recipe</label>
               <textarea
                 className="recipe-input"

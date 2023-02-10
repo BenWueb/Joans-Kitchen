@@ -63,7 +63,7 @@ section {
 }
 
 .page-container {
-  padding: 50px;
+  padding: 2rem;
   min-height: 100vh;
   display: flex;
 
@@ -104,13 +104,17 @@ button:focus {
   font-size: var(--fs-1000);
   box-shadow: var(--bs);
   text-align: center;
-  text-justify: center;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
 .icon {
   height: 30px;
   width: 30px;
-  vertical-align: bottom;
+  position: absolute;
+  top: 1.3rem;
+  right: 1.3rem;
 }
 
 /***** Filter *****/
@@ -175,7 +179,6 @@ button:focus {
 
 .search:focus {
   outline: none;
-  transform: scale(1.1);
 }
 
 .search-container {
@@ -387,6 +390,16 @@ button:focus {
   justify-content: center;
   align-items: center;
   gap: 2rem;
+  width: 70%;
+}
+
+.btn-container > * {
+  width: 100%;
+  flex: 1;
+}
+
+.btn-container button {
+  width: 100%;
 }
 
 .browse {
@@ -510,6 +523,9 @@ button:focus {
   display: flex;
   justify-content: flex-end;
   margin: 2rem 0 0 0;
+}
+.section-btn {
+  position: relative;
 }
 
 /***** Recipes Section *****/
@@ -711,6 +727,7 @@ button:focus {
   display: flex;
   justify-content: flex-end;
   padding: 0.5rem 0.5rem 0 0;
+  color: white;
 }
 
 .single-icons > * {
@@ -747,13 +764,16 @@ button:focus {
 
 .single-title {
   text-align: center;
-  margin-bottom: 1rem;
   font-size: var(--fs-900);
   text-transform: capitalize;
 }
 
+.created-by {
+}
+
 .subtitle {
-  font-size: var(--fs-900);
+  font-size: var(--fs-1000);
+  margin-top: 1rem;
 }
 
 .single-card-details {
@@ -792,6 +812,7 @@ button:focus {
   justify-content: center;
   align-items: center;
   padding: 1rem;
+  gap: 0.5rem;
 }
 
 .tags-container button {
@@ -841,7 +862,7 @@ button:focus {
   display: flex;
   justify-content: center;
   align-content: center;
-  margin: 50px;
+  margin: 2rem;
 }
 
 .form-container {
@@ -1144,9 +1165,6 @@ button:focus {
     margin-bottom: 2rem;
   }
 
-  .search:focus {
-    transform: scale(1);
-  }
   .search-icon {
     position: absolute;
     right: 7px;
@@ -1262,7 +1280,7 @@ button:focus {
   .header-content h1 {
     font-size: var(--fs-400);
     text-transform: uppercase;
-    line-height: 4rem;
+    line-height: 6rem;
   }
 
   .header-content p {
@@ -1299,7 +1317,7 @@ button:focus {
   }
 
   .icon {
-    height: 20px;
+    height: var(--fs-900);
     width: 20px;
   }
 
@@ -1509,5 +1527,11 @@ button:focus {
 
   .submit-btn {
     margin: 1rem 0;
+  }
+}
+
+@media screen and (max-width: 400px) {
+  .header-content h1 {
+    line-height: 4rem;
   }
 }

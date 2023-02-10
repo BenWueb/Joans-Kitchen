@@ -15,7 +15,7 @@ function CategorySection() {
       <div className="category-section-container">
         <h2 className="category-section-title">Categories</h2>
         <div className="category-cards-container">
-          {shuffled.slice(0, 5).map((category) => (
+          {shuffled.slice(0, 8).map((category) => (
             <CategoryCard
               name={category.id}
               key={category.id}
@@ -27,7 +27,6 @@ function CategorySection() {
           <Link to="/categories" className="link">
             <button className="btn btn-submit section-btn">
               Browse all Categories
-              <MdKeyboardArrowRight className="icon" />
             </button>
           </Link>
         </div>
