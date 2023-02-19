@@ -93,7 +93,7 @@ function SingleRecipe({
             className={like ? "single-like-true" : "single-like-false"}
           />
           <MdShare className="single-share" onClick={onShare} />
-          {auth.currentUser && (
+          {createdBy === currentUserData.name && (
             <MdModeEditOutline className="single-edit" onClick={onEdit} />
           )}
         </div>

@@ -95,6 +95,12 @@
   color: black;
 }
 
+.mobile-menu-item:hover {
+  cursor: pointer;
+
+  color: rgba(0, 0, 0, 0.5);
+}
+
 .mobile-resume {
   background-color: transparent;
   color: black;
@@ -407,10 +413,6 @@ li {
   padding: 2rem;
   border-radius: 15px;
   justify-items: center;
-}
-
-.category-link {
-  width: 100%;
 }
 
 .category-header {

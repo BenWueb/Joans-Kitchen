@@ -50,6 +50,7 @@ function EditRecipe() {
     images,
     imageUrls,
     updatedBy,
+    createdBy,
   } = formData;
 
   const auth = getAuth();
