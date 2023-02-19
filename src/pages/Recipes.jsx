@@ -57,9 +57,11 @@ function Recipes() {
 
   return (
     <>
-      <section></section>
+      <div className="background"></div>
+      <div className="navbar-container">
+        <Navbar />
+      </div>
       <div className="container">
-        {window.innerWidth <= 810 ? <MobileNavbar /> : <Navbar />}
         <div className="page-container">
           <h1 className="page-title">Recipes</h1>
           <Filter />

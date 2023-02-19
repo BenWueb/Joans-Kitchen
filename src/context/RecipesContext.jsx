@@ -71,6 +71,7 @@ export const RecipesProvider = ({ children }) => {
       console.log(error);
     }
   };
+
   // Get Current User
   useEffect(() => {
     const getCurrentUser = async () => {
@@ -106,6 +107,35 @@ export const RecipesProvider = ({ children }) => {
     getCurrentUserData();
   }, [currentUser]);
 
+  const getCurrentUserData = async () => {
+    try {
+      const docRef = doc(db, "Users", auth.currentUser.uid);
+      const docSnap = await getDoc(docRef);
+
+      setCurrentUserData(docSnap.data());
+    } catch (error) {
+      setCurrentUserData(null);
+      console.log(error);
+    }
+  };
+  const fetchRecipes = async () => {
+    try {
+      const recipeSnapshot = await getDocs(collectionGroup(db, "recipes"));
+      let recipesArr = [];
+      recipeSnapshot.forEach((recipe) => {
+        return recipesArr.push({
+          id: recipe.id,
+          data: recipe.data(),
+          parent: recipe.ref.parent.parent.id,
+        });
+      });
+      setRecipes(recipesArr);
+      setLoading(false);
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
   return (
     <div>
       <RecipesContext.Provider
@@ -116,6 +146,9 @@ export const RecipesProvider = ({ children }) => {
           currentUser,
           setCurrentUser,
           currentUserData,
+          setCurrentUserData,
+          getCurrentUserData,
+          fetchRecipes,
         }}
       >
         {children}

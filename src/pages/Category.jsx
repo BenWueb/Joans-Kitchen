@@ -23,9 +23,11 @@ function Category() {
 
   return (
     <>
-      <section></section>
+      <div className="background"></div>
+      <div className="navbar-container">
+        <Navbar />
+      </div>
       <div className="container">
-        {window.innerWidth <= 810 ? <MobileNavbar /> : <Navbar />}
         <div className="page-container">
           <h1 className="page-title">{categoryName}</h1>
           <div className="category-container">

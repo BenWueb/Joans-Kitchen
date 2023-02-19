@@ -30,8 +30,13 @@ function AddRecipe() {
   const { category, title, ingredients, recipe, images, tags, notes } =
     formData;
 
-  const { setCurrentUser, getUserData, categories, currentUserData } =
-    useContext(RecipesContext);
+  const {
+    setCurrentUser,
+    getUserData,
+    categories,
+    currentUserData,
+    fetchRecipes,
+  } = useContext(RecipesContext);
 
   const auth = getAuth();
 
@@ -129,15 +134,17 @@ function AddRecipe() {
 
     const newRecipeRef = collection(db, `Recipes/${category}/recipes`);
     await addDoc(newRecipeRef, formDataCopy);
+    fetchRecipes();
     navigate(`/recipes/${searchUrl}`);
   };
 
   return (
     <>
-      <section></section>
+      <div className="background"></div>
+      <div className="navbar-container">
+        <Navbar />
+      </div>
       <div className="container">
-        {window.innerWidth <= 810 ? <MobileNavbar /> : <Navbar />}
-
         <h1 style={{ marginTop: "2rem" }} className="page-title">
           Add Recipe
         </h1>

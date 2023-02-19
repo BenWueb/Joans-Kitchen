@@ -17,7 +17,8 @@ function SingleRecipe({
   tags,
   created,
 }) {
-  const { recipes, loading, currentUserData } = useContext(RecipesContext);
+  const { recipes, loading, currentUserData, getCurrentUserData } =
+    useContext(RecipesContext);
   const [like, setLike] = useState(false);
 
   const params = useParams();
@@ -65,6 +66,8 @@ function SingleRecipe({
           favorites: arrayRemove(params.recipeName),
         });
       }
+
+      getCurrentUserData();
     } catch (error) {
       navigate("/login");
     }

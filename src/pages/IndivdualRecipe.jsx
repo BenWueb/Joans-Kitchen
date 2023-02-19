@@ -52,9 +52,11 @@ function IndividualRecipe() {
 
   return (
     <>
-      <section></section>
+      <div className="background"></div>
+      <div className="navbar-container">
+        <Navbar />
+      </div>
       <div className="container">
-        {window.innerWidth <= 810 ? <MobileNavbar /> : <Navbar />}
         <div className="page-container">
           <SingleRecipe
             title={recipe.title}

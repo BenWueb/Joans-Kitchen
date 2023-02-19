@@ -11,6 +11,8 @@ function RecipeCard({ title, id, category, imageUrls }) {
   const navigate = useNavigate();
   const auth = getAuth();
 
+  const { fetchRecipes } = useContext(RecipesContext);
+
   if (!title) {
     return;
   }
@@ -25,6 +27,7 @@ function RecipeCard({ title, id, category, imageUrls }) {
 
     if (window.confirm("Are you sure you want to delete this recipe?")) {
       await deleteDoc(doc(db, `Recipes/${category}/recipes/${id}`));
+      fetchRecipes();
     }
   };
 

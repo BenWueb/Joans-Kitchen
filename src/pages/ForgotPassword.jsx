@@ -38,9 +38,11 @@ function ForgotPassword() {
 
   return (
     <>
-      <section></section>
+      <div className="background"></div>
+      <div className="navbar-container">
+        <Navbar />
+      </div>
       <div className="container">
-        {window.innerWidth <= 810 ? <MobileNavbar /> : <Navbar />}
         <h1 className="page-title">Forgot Password</h1>
         <div className="form-page-container">
           <div className="form-container">

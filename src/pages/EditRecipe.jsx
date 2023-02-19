@@ -195,9 +195,11 @@ function EditRecipe() {
 
   return (
     <>
-      <section></section>
+      <div className="background"></div>
+      <div className="navbar-container">
+        <Navbar />
+      </div>
       <div className="container">
-        {window.innerWidth <= 810 ? <MobileNavbar /> : <Navbar />}
         <h1 style={{ marginTop: "2rem" }} className="page-title">
           Edit Recipe
         </h1>

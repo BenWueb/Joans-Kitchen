@@ -13,7 +13,7 @@
   --fs-400: clamp(3rem, 12vw + 1rem, 6.5rem);
   --fs-600: clamp(2rem, 6vw + 1rem, 4rem);
   --fs-800: clamp(1rem, 6vw + 0.5rem, 4rem);
-  --fs-900: clamp(0.5rem, 4vw + 0.5rem, 2.5rem);
+  --fs-900: clamp(2rem, 4vw + 0.5rem, 2.5rem);
   --fs-1000: clamp(0.75rem, 1vw + 0.25rem, 1.5rem);
   --fs-1200: clamp(0.75rem, 1vw + 0.25rem, 1rem);
   --font: Josefin Sans, sans-serif;
@@ -34,6 +34,77 @@
   --toastify-icon-color-error: var(--toastify-color-error);
 }
 
+.menu {
+  display: flex;
+  gap: 2rem;
+  z-index: 3;
+}
+
+.menu-item {
+  color: black;
+}
+
+.menu ul {
+  display: flex;
+  align-items: center;
+  gap: 2rem;
+}
+
+.resume {
+  background-color: transparent;
+  color: var(--primary);
+  border: 2px solid var(--primary);
+  padding: 0.5rem 1.5rem;
+  font-size: var(--fs-1000);
+}
+
+.mobile-menu-icon {
+  z-index: 2;
+  height: 50px;
+  width: 50px;
+  position: relative;
+}
+
+.mobile-menu-icon:hover {
+  cursor: pointer;
+}
+
+.icon-div {
+  z-index: 4;
+}
+
+.mobile-menu-container {
+  background-color: var(--background);
+  color: white;
+  position: absolute;
+  right: 0px;
+  top: 0px;
+  width: 20%;
+  height: 40rem;
+  z-index: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 2rem;
+  border-radius: 15px;
+}
+
+.mobile-menu-item {
+  font-size: var(--fs-900);
+  font-weight: 500;
+  color: black;
+}
+
+.mobile-resume {
+  background-color: transparent;
+  color: black;
+  border: 3px solid black;
+  padding: 0.5rem 1.5rem;
+  font-size: var(--fs-900);
+  font-weight: 500;
+}
+
 body {
   font-family: var(--font);
   font-size: (--fs-600);
@@ -41,7 +112,7 @@ body {
   width: 100%;
 }
 
-section {
+.background {
   background-image: url("./assets/brooke-lark-kXQ3J7_2fpc-unsplash.jpg");
   background-repeat: no-repeat;
   background-attachment: fixed;
@@ -56,7 +127,7 @@ section {
 }
 
 .container {
-  margin: auto;
+  margin: 0 auto;
   padding: 0 2rem;
   max-width: 2000px;
   position: relative;
@@ -109,12 +180,8 @@ button:focus {
   align-items: center;
 }
 
-.icon {
-  height: 30px;
-  width: 30px;
-  position: absolute;
-  top: 1.3rem;
-  right: 1.3rem;
+li {
+  list-style-type: none;
 }
 
 /***** Filter *****/
@@ -149,16 +216,34 @@ button:focus {
 
 /***** Navbar *****/
 
+.navbar-container {
+  width: 100%;
+  background: linear-gradient(
+    to top,
+    rgba(0, 0, 0, 0) 0%,
+    rgba(0, 0, 0, 0.3) 50%,
+    rgba(0, 0, 0, 0.9) 100%
+  );
+  position: sticky;
+  top: 0;
+  z-index: 5;
+}
+
 .nav-container {
-  height: 6rem;
+  height: 8rem;
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 0 2rem;
+  position: sticky;
   font-size: var(--fs-900);
   max-width: 2000px;
   width: 100%;
-  color: black;
+  color: white;
+  z-index: 5;
+  padding: 0 2rem;
+  top: 0;
+  margin: auto;
+  background: transparent;
 }
 
 .search {
@@ -219,135 +304,39 @@ button:focus {
   color: black;
 }
 
+.logo-link {
+  text-decoration: none;
+  color: white;
+}
+
 .link:focus {
   outline: none;
 }
 
-/***** Sidebar *****/
-
-.sidebar-button:hover {
-  transform: scale(1.1);
-}
-
-.menu-container-pos {
-  position: relative;
-  height: 100vh;
-}
-
-.menu-container {
-  display: flex;
-  flex-direction: column;
-  align-items: flex-end;
-  justify-content: left;
-  padding: 0 2rem;
-  text-align: left;
-  max-width: 2000px;
-  margin: auto;
-  width: 100%;
-}
-
-.menu-active {
-  background-color: var(--secondary);
-  box-shadow: var(--bs);
-  padding: 2rem;
-
-  display: flex;
-  flex-direction: column;
-
-  padding-top: 10%;
-  gap: 1rem;
-  position: absolute;
-  z-index: 5;
-  opacity: 1;
-  transform: translateY(-4.5rem);
-  transition: opacity 0.3s ease, transform 0.15s ease;
-  height: 100vh;
-  top: 4.5rem;
-  right: 0;
-}
-
-.menu {
-  opacity: 0;
-  transform: translateY(-5.5rem);
-
-  transition: opacity 0.15s ease, transform 0.15s ease;
-  background-color: var(--secondary);
-  box-shadow: var(--bs);
-  padding: 2rem;
-  position: absolute;
-  pointer-events: none;
-  flex-direction: column;
-  gap: 1rem;
-  height: 100vh;
-  top: 4.5rem;
-  right: 0;
-
-  z-index: 5;
-}
-
-.menu-icon {
-  cursor: pointer;
-  position: relative;
-}
-
-.close-menu-icon {
-  position: absolute;
-  top: 2rem;
-  right: 3.5rem;
-  height: 40px;
-  width: 40px;
-  cursor: pointer;
-}
-
-.menu-item {
-  text-align: left;
-  width: -webkit-max-content;
-  width: -moz-max-content;
-  width: max-content;
-  font-size: var(--fs-900);
-}
-
-.menu-item:hover {
-  transform: scale(1.1);
-  cursor: pointer;
-}
-
-.menu-item::after {
-  content: "";
-  display: inline-block;
-  width: 100%;
-  border: solid 1px black;
-  background-color: black;
-  position: absolute;
-  left: 0;
-  bottom: -1px;
-  transform: scaleX(0);
-  transform-origin: right;
-  transition: all 0.5s ease;
-  border-radius: 10%;
-}
-
-.menu-item:hover::after {
-  transform: scaleX(1);
-}
-
 /***** Main Page *****/
 
-.main-container {
+.container {
   margin: auto;
-  height: 100vh;
   max-width: 2000px;
 }
 
-.header-container {
-  background-image: url("./assets/brooke-lark-kXQ3J7_2fpc-unsplash.jpg");
+.header {
+  background: linear-gradient(
+      to top,
+      rgba(0, 0, 0, 0) 0%,
+      rgba(0, 0, 0, 0) 40%,
+      rgba(0, 0, 0, 0.5) 60%,
+      rgba(0, 0, 0, 0.6) 90%
+    ),
+    url("./assets/brooke-lark-kXQ3J7_2fpc-unsplash.jpg") no-repeat;
+  /* background-image: url("./assets/brooke-lark-kXQ3J7_2fpc-unsplash.jpg"); */
   background-repeat: no-repeat;
   background-attachment: fixed;
   background-size: cover;
-  position: relative;
-  max-width: 2000px;
-  padding: 0 2rem;
-  padding-bottom: 4rem;
+}
+
+.header-container {
+  padding-bottom: 8rem;
 }
 
 .header-content {
@@ -359,14 +348,14 @@ button:focus {
   width: 80%;
   margin-bottom: 2rem;
   max-width: 2000px;
-  margin: 4rem auto;
-  height: 100%;
+  margin: 8rem auto;
 }
 
 .header-content h1 {
   font-size: var(--fs-400);
   text-transform: uppercase;
   font-weight: bold;
+  color: white;
 }
 
 .header-content p {
@@ -489,12 +478,15 @@ button:focus {
 
 /***** Categories Section *****/
 
+.category-section-header {
+  background-color: var(--secondary);
+}
+
 .category-section-container {
   padding: 3rem 2rem 2rem 2rem;
   position: relative;
-  background-color: var(--secondary);
   min-height: 400px;
-  max-width: 2000px;
+
   margin: auto;
 }
 
@@ -530,10 +522,14 @@ button:focus {
 
 /***** Recipes Section *****/
 
+.recipes-section-header {
+  background-color: var(--background);
+}
+
 .recipes-section-container {
   padding: 4rem 2rem;
   position: relative;
-  background-color: var(--background);
+
   min-height: 400px;
   max-width: 2000px;
   margin: auto;
@@ -913,7 +909,7 @@ button:focus {
 }
 
 .form label {
-  margin-bottom: 0.2rem;
+  margin-bottom: 0.5rem;
 }
 
 .submit-btn {
@@ -1138,9 +1134,13 @@ button:focus {
   color: var(--primary);
 }
 
-@media screen and (max-width: 810px) {
-  .container {
-    height: 100vh;
+@media screen and (max-width: 899px) {
+  .mobile-menu-container {
+    position: fixed;
+    right: 0px;
+    top: 0px;
+    justify-content: flex-start;
+    padding-top: 8rem;
   }
 
   .page-title {
@@ -1149,9 +1149,12 @@ button:focus {
   /***** Navbar *****/
 
   .nav-container {
-    height: 2rem;
-    padding: 0;
+    padding: 0 2rem;
     font-size: var(--fs-900);
+  }
+
+  .logo {
+    color: white;
   }
 
   .search {
@@ -1162,7 +1165,6 @@ button:focus {
     width: 100%;
     box-shadow: var(--bs);
     position: relative;
-    margin-bottom: 2rem;
   }
 
   .search-icon {
@@ -1175,7 +1177,7 @@ button:focus {
   }
 
   .search-container {
-    width: 100%;
+    width: 90%;
   }
 
   /***** Menu *****/
@@ -1264,12 +1266,7 @@ button:focus {
 
   /***** Main Page *****/
 
-  .main-nav-container {
-    padding: 1rem;
-  }
-
   .header-container {
-    background-image: url("./assets/brooke-lark-kXQ3J7_2fpc-unsplash.jpg");
     background-repeat: no-repeat;
     background-attachment: fixed;
     background-size: cover;
@@ -1533,5 +1530,12 @@ button:focus {
 @media screen and (max-width: 400px) {
   .header-content h1 {
     line-height: 4rem;
+  }
+  .mobile-menu-container {
+    position: fixed;
+    right: 0px;
+    top: 0px;
+    justify-content: flex-start;
+    padding-top: 8rem;
   }
 }

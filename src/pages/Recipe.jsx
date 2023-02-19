@@ -23,7 +23,9 @@ function Recipe() {
 
   return (
     <div className="container">
-      {window.innerWidth <= 810 ? <MobileNavbar /> : <Navbar />}
+      <div className="navbar-container">
+        <Navbar />
+      </div>
 
       <RecipeCard
         title={recipe[0].data.title}

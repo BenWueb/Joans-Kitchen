@@ -11,8 +11,18 @@ import { MdEmail, MdPerson } from "react-icons/md";
 function Profile() {
   const navigate = useNavigate();
   const auth = getAuth();
-  const { currentUserData, recipes, setCurrentUser } =
-    useContext(RecipesContext);
+  const {
+    currentUserData,
+    setCurrentUserData,
+    recipes,
+    setCurrentUser,
+    getCurrentUserData,
+    fetchRecipes,
+  } = useContext(RecipesContext);
+
+  useEffect(() => {
+    getCurrentUserData();
+  }, [recipes]);
 
   if (!currentUserData) {
     return;
@@ -26,9 +36,11 @@ function Profile() {
 
   return (
     <>
-      <section></section>
+      <div className="background"></div>
+      <div className="navbar-container">
+        <Navbar />
+      </div>
       <div className="container">
-        {window.innerWidth <= 810 ? <MobileNavbar /> : <Navbar />}
         <div className="page-container">
           <h1 className="page-title">{currentUserData.name}'s Profile</h1>
           <div className="profile-container">
