@@ -134,7 +134,10 @@ function Navbar() {
             {menuVisible && (
               <motion.div
                 initial={{ height: 0, width: 0 }}
-                animate={{ height: 900, width: 390 }}
+                animate={{
+                  height: window.innerWidth <= 900 ? "100%" : "60%",
+                  width: window.innerWidth < 400 ? "100%" : "20rem",
+                }}
                 exit={{ height: 0, width: 0 }}
                 variants={mobileContainer}
                 className="mobile-menu-container"
