@@ -20,7 +20,8 @@ function RecipeCard({ title }) {
           <div className="category-image">
             <img
               src="https://firebasestorage.googleapis.com/v0/b/joans-recipes.appspot.com/o/images%2Fanh-nguyen-kcA-c3f_3FE-unsplash_800x800.webp?alt=media&token=198179f2-7f57-41fb-8467-788ddcf73e74"
-              alt=""
+              alt="A bright and healthy salad"
+              loading="lazy"
               className="category-image"
             />
           </div>
