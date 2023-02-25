@@ -556,6 +556,10 @@ li {
 
 /***** Category Card *****/
 
+.category-link {
+  width: 100%;
+}
+
 .category-card {
   background-color: var(--background);
   text-transform: capitalize;
