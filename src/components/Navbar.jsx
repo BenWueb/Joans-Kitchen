@@ -135,7 +135,7 @@ function Navbar() {
               <motion.div
                 initial={{ height: 0, width: 0 }}
                 animate={{
-                  height: window.innerWidth <= 900 ? "100%" : "60%",
+                  height: window.innerWidth <= 900 ? "100%" : "600px",
                   width: window.innerWidth < 400 ? "100%" : "20rem",
                 }}
                 exit={{ height: 0, width: 0 }}

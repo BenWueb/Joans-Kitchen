@@ -72,7 +72,7 @@
 .mobile-menu-container {
   background-color: var(--background);
   color: white;
-  position: fixed;
+  position: absolute;
   right: 0px;
   top: 0px;
 
@@ -235,7 +235,7 @@ li {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  position: sticky;
+  position: relative;
   font-size: var(--fs-900);
   max-width: 2000px;
   width: 100%;
@@ -476,7 +476,7 @@ li {
 /***** Categories Section *****/
 
 .category-section-header {
-  background-color: var(--secondary);
+  background-color: var(--background);
 }
 
 .category-section-container {
@@ -493,9 +493,6 @@ li {
 }
 
 .category-section-title {
-  position: absolute;
-  top: -40px;
-  left: 40px;
   font-size: var(--fs-600);
   font-family: var(--font);
 }
@@ -520,7 +517,6 @@ li {
 /***** Recipes Section *****/
 
 .recipes-section-header {
-  background-color: var(--background);
 }
 
 .recipes-section-container {
@@ -534,9 +530,6 @@ li {
 }
 
 .recipes-section-title {
-  position: absolute;
-  top: -40px;
-  left: 40px;
   font-size: var(--fs-600);
   font-family: var(--font);
 }
