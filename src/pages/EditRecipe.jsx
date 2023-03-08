@@ -18,7 +18,6 @@ import {
   getDownloadURL,
 } from "firebase/storage";
 import Navbar from "../components/Navbar";
-import MobileNavbar from "../components/MobileNavbar";
 import { db } from "../firestore.config";
 import { v4 as uuidv4 } from "uuid";
 import RecipesContext from "../context/RecipesContext";

@@ -1,7 +1,6 @@
 import { useContext } from "react";
 import RecipesContext from "../context/RecipesContext";
 import Navbar from "../components/Navbar";
-import MobileNavbar from "../components/MobileNavbar";
 import CategoryCard from "../components/CategoryCard";
 
 function Categories() {

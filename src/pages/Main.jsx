@@ -1,7 +1,7 @@
 import { Link } from "react-router-dom";
 import Navbar from "../components/Navbar";
 import CategorySection from "../components/CategorySection";
-import AddRecipeSection from "../components/AddRecipeSection";
+
 import { getAuth } from "firebase/auth";
 
 function Main() {
@@ -21,7 +21,7 @@ function Main() {
               </div>
 
               <div className="btn-container">
-                <Link className="link" to="/recipes">
+                <Link className="link" to="/search">
                   <button className="btn browse">Browse Recipes</button>
                 </Link>
                 {auth.currentUser ? (
@@ -37,8 +37,8 @@ function Main() {
             </div>
           </header>
         </div>
+
         <CategorySection />
-        <AddRecipeSection />
       </section>
     </>
   );

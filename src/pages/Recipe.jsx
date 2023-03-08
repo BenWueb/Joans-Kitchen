@@ -2,7 +2,6 @@ import { useContext } from "react";
 import { useParams } from "react-router-dom";
 import RecipesContext from "../context/RecipesContext";
 import Navbar from "../components/Navbar";
-import MobileNavbar from "../components/MobileNavbar";
 import RecipeCard from "../components/RecipeCard";
 
 function Recipe() {

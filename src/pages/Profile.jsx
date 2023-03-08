@@ -1,7 +1,7 @@
-import { useState, useEffect, useContext } from "react";
-import { Navigate, useNavigate, Link } from "react-router-dom";
+import { useEffect, useContext } from "react";
+import { useNavigate } from "react-router-dom";
 import Navbar from "../components/Navbar";
-import MobileNavbar from "../components/MobileNavbar";
+
 import RecipesContext from "../context/RecipesContext";
 import { getAuth } from "firebase/auth";
 import RecipeCardMobile from "../components/RecipeCardMobile";

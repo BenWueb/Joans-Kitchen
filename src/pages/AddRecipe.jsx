@@ -1,6 +1,6 @@
-import { useState, useEffect, useContext } from "react";
-import { useNavigate, Link } from "react-router-dom";
-import { getAuth, signInWithEmailAndPassword } from "firebase/auth";
+import { useState, useContext } from "react";
+import { useNavigate } from "react-router-dom";
+import { getAuth } from "firebase/auth";
 import { collection, doc, addDoc, serverTimestamp } from "firebase/firestore";
 import {
   getStorage,
@@ -8,9 +8,7 @@ import {
   uploadBytesResumable,
   getDownloadURL,
 } from "firebase/storage";
-import CreateAccount from "../pages/CreateAccount";
 import Navbar from "../components/Navbar";
-import MobileNavbar from "../components/MobileNavbar";
 import RecipesContext from "../context/RecipesContext";
 import { db } from "../firestore.config";
 import { v4 as uuidv4 } from "uuid";

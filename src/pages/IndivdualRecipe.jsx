@@ -1,7 +1,6 @@
 import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import Navbar from "../components/Navbar";
-import MobileNavbar from "../components/MobileNavbar";
 import SingleRecipe from "../components/SingleRecipe";
 import { collectionGroup, query, where, getDocs } from "firebase/firestore";
 import { db } from "../firestore.config";
@@ -44,7 +43,7 @@ function IndividualRecipe() {
     };
 
     fetchRecipe();
-  }, []);
+  }, [params]);
 
   if (!recipe) {
     return;

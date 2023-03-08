@@ -1,10 +1,10 @@
-import { useState, useEffect } from "react";
-import { useNavigate, Link, Navigate } from "react-router-dom";
+import { useState } from "react";
+import { useNavigate, Link } from "react-router-dom";
 import { getAuth, createUserWithEmailAndPassword } from "firebase/auth";
 import { setDoc, doc, serverTimestamp, getDoc } from "firebase/firestore";
 import { db } from "../firestore.config";
 import Navbar from "../components/Navbar";
-import MobileNavbar from "../components/MobileNavbar";
+
 import { toast } from "react-toastify";
 
 function CreateAccount() {

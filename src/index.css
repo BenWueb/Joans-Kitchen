@@ -247,59 +247,6 @@ li {
   background: transparent;
 }
 
-.search {
-  padding: 1rem 1rem;
-  border-radius: 5px;
-  border: none;
-  font-family: inherit;
-  width: 600px;
-  box-shadow: var(--bs);
-  position: relative;
-}
-.search-icon {
-  position: absolute;
-  right: 7px;
-  top: 10px;
-  color: var(--primary-light);
-}
-
-.search:focus {
-  outline: none;
-}
-
-.search-container {
-  position: relative;
-}
-
-.search-results {
-  position: absolute;
-  background-color: white;
-  padding: 1rem;
-  height: 200px;
-  overflow: hidden;
-  overflow-y: auto;
-  border-radius: 15px;
-  box-shadow: var(--bs);
-  z-index: 5;
-  top: 70px;
-  width: 100%;
-}
-
-.search-result {
-  font-size: 1rem;
-  color: black;
-  list-style: none;
-  text-transform: capitalize;
-}
-
-.search-link {
-  text-decoration: none;
-}
-
-.search-result:hover {
-  background-color: rgb(197, 197, 197);
-}
-
 .link {
   text-decoration: none;
   color: black;
@@ -312,6 +259,95 @@ li {
 
 .link:focus {
   outline: none;
+}
+
+/**** Search ****/
+
+.search-container {
+  margin: 0 auto;
+  width: 70%;
+  margin-bottom: 40px;
+}
+
+.ais-SearchBox-form {
+  border-radius: 10px;
+  height: 50px;
+  overflow: hidden;
+  font-size: var(--fs-1000);
+}
+
+.ais-Stats {
+  text-align: center;
+  margin-bottom: 10px;
+  font-size: var(--fs-1000);
+}
+
+.ais-Hits-item {
+  background-color: var(--background);
+  text-transform: capitalize;
+  box-shadow: var(--bs);
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  line-height: 1.1;
+  font-size: fs(--fs-800);
+  height: 22rem;
+  width: 16rem;
+  border-radius: 15px;
+  overflow: hidden;
+  padding: 0;
+}
+
+.category-card-title-container p {
+  margin-top: auto;
+  justify-self: flex-end;
+}
+
+.ais-Hits-item:first-of-type,
+.ais-Hits-item:last-of-type {
+  border-radius: 15px;
+}
+
+.ais-Hits-item:hover {
+  transform: translateY(-10px);
+}
+
+.ais-Hits {
+  margin: 0 40px;
+}
+
+.ais-Hits-list {
+  display: grid;
+  gap: 2rem 0.5rem;
+  height: 100%;
+  grid-template-columns: repeat(auto-fit, minmax(275px, 1fr));
+  width: 100%;
+
+  border-radius: 15px;
+  justify-items: center;
+}
+
+.search-content {
+  background-color: rgba(230, 235, 224, 0.5);
+  -webkit-backdrop-filter: blur(4px);
+  backdrop-filter: blur(4px);
+  border-radius: 15px;
+  padding: 20px 0;
+}
+
+.search-main {
+  height: 100%;
+  width: 100%;
+}
+
+.search-content {
+  height: 100%;
+}
+
+.ais-Pagination {
+  display: flex;
+  justify-content: center;
+  margin: 40px 0;
 }
 
 /***** Main Page *****/
@@ -330,8 +366,7 @@ li {
       rgba(0, 0, 0, 0.6) 90%
     ),
     url("./assets/brooke-lark-kXQ3J7_2fpc-unsplash.jpg") no-repeat;
-  /* background-image: url("./assets/brooke-lark-kXQ3J7_2fpc-unsplash.jpg"); */
-  background-repeat: no-repeat;
+
   background-attachment: fixed;
   background-size: cover;
 }
@@ -611,7 +646,7 @@ li {
 }
 
 .category-card:hover {
-  transform: scale(1.1);
+  transform: translateY(-10px);
 }
 
 .category-image {
@@ -623,10 +658,15 @@ li {
 
 .category-card-title-container {
   display: flex;
+  flex-direction: column;
   justify-content: center;
   align-items: center;
-  height: 100%;
+  flex: 1;
   padding: 0.5rem;
+}
+
+.category-card-title-container p {
+  margin-top: auto;
 }
 
 /***** Recipes *****/
@@ -1271,7 +1311,14 @@ li {
     margin-bottom: 4rem;
   }
 
-  .category-card {
+  .category-card,
+  .ais-Hits-item {
+    flex-direction: row;
+    font-size: 10px;
+    height: 4rem;
+  }
+
+  .search-card {
     flex-direction: row;
     font-size: 10px;
     height: 4rem;
@@ -1279,6 +1326,8 @@ li {
 
   .category-image {
     flex: 1;
+    width: 100%;
+    height: 100%;
   }
 
   .category-card-title-container {
@@ -1402,7 +1451,8 @@ li {
     width: 100%;
   }
 
-  .category-card-mobile {
+  .category-card-mobile,
+  .ais-Hits-item {
     width: 100%;
   }
 
@@ -1482,6 +1532,7 @@ li {
   }
 
   .recipes-container,
+  .ais-Hits-list,
   .categories-container,
   .category-container {
     padding: 1rem;
@@ -1493,7 +1544,13 @@ li {
     width: 100%;
   }
 
-  .category-card {
+  .ais-Hits {
+    margin: 0;
+    margin-top: 10px;
+  }
+
+  .category-card,
+  .ais-Hits-item {
     width: 100%;
   }
 

@@ -3,7 +3,6 @@ import { useContext } from "react";
 import RecipesContext from "../context/RecipesContext";
 import RecipeCard from "../components/RecipeCard";
 import Navbar from "../components/Navbar";
-import MobileNavbar from "../components/MobileNavbar";
 
 function Category() {
   const params = useParams();

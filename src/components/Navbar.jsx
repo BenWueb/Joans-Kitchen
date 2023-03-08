@@ -74,38 +74,6 @@ function Navbar() {
           </Link>
         </motion.h5>
 
-        {windowWidth >= 899 && (
-          <div className="search-container">
-            <input
-              type="text"
-              className="search"
-              placeholder="Search for a recipe..."
-              onChange={onChange}
-              value={search}
-            />
-
-            <MdSearch className="search-icon" />
-
-            {search !== "" && searchedRecipes.length !== 0 && (
-              <ul className="search-results">
-                {searchedRecipes.map((result) => {
-                  const searchUrl = result.data.title
-                    .toLowerCase()
-                    .replace(/[^a-zA-Z0-9-._~:/?#[\]@!$&'()*+,;=%]/g, "_")
-                    .replace(/\s/gi, "");
-                  return (
-                    <Link className="search-link" to={`/recipes/${searchUrl}`}>
-                      <li className="search-result">
-                        {result.data.title.toLowerCase()}
-                      </li>
-                    </Link>
-                  );
-                })}
-              </ul>
-            )}
-          </div>
-        )}
-
         <>
           <AnimatePresence>
             {menuVisible ? (
@@ -135,56 +103,13 @@ function Navbar() {
               <motion.div
                 initial={{ height: 0, width: 0 }}
                 animate={{
-                  height: window.innerWidth <= 900 ? "100%" : "600px",
+                  height: window.innerWidth <= 900 ? "100%" : "800px",
                   width: window.innerWidth < 400 ? "100%" : "20rem",
                 }}
                 exit={{ height: 0, width: 0 }}
                 variants={mobileContainer}
                 className="mobile-menu-container"
               >
-                {windowWidth <= 899 && (
-                  <motion.div
-                    variants={mobileListItem}
-                    initial="hidden"
-                    animate="show"
-                    exit="exit"
-                    className="search-container"
-                  >
-                    <input
-                      type="text"
-                      className="search"
-                      placeholder="Search for a recipe..."
-                      onChange={onChange}
-                      value={search}
-                    />
-
-                    {/* <MdSearch className="search-icon" /> */}
-
-                    {search !== "" && searchedRecipes.length !== 0 && (
-                      <ul className="search-results">
-                        {searchedRecipes.map((result) => {
-                          const searchUrl = result.data.title
-                            .toLowerCase()
-                            .replace(
-                              /[^a-zA-Z0-9-._~:/?#[\]@!$&'()*+,;=%]/g,
-                              "_"
-                            )
-                            .replace(/\s/gi, "");
-                          return (
-                            <Link
-                              className="search-link"
-                              to={`/recipes/${searchUrl}`}
-                            >
-                              <li className="search-result">
-                                {result.data.title.toLowerCase()}
-                              </li>
-                            </Link>
-                          );
-                        })}
-                      </ul>
-                    )}
-                  </motion.div>
-                )}
                 <Link className="link " to="/">
                   <motion.li
                     variants={mobileListItem}
@@ -194,6 +119,17 @@ function Navbar() {
                     className="mobile-menu-item"
                   >
                     Home
+                  </motion.li>
+                </Link>
+                <Link className="link " to="/search">
+                  <motion.li
+                    variants={mobileListItem}
+                    initial="hidden"
+                    animate="show"
+                    exit="exit"
+                    className="mobile-menu-item"
+                  >
+                    Search
                   </motion.li>
                 </Link>
                 <Link className="link " to="/categories">
@@ -207,7 +143,7 @@ function Navbar() {
                     Categories
                   </motion.li>
                 </Link>
-                <Link className="link " to="/recipes">
+                <Link className="link " to="/search">
                   <motion.li
                     variants={mobileListItem}
                     initial="hidden"

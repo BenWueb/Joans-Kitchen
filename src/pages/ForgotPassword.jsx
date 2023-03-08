@@ -2,7 +2,6 @@ import { useState } from "react";
 import { useNavigate, Link } from "react-router-dom";
 import { getAuth, sendPasswordResetEmail } from "firebase/auth";
 import Navbar from "../components/Navbar";
-import MobileNavbar from "../components/MobileNavbar";
 import { toast } from "react-toastify";
 
 function ForgotPassword() {
