@@ -63,6 +63,7 @@ export const RecipesProvider = ({ children }) => {
     fetchRecipes();
   }, []);
 
+  // Logout
   const Logout = async () => {
     try {
       const auth = getAuth();
