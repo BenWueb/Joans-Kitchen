@@ -19,8 +19,8 @@ function RecipeCard({ title, id, category, imageUrls }) {
 
   const searchUrl = title
     .toLowerCase()
-    .replace(/[^a-zA-Z0-9-._~:/?#[\]@!$&'()*+,;=%]/g, "_")
-    .replace(/\s/gi, "");
+    .replace(/[^a-zA-Z0-9-._~:/?#[\]@!$&()*+,;=%]/g, "")
+    .replace(/\s/gi, "_");
 
   const onDelete = async (e) => {
     e.preventDefault();

@@ -1,17 +1,21 @@
 import { useContext } from "react";
 import RecipesContext from "../context/RecipesContext";
-import { Link } from "react-router-dom";
-import { MdShare } from "react-icons/md";
+import { Link, useNavigate } from "react-router-dom";
+import { MdShare, MdModeEditOutline } from "react-icons/md";
 
 function RecipeCard({ title }) {
+  const navigate = useNavigate();
+
+  const { currentUserData } = useContext(RecipesContext);
+
   if (!title) {
     return;
   }
 
   const searchUrl = title
     .toLowerCase()
-    .replace(/[\s0-9._~:\/?#[\]@!$+,;=%]/g, "_")
-    .replace(/\s/gi, "");
+    .replace(/[._~:\/?#[\]@!$+;=%]/g, "")
+    .replace(/\s/gi, "_");
 
   return (
     <>

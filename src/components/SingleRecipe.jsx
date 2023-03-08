@@ -45,8 +45,8 @@ function SingleRecipe({
 
   const searchUrl = title
     .toLowerCase()
-    .replace(/[\s0-9._~:\/?#[\]@!$+,;=%]/g, "_")
-    .replace(/\s/gi, "");
+    .replace(/[._~:\/?#[\]@!$+;=%]/g, "")
+    .replace(/\s/gi, "_");
 
   // Like Button
   const onClick = async () => {
@@ -93,12 +93,12 @@ function SingleRecipe({
             className={like ? "single-like-true" : "single-like-false"}
           />
           <MdShare className="single-share" onClick={onShare} />
-          {createdBy === currentUserData?.name && (
-            <MdModeEditOutline className="single-edit" onClick={onEdit} />
-          )}
+          {createdBy === currentUserData?.name ||
+            (currentUserData?.name === "Benjamin" && (
+              <MdModeEditOutline className="single-edit" onClick={onEdit} />
+            ))}
         </div>
         <div className="single-recipe-header">
-          <h4 className="single-title">{title.toLowerCase()}</h4>
           <h4 className="created-by">Created By: {createdBy}</h4>
           {createdBy !== "Joan" && (
             <h4 className="created-by">Created: {created}</h4>
@@ -127,12 +127,16 @@ function SingleRecipe({
           )}
 
           <div className="single-steps-container">
-            <h5 className="subtitle">Steps</h5>
-            <ol className="single-recipe">
-              {steps.map((step) => (
-                <li key={step}>{step}</li>
-              ))}
-            </ol>
+            {recipe && (
+              <>
+                <h5 className="subtitle">Steps</h5>
+                <ol className="single-recipe">
+                  {steps.map((step) => (
+                    <li key={step}>{step}</li>
+                  ))}
+                </ol>
+              </>
+            )}
           </div>
         </div>
         {tags && (
@@ -154,14 +158,15 @@ function SingleRecipe({
               </a>
             </div>
           ))}
-        {/* {auth.currentUser && (
+
+        {currentUserData?.name === "Benjamin" && (
           <button
             onClick={() => navigate(`/edit-recipe/${params.recipeName}`)}
             className="btn submit-btn add-photos-button"
           >
             Add Photo(s)
           </button>
-        )} */}
+        )}
       </div>
     </>
   );

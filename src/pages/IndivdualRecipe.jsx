@@ -57,6 +57,9 @@ function IndividualRecipe() {
       </div>
       <div className="container">
         <div className="page-container">
+          <h1 className="page-title single-title">
+            {recipe.title.toLowerCase()}
+          </h1>
           <SingleRecipe
             title={recipe.title}
             ingredients={recipe.ingredients}
