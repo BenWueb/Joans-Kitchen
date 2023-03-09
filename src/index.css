@@ -89,6 +89,7 @@
   font-size: var(--fs-900);
   font-weight: 500;
   color: black;
+  list-style: none;
 }
 
 .mobile-menu-item:hover {
