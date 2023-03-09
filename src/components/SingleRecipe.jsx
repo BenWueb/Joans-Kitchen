@@ -117,11 +117,11 @@ function SingleRecipe({
             <>
               <div className="single-ingredients-container">
                 <h5 className="subtitle">Ingredients</h5>
-                <ul className="single-ingredients">
+                <ol className="single-ingredients">
                   {ingredients.split(/\n/gm).map((ing) => (
                     <li key={ing}>{ing}</li>
                   ))}
-                </ul>
+                </ol>
               </div>
             </>
           )}

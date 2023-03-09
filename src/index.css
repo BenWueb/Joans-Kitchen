@@ -181,10 +181,6 @@ button:focus {
   align-items: center;
 }
 
-li {
-  list-style-type: none;
-}
-
 /***** Filter *****/
 .filter-container {
   display: flex;
@@ -827,7 +823,6 @@ li {
 
 .single-ingredients > * {
   margin-bottom: 0.5rem;
-  list-style: none;
 }
 
 .single-recipe > * {
@@ -1529,6 +1524,7 @@ li {
     max-width: 100%;
     margin-bottom: 0;
     margin-top: 1rem;
+    padding: 0 10px;
   }
 
   .single-recipe-header {
