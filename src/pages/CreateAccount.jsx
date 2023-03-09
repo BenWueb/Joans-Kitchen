@@ -1,11 +1,6 @@
 import { useState } from "react";
 import { useNavigate, Link } from "react-router-dom";
-import {
-  getAuth,
-  createUserWithEmailAndPassword,
-  signInWithPopup,
-  GoogleAuthProvider,
-} from "firebase/auth";
+import { getAuth, createUserWithEmailAndPassword } from "firebase/auth";
 import { setDoc, doc, serverTimestamp, getDoc } from "firebase/firestore";
 import { db } from "../firestore.config";
 import Navbar from "../components/Navbar";
@@ -112,6 +107,7 @@ function CreateAccount() {
               <p>Or</p>
               <OAuth />
               <Link className="link form-link" to="/login">
+                <p>Already have an account?</p>
                 <p>Login</p>
               </Link>
             </form>

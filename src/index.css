@@ -1508,20 +1508,14 @@ li {
 
   .form-page-container {
     margin: 1rem auto;
-    /* height: 100%; */
   }
 
   .form-container {
     padding: 1rem;
     margin: auto;
     margin-bottom: 1rem;
+    width: 100%;
   }
-
-  /* .form-container {
-    padding: 1rem;
-    margin: auto;
-    margin-bottom: 1rem;
-  } */
 
   .form-container h1 {
     margin-bottom: 1rem;
@@ -1617,5 +1611,9 @@ li {
   .header-content {
     width: 100%;
     margin: 0 auto 2rem;
+  }
+
+  .form-container {
+    width: 100%;
   }
 }
