@@ -27,14 +27,14 @@ const Hit = ({ hit }) => {
 
   return (
     <>
-      <Link className="link category-card" to={`/recipes/${searchUrl}`}>
+      <Link className="link search-card" to={`/recipes/${searchUrl}`}>
         <div className="category-image">
           <img
             src="https://firebasestorage.googleapis.com/v0/b/joans-recipes.appspot.com/o/images%2Fanh-nguyen-kcA-c3f_3FE-unsplash_800x800.webp?alt=media&token=198179f2-7f57-41fb-8467-788ddcf73e74"
             className="category-image"
           />
         </div>
-        <div className="category-card-title-container">
+        <div className="search-card-title-container">
           <h2>{hit.title}</h2>
           <p>Created by: {hit.createdBy}</p>
         </div>
