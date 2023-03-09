@@ -1,9 +1,15 @@
 import { useState } from "react";
 import { useNavigate, Link } from "react-router-dom";
-import { getAuth, createUserWithEmailAndPassword } from "firebase/auth";
+import {
+  getAuth,
+  createUserWithEmailAndPassword,
+  signInWithPopup,
+  GoogleAuthProvider,
+} from "firebase/auth";
 import { setDoc, doc, serverTimestamp, getDoc } from "firebase/firestore";
 import { db } from "../firestore.config";
 import Navbar from "../components/Navbar";
+import OAuth from "../components/OAuth";
 
 import { toast } from "react-toastify";
 
@@ -103,6 +109,8 @@ function CreateAccount() {
               <button type="submit" className="btn submit-btn">
                 Submit
               </button>
+              <p>Or</p>
+              <OAuth />
               <Link className="link form-link" to="/login">
                 <p>Login</p>
               </Link>

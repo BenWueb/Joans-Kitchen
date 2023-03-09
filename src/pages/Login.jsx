@@ -2,6 +2,7 @@ import { useState, useContext } from "react";
 import { useNavigate, Link } from "react-router-dom";
 import { getAuth, signInWithEmailAndPassword } from "firebase/auth";
 import Navbar from "../components/Navbar";
+import OAuth from "../components/OAuth";
 import RecipesContext from "../context/RecipesContext";
 import { toast } from "react-toastify";
 
@@ -77,6 +78,8 @@ function Login() {
               <button type="submit" className="btn submit-btn">
                 Submit
               </button>
+              <p>Or</p>
+              <OAuth />
               <Link className="link form-link" to="/forgot-password">
                 <p>Forgot Password</p>
               </Link>

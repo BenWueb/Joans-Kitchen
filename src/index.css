@@ -897,8 +897,9 @@ li {
 
 .form-page-container {
   display: flex;
+  flex-direction: column;
   justify-content: center;
-  align-content: center;
+  align-items: center;
   margin: 2rem;
 }
 
@@ -958,6 +959,15 @@ li {
   letter-spacing: 1px;
   background-color: var(--secondary-dark);
   font-weight: bold;
+}
+
+.google-btn {
+  padding: 0.7em 2em 0.5em;
+}
+
+.google-btn img {
+  height: 50px;
+  margin-right: 20px;
 }
 
 .form-link {
