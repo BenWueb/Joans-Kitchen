@@ -87,6 +87,10 @@ function SingleRecipe({
   return (
     <>
       <div className="single-recipe-card">
+        <h4 className="created-by">Created By: {createdBy}</h4>
+        {createdBy !== "Joan" && (
+          <h4 className="created-by">Created: {created}</h4>
+        )}
         <div className="single-icons">
           <MdFavorite
             onClick={onClick}
@@ -98,21 +102,25 @@ function SingleRecipe({
               <MdModeEditOutline className="single-edit" onClick={onEdit} />
             ))}
         </div>
-        <div className="single-recipe-header">
-          <h4 className="created-by">Created By: {createdBy}</h4>
-          {createdBy !== "Joan" && (
-            <h4 className="created-by">Created: {created}</h4>
-          )}
-
-          {notes && (
-            <div className="single-notes-container">
+        {tags && (
+          <div className="tags-container">
+            {tags.map((tag) => (
+              <button key={tag} className=" tag-btn">
+                {tag}
+              </button>
+            ))}
+          </div>
+        )}
+        {notes && (
+          <>
+            <div className="single-recipe-header">
               <h5 className="subtitle">Notes</h5>
               <p className="single-notes">{notes}</p>
             </div>
-          )}
-        </div>
+          </>
+        )}
 
-        <div className="single-card-details">
+        <div className="single-grid-container">
           {ingredients && (
             <>
               <div className="single-ingredients-container">
@@ -139,15 +147,6 @@ function SingleRecipe({
             )}
           </div>
         </div>
-        {tags && (
-          <div className="tags-container">
-            {tags.map((tag) => (
-              <button key={tag} className=" tag-btn">
-                {tag}
-              </button>
-            ))}
-          </div>
-        )}
       </div>
       <div className="single-recipe-image-grid">
         {imageUrls &&
@@ -158,16 +157,14 @@ function SingleRecipe({
               </a>
             </div>
           ))}
-
-        {currentUserData?.name === "Benjamin" && (
-          <button
-            onClick={() => navigate(`/edit-recipe/${params.recipeName}`)}
-            className="btn submit-btn add-photos-button"
-          >
-            Add Photo(s)
-          </button>
-        )}
       </div>
+
+      <button
+        onClick={() => navigate(`/edit-recipe/${params.recipeName}`)}
+        className="btn submit-btn add-photos-button"
+      >
+        Add Photo(s)
+      </button>
     </>
   );
 }

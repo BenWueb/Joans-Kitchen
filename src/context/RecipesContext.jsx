@@ -5,6 +5,8 @@ import {
   getDocs,
   getDoc,
   doc,
+  query,
+  where,
 } from "firebase/firestore";
 import { getAuth, signOut, onAuthStateChanged } from "firebase/auth";
 import { db } from "../firestore.config";
@@ -63,6 +65,8 @@ export const RecipesProvider = ({ children }) => {
     fetchRecipes();
   }, []);
 
+  // Get category recipes
+
   // Logout
   const Logout = async () => {
     try {
@@ -119,6 +123,7 @@ export const RecipesProvider = ({ children }) => {
       console.log(error);
     }
   };
+
   const fetchRecipes = async () => {
     try {
       const recipeSnapshot = await getDocs(collectionGroup(db, "recipes"));

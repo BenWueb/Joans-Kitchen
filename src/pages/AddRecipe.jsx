@@ -1,7 +1,14 @@
 import { useState, useContext } from "react";
 import { useNavigate } from "react-router-dom";
 import { getAuth } from "firebase/auth";
-import { collection, doc, addDoc, serverTimestamp } from "firebase/firestore";
+import {
+  collection,
+  doc,
+  addDoc,
+  serverTimestamp,
+  arrayUnion,
+  updateDoc,
+} from "firebase/firestore";
 import {
   getStorage,
   ref,
@@ -131,6 +138,7 @@ function AddRecipe() {
       .replace(/\s/gi, "");
 
     const newRecipeRef = collection(db, `Recipes/${category}/recipes`);
+
     await addDoc(newRecipeRef, formDataCopy);
     fetchRecipes();
     navigate(`/recipes/${searchUrl}`);

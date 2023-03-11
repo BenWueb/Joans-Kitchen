@@ -1,7 +1,14 @@
-import { useEffect, useContext } from "react";
+import { useEffect, useContext, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import Navbar from "../components/Navbar";
-
+import {
+  getDocs,
+  collectionGroup,
+  collection,
+  query,
+  where,
+} from "firebase/firestore";
+import { db } from "../firestore.config";
 import RecipesContext from "../context/RecipesContext";
 import { getAuth } from "firebase/auth";
 import RecipeCardMobile from "../components/RecipeCardMobile";
@@ -14,25 +21,47 @@ function Profile() {
   const {
     currentUserData,
     setCurrentUserData,
-    recipes,
     setCurrentUser,
     getCurrentUserData,
     fetchRecipes,
+    recipes,
   } = useContext(RecipesContext);
 
   useEffect(() => {
     getCurrentUserData();
   }, [recipes]);
 
-  if (!currentUserData) {
-    return;
-  }
+  // useEffect(() => {
+  //   let userRecipes = [];
+  //   currentUserData.recipes.forEach((recipe) => {
+  //     const fetchUserRecipes = async () => {
+  //       try {
+  //         const userRecipeRef = collectionGroup(db, "recipes");
+  //         const q = query(
+  //           userRecipeRef,
+  //           where("title", "==", recipe.toUpperCase())
+  //         );
+
+  //         const querySnapshot = await getDocs(q);
+  //         userRecipes.push(querySnapshot);
+  //       } catch (error) {}
+  //     };
+  //     fetchUserRecipes();
+  //   });
+  //   setUserRecipes(userRecipes);
+  // }, [currentUserData]);
+
+  // if (!currentUserData) {
+  //   return;
+  // }
 
   const { name, email, favorites } = currentUserData;
 
   const currentUserRecipes = recipes.filter((recipe) => {
     return recipe.data.createdBy === currentUserData.name;
   });
+
+  console.log(currentUserRecipes);
 
   return (
     <>

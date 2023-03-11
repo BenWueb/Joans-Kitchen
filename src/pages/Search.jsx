@@ -22,8 +22,8 @@ function Sidebar() {
 const Hit = ({ hit }) => {
   const searchUrl = hit.title
     .toLowerCase()
-    .replace(/[^a-zA-Z0-9-._~:/?#[\]@!$&'()*+,;=%]/g, "_")
-    .replace(/\s/gi, "");
+    .replace(/[._~:\/?#[\]@!$+;=%]/g, "")
+    .replace(/\s/gi, "_");
 
   return (
     <>
@@ -65,7 +65,7 @@ function Search() {
           <h1 className="page-title">Search</h1>
           <InstantSearch searchClient={searchClient} indexName="Recipes">
             <header className="search-container">
-              <SearchBox />
+              <SearchBox placeholder="Search by Title, Author or Notes content" />
             </header>
             <main className="search-main">
               <Sidebar />

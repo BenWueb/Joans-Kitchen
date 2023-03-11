@@ -1,23 +1,42 @@
 import { useParams, Link } from "react-router-dom";
-import { useContext } from "react";
+import { useContext, useEffect, useState } from "react";
 import RecipesContext from "../context/RecipesContext";
 import RecipeCard from "../components/RecipeCard";
 import Navbar from "../components/Navbar";
+import { db } from "../firestore.config";
+import { collection, getDocs } from "firebase/firestore";
 
 function Category() {
   const params = useParams();
-  const { recipes } = useContext(RecipesContext);
+  const { setLoading } = useContext(RecipesContext);
 
-  if (!recipes) {
-    return;
-  }
+  const [categoryRecipes, setCategoryRecipes] = useState([]);
 
   //Edit url to match databse name
   const categoryName = params.categoryName.replace(/_/g, " ");
 
-  //Filter recipes by category
-  const filteredRecipes = recipes.filter((el) => {
-    return el.parent === categoryName;
+  useEffect(() => {
+    const fetchCategoryRecipes = async () => {
+      try {
+        const recipeSnapshot = await getDocs(
+          collection(db, `Recipes/${categoryName}/recipes`)
+        );
+        let recipesArr = [];
+        recipeSnapshot.forEach((recipe) => {
+          return recipesArr.push({
+            id: recipe.id,
+            data: recipe.data(),
+            parent: recipe.ref.parent.parent.id,
+          });
+        });
+        // setLoading(false);
+        setCategoryRecipes(recipesArr);
+      } catch (error) {
+        console.log(error);
+      }
+    };
+
+    fetchCategoryRecipes();
   });
 
   return (
@@ -30,7 +49,7 @@ function Category() {
         <div className="page-container">
           <h1 className="page-title">{categoryName}</h1>
           <div className="category-container">
-            {filteredRecipes.map((recipe) => {
+            {categoryRecipes.map((recipe) => {
               const recipeUrl = recipe.data.title
                 .toLowerCase()
                 .replace(/[\s0-9._~:\/?#[\]@!$+,;=%]/g, "_")
