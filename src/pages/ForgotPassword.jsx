@@ -14,12 +14,14 @@ function ForgotPassword() {
   const navigate = useNavigate();
   const auth = getAuth();
 
+  // Add user input to state
   const onChange = (e) => {
     setFormData({
       email: e.target.value,
     });
   };
 
+  // Submit email to server and send password reset email
   const onSubmit = async (e) => {
     try {
       e.preventDefault();

@@ -1,7 +1,4 @@
-import { useContext } from "react";
-import RecipesContext from "../context/RecipesContext";
 import { Link } from "react-router-dom";
-import { MdDeleteForever } from "react-icons/md";
 
 function RecipeCard({ title }) {
   if (!title) {

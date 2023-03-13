@@ -1,12 +1,12 @@
 import { useContext } from "react";
 import { Link } from "react-router-dom";
-
 import RecipesContext from "../context/RecipesContext";
 import CategoryCard from "../components/CategoryCard";
 
 function CategorySection() {
   const { categories } = useContext(RecipesContext);
 
+  // Display random categories on home page
   const shuffled = categories.sort(() => 0.5 - Math.random());
 
   return (

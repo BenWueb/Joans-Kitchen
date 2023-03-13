@@ -21,10 +21,9 @@ export const RecipesProvider = ({ children }) => {
   const [currentUser, setCurrentUser] = useState(null);
   const [currentUserData, setCurrentUserData] = useState(null);
 
-  let categoriesArr = [];
-
   // Get all Categories
   useEffect(() => {
+    let categoriesArr = [];
     const fetchCategories = async () => {
       try {
         const categorySnapshot = await getDocs(collection(db, "Recipes"));
@@ -65,8 +64,6 @@ export const RecipesProvider = ({ children }) => {
     fetchRecipes();
   }, []);
 
-  // Get category recipes
-
   // Logout
   const Logout = async () => {
     try {
@@ -97,6 +94,7 @@ export const RecipesProvider = ({ children }) => {
     getCurrentUser();
   }, []);
 
+  // Get current user data
   useEffect(() => {
     const getCurrentUserData = async () => {
       try {
@@ -112,6 +110,7 @@ export const RecipesProvider = ({ children }) => {
     getCurrentUserData();
   }, [currentUser]);
 
+  // Get current user data
   const getCurrentUserData = async () => {
     try {
       const docRef = doc(db, "Users", auth.currentUser.uid);
@@ -124,6 +123,7 @@ export const RecipesProvider = ({ children }) => {
     }
   };
 
+  // Fetch recipes
   const fetchRecipes = async () => {
     try {
       const recipeSnapshot = await getDocs(collectionGroup(db, "recipes"));

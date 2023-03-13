@@ -18,6 +18,7 @@ function Login() {
 
   const navigate = useNavigate();
 
+  // Update state with user input
   const onChange = (e) => {
     setFormData((prevState) => ({
       ...prevState,
@@ -25,6 +26,7 @@ function Login() {
     }));
   };
 
+  // Sign in and navigate to profile page
   const onSubmit = async (e) => {
     e.preventDefault();
 

@@ -1,6 +1,6 @@
 import { useContext, useState, useEffect } from "react";
 import RecipesContext from "../context/RecipesContext";
-import { Link, useParams, useNavigate } from "react-router-dom";
+import { useParams, useNavigate } from "react-router-dom";
 import { MdShare, MdFavorite, MdModeEditOutline } from "react-icons/md";
 import { getAuth } from "firebase/auth";
 import { doc, updateDoc, arrayUnion, arrayRemove } from "firebase/firestore";
@@ -19,10 +19,10 @@ function SingleRecipe({
 }) {
   const { recipes, loading, currentUserData, getCurrentUserData } =
     useContext(RecipesContext);
+
   const [like, setLike] = useState(false);
 
   const params = useParams();
-  const auth = getAuth();
   const navigate = useNavigate();
 
   useEffect(() => {
@@ -38,17 +38,19 @@ function SingleRecipe({
     return;
   }
 
+  // Split steps
   const steps = recipe.split(/\d[.]/gm);
   if (steps[0] === "") {
     steps.shift();
   }
 
+  // Convert recipe title to url format
   const searchUrl = title
     .toLowerCase()
     .replace(/[._~:\/?#[\]@!$+;=%]/g, "")
     .replace(/\s/gi, "_");
 
-  // Like Button
+  // Like Button. Add recipe to users favorites array if logged in else navigate to login page
   const onClick = async () => {
     try {
       setLike((prevState) => !prevState);
@@ -73,10 +75,12 @@ function SingleRecipe({
     }
   };
 
+  // Navigate to edit page
   const onEdit = () => {
     navigate(`/edit-recipe/${searchUrl}`);
   };
 
+  // Copy recipe link to clipboard
   const onShare = () => {
     navigator.clipboard.writeText(window.location.href);
     toast.success("Link copied!", {
@@ -91,6 +95,7 @@ function SingleRecipe({
         {createdBy !== "Joan" && (
           <h4 className="created-by">Created: {created}</h4>
         )}
+
         <div className="single-icons">
           <MdFavorite
             onClick={onClick}
@@ -102,6 +107,7 @@ function SingleRecipe({
               <MdModeEditOutline className="single-edit" onClick={onEdit} />
             ))}
         </div>
+
         {tags && (
           <div className="tags-container">
             {tags.map((tag) => (
@@ -111,6 +117,7 @@ function SingleRecipe({
             ))}
           </div>
         )}
+
         {notes && (
           <>
             <div className="single-recipe-header">
@@ -148,6 +155,7 @@ function SingleRecipe({
           </div>
         </div>
       </div>
+
       <div className="single-recipe-image-grid">
         {imageUrls &&
           imageUrls.map((img) => (

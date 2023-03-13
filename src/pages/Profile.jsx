@@ -57,11 +57,10 @@ function Profile() {
 
   const { name, email, favorites } = currentUserData;
 
+  // Fetch current user recipes
   const currentUserRecipes = recipes.filter((recipe) => {
     return recipe.data.createdBy === currentUserData.name;
   });
-
-  console.log(currentUserRecipes);
 
   return (
     <>

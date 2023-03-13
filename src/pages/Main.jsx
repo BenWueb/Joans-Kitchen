@@ -1,7 +1,6 @@
 import { Link } from "react-router-dom";
 import Navbar from "../components/Navbar";
 import CategorySection from "../components/CategorySection";
-
 import { getAuth } from "firebase/auth";
 
 function Main() {

@@ -58,6 +58,7 @@ function EditRecipe() {
 
   const recipeName = params.recipeName.replace(/_/g, " ").toUpperCase();
 
+  // Fetch recipe info and add to state
   useEffect(() => {
     const fetchRecipe = async () => {
       try {
@@ -82,6 +83,7 @@ function EditRecipe() {
     fetchRecipe();
   }, []);
 
+  // Update state based on user input
   const onChange = (e) => {
     if (e.target.id === "tags") {
       if (tags.includes(e.target.innerText)) {
@@ -103,6 +105,7 @@ function EditRecipe() {
         images: e.target.files,
       }));
     }
+
     if (!e.target.files && e.target.id !== "tags") {
       setFormData((prevState) => ({
         ...prevState,
@@ -114,6 +117,7 @@ function EditRecipe() {
   const onSubmit = async (e) => {
     e.preventDefault();
 
+    // Add image to recipe
     if (images) {
       const storeImage = async (image) => {
         return new Promise((resolve, reject) => {
@@ -151,12 +155,14 @@ function EditRecipe() {
         });
       };
 
+      // Call above function for each image
       const newImageUrls = await Promise.all(
         [...images].map((image) => storeImage(image))
       ).catch((error) => {
         console.log(error);
       });
 
+      // Add additional info to formdata
       const formDataCopy = {
         ...formData,
         imageUrls: arrayUnion(...newImageUrls),
@@ -166,6 +172,7 @@ function EditRecipe() {
 
       delete formDataCopy.images;
 
+      // Convert title to URL format
       const searchUrl = title
         .toLowerCase()
         .replace(/[^a-zA-Z0-9-._~:/?#[\]@!$&'()*+,;=%]/g, "_")
@@ -173,20 +180,24 @@ function EditRecipe() {
 
       const newRecipeRef = doc(db, `Recipes/${category}/recipes/${id}`);
 
+      // Update document and navigate to it
       await updateDoc(newRecipeRef, formDataCopy);
       navigate(`/recipes/${searchUrl}`);
     } else {
+      // Add additional info to formdata
       const formDataCopy = {
         ...formData,
         updatedBy: currentUserData.name,
         updated: serverTimestamp(),
       };
 
+      // Convert title to URL format
       const searchUrl = title
         .toLowerCase()
         .replace(/[^a-zA-Z0-9-._~:/?#[\]@!$&'()*+,;=%]/g, "_")
         .replace(/\s/gi, "");
 
+      // Update document and navigate to it
       const newRecipeRef = doc(db, `Recipes/${category}/recipes/${id}`);
       await updateDoc(newRecipeRef, formDataCopy);
       navigate(`/recipes/${searchUrl}`);

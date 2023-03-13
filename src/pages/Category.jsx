@@ -7,14 +7,16 @@ import { db } from "../firestore.config";
 import { collection, getDocs } from "firebase/firestore";
 
 function Category() {
-  const params = useParams();
   const { setLoading } = useContext(RecipesContext);
 
   const [categoryRecipes, setCategoryRecipes] = useState([]);
 
-  //Edit url to match databse name
+  const params = useParams();
+
+  // Edit url to match databse name
   const categoryName = params.categoryName.replace(/_/g, " ");
 
+  // Fetch recipes by category
   useEffect(() => {
     const fetchCategoryRecipes = async () => {
       try {
@@ -29,7 +31,6 @@ function Category() {
             parent: recipe.ref.parent.parent.id,
           });
         });
-        // setLoading(false);
         setCategoryRecipes(recipesArr);
       } catch (error) {
         console.log(error);

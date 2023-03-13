@@ -12,6 +12,12 @@ function Navbar() {
   const [search, setSearch] = useState("");
   const [searchedRecipes, setSearchedRecipes] = useState([]);
 
+  const { recipes, Logout } = useContext(RecipeContext);
+
+  const navigate = useNavigate();
+  const auth = getAuth();
+
+  // Monitor window size for nav layout
   useEffect(() => {
     const handleWindowResize = () => {
       setWindowWidth(window.innerWidth);
@@ -20,6 +26,7 @@ function Navbar() {
     window.addEventListener("resize", handleWindowResize);
   }, []);
 
+  // Styling for nav container
   const mobileContainer = {
     hidden: { opacity: 0, height: 100 },
     show: {
@@ -32,31 +39,19 @@ function Navbar() {
     },
   };
 
+  // Styling for nav items
   const mobileListItem = {
     hidden: { opacity: 0, y: -20 },
     show: { opacity: 1, y: 0, transition: { delay: 0.3 } },
     exit: { opacity: 0, y: 0, transition: { duration: 0 } },
   };
 
+  // Toggle menu open/closed
   const toggleMenu = () => {
     setMenuVisible((prevState) => !prevState);
   };
 
-  const { recipes, Logout } = useContext(RecipeContext);
-
-  const navigate = useNavigate();
-  const auth = getAuth();
-
-  const onChange = (e) => {
-    setSearch(e.target.value);
-
-    const newFilter = recipes.filter((el) => {
-      return el.data.title.toLowerCase().includes(search);
-    });
-
-    setSearchedRecipes(newFilter.slice(0, 15));
-  };
-
+  //Sign out
   const signOut = () => {
     Logout();
     navigate("/");
@@ -165,6 +160,8 @@ function Navbar() {
                     About
                   </motion.li>
                 </Link>
+
+                {/* If logged in display menu items else display logout */}
                 {auth.currentUser ? (
                   <>
                     <Link className="link" to="/profile">

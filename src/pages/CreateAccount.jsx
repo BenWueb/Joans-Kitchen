@@ -21,6 +21,7 @@ function CreateAccount() {
 
   const navigate = useNavigate();
 
+  // Update form state with user input
   const onChange = (e) => {
     setFormData((prevState) => ({
       ...prevState,
@@ -28,6 +29,7 @@ function CreateAccount() {
     }));
   };
 
+  // Add user to database
   const onSubmit = async (e) => {
     e.preventDefault();
 

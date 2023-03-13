@@ -1,13 +1,6 @@
-import { useContext } from "react";
-import RecipesContext from "../context/RecipesContext";
-import { Link, useNavigate } from "react-router-dom";
-import { MdShare, MdModeEditOutline } from "react-icons/md";
+import { Link } from "react-router-dom";
 
 function RecipeCard({ title }) {
-  const navigate = useNavigate();
-
-  const { currentUserData } = useContext(RecipesContext);
-
   if (!title) {
     return;
   }

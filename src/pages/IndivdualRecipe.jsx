@@ -21,6 +21,7 @@ function IndividualRecipe() {
   //Edit url to match database name
   const recipeName = params.recipeName.replace(/_/g, " ").toUpperCase();
 
+  // Fetch recipe using params
   useEffect(() => {
     const fetchRecipe = async () => {
       try {

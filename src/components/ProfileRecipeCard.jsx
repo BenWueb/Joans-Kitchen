@@ -2,21 +2,17 @@ import { useContext } from "react";
 import RecipesContext from "../context/RecipesContext";
 import { Link } from "react-router-dom";
 import { MdDeleteForever } from "react-icons/md";
-import { doc, deleteDoc, collection } from "firebase/firestore";
+import { doc, deleteDoc } from "firebase/firestore";
 import { db } from "../firestore.config";
-import { getAuth } from "firebase/auth";
-import { useNavigate } from "react-router-dom";
 
 function RecipeCard({ title, id, category, imageUrls }) {
-  const navigate = useNavigate();
-  const auth = getAuth();
-
   const { fetchRecipes } = useContext(RecipesContext);
 
   if (!title) {
     return;
   }
 
+  // Convert title to url format
   const searchUrl = title
     .toLowerCase()
     .replace(/[^a-zA-Z0-9-._~:/?#[\]@!$&()*+,;=%]/g, "")

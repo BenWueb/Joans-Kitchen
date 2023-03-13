@@ -44,9 +44,9 @@ function AddRecipe() {
   } = useContext(RecipesContext);
 
   const auth = getAuth();
-
   const navigate = useNavigate();
 
+  // Updating state based on user input
   const onChange = (e) => {
     if (e.target.id === "tags") {
       if (tags.includes(e.target.innerText)) {
@@ -68,6 +68,7 @@ function AddRecipe() {
         images: e.target.files,
       }));
     }
+
     if (!e.target.files && e.target.id !== "tags") {
       setFormData((prevState) => ({
         ...prevState,
@@ -76,9 +77,11 @@ function AddRecipe() {
     }
   };
 
+  // Add recipe to database
   const onSubmit = async (e) => {
     e.preventDefault();
 
+    // Add image to firestore and add image url to firebase
     const storeImage = async (image) => {
       return new Promise((resolve, reject) => {
         const storage = getStorage();
@@ -115,12 +118,14 @@ function AddRecipe() {
       });
     };
 
+    // Calls above function for each image
     const imageUrls = await Promise.all(
       [...images].map((image) => storeImage(image))
     ).catch((error) => {
       console.log(error);
     });
 
+    // Update form data with additional info
     const formDataCopy = {
       ...formData,
       title: title.toUpperCase(),
@@ -130,15 +135,17 @@ function AddRecipe() {
       created: serverTimestamp(),
     };
 
+    // Remove image array from formdata
     delete formDataCopy.images;
 
+    // Convert title to URL format
     const searchUrl = title
       .toLowerCase()
       .replace(/[^a-zA-Z0-9-._~:/?#[\]@!$&'()*+,;=%]/g, "_")
       .replace(/\s/gi, "");
 
+    // Add recipe to firebase and navigate to it
     const newRecipeRef = collection(db, `Recipes/${category}/recipes`);
-
     await addDoc(newRecipeRef, formDataCopy);
     fetchRecipes();
     navigate(`/recipes/${searchUrl}`);

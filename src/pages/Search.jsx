@@ -10,15 +10,13 @@ import {
 import { Link } from "react-router-dom";
 import Navbar from "../components/Navbar";
 
+// Algolia credentials
 const searchClient = algoliasearch(
   process.env.REACT_APP_ALGOLIA_APPID,
   process.env.REACT_APP_ALGOLIA_APIKEY
 );
 
-function Sidebar() {
-  return <div></div>;
-}
-
+// Convert title to URL format and display each hit
 const Hit = ({ hit }) => {
   const searchUrl = hit.title
     .toLowerCase()
