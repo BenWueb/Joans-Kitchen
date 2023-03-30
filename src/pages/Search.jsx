@@ -5,10 +5,10 @@ import {
   SearchBox,
   Hits,
   Stats,
-  SortBy,
 } from "react-instantsearch-hooks-web";
 import { Link } from "react-router-dom";
 import Navbar from "../components/Navbar";
+import { useSearchParams } from "react-router-dom";
 
 // Algolia credentials
 const searchClient = algoliasearch(
@@ -30,6 +30,7 @@ const Hit = ({ hit }) => {
           <img
             src="https://firebasestorage.googleapis.com/v0/b/joans-recipes.appspot.com/o/images%2Fanh-nguyen-kcA-c3f_3FE-unsplash_800x800.webp?alt=media&token=198179f2-7f57-41fb-8467-788ddcf73e74"
             className="category-image"
+            alt="delicious food"
           />
         </div>
         <div className="search-card-title-container">
@@ -52,6 +53,10 @@ function Content() {
 }
 
 function Search() {
+  const [searchParams] = useSearchParams();
+
+  const search = searchParams.get("search");
+
   return (
     <>
       <div className="background"></div>
@@ -61,12 +66,15 @@ function Search() {
       <div className="container">
         <div className="page-container">
           <h1 className="page-title">Search</h1>
-          <InstantSearch searchClient={searchClient} indexName="Recipes">
+          <InstantSearch
+            searchClient={searchClient}
+            indexName="Recipes"
+            routing="true"
+          >
             <header className="search-container">
               <SearchBox placeholder="Search by Title, Author or Notes content" />
             </header>
             <main className="search-main">
-              <Sidebar />
               <Content />
             </main>
           </InstantSearch>

@@ -111,6 +111,36 @@ li {
   align-items: center;
 }
 
+.search-bar-container {
+  width: 80%;
+  display: flex;
+  justify-content: center;
+  margin: 20px 0;
+}
+
+.search-bar-container input {
+  width: 100%;
+  height: 70px;
+  outline: none;
+  border: none;
+  padding-left: 20px;
+  font-family: inherit;
+  font-size: var(--fs-1000);
+  border-top-left-radius: 10px;
+  border-bottom-left-radius: 10px;
+}
+
+.search-bar-container button {
+  width: 200px;
+  border-bottom-left-radius: 0px;
+  border-top-left-radius: 0px;
+  background-color: var(--secondary-dark);
+}
+
+.search-bar-container button:hover {
+  transform: scale(1);
+}
+
 /***** Filter *****/
 .filter-container {
   display: flex;
@@ -429,10 +459,6 @@ li {
 
 .btn-container button {
   width: 100%;
-}
-
-.browse {
-  background-color: var(--secondary-dark);
 }
 
 /***** Categories Section on Homepage *****/

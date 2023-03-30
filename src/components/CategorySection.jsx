@@ -14,7 +14,6 @@ function CategorySection() {
       <section className="category-section-header">
         <div className="container">
           <div className="category-section-container">
-            <h2 className="category-section-title">Explore by Category</h2>
             <div className="category-cards-container">
               {shuffled.slice(0, 8).map((category) => (
                 <CategoryCard

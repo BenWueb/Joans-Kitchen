@@ -2,9 +2,11 @@ import { Link } from "react-router-dom";
 import Navbar from "../components/Navbar";
 import CategorySection from "../components/CategorySection";
 import { getAuth } from "firebase/auth";
+import SearchBar from "../components/SearchBar";
 
 function Main() {
   const auth = getAuth();
+
   return (
     <>
       <section className="header">
@@ -19,20 +21,18 @@ function Main() {
                 <h1 className="kitchen">Kitchen</h1>
               </div>
 
-              <div className="btn-container">
-                <Link className="link" to="/search">
-                  <button className="btn browse">Browse Recipes</button>
-                </Link>
+              <SearchBar />
+              {/* <div className="btn-container">
                 {auth.currentUser ? (
                   <Link to="/add-recipe" className="link">
                     <button className="btn ">Add Recipe</button>
                   </Link>
                 ) : (
-                  <Link to="/categories" className="link">
-                    <button className="btn ">Browse Categories</button>
+                  <Link to="/create-account" className="link">
+                    <button className="btn ">Sign Up</button>
                   </Link>
                 )}
-              </div>
+              </div> */}
             </div>
           </header>
         </div>
