@@ -2,7 +2,17 @@ import { useState, useEffect, useContext } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { motion, AnimatePresence } from "framer-motion";
 import { BiMenuAltRight } from "react-icons/bi";
-import { MdOutlineClose, MdSearch } from "react-icons/md";
+import {
+  MdOutlineClose,
+  MdSearch,
+  MdCabin,
+  MdOutlineGridOn,
+  MdLibraryBooks,
+  MdOutlinePerson,
+  MdOutlinePostAdd,
+  MdLogout,
+  MdInfoOutline,
+} from "react-icons/md";
 import RecipeContext from "../context/RecipesContext";
 import { getAuth } from "firebase/auth";
 
@@ -45,6 +55,11 @@ function Navbar() {
     show: { opacity: 1, y: 0, transition: { delay: 0.3 } },
     exit: { opacity: 0, y: 0, transition: { duration: 0 } },
   };
+
+  // Close menu on click out
+  // window.addEventListener('click', (e) => {
+
+  // })
 
   // Toggle menu open/closed
   const toggleMenu = () => {
@@ -113,7 +128,10 @@ function Navbar() {
                     exit="exit"
                     className="mobile-menu-item"
                   >
-                    Home
+                    <p>
+                      <MdCabin />
+                      Cabin
+                    </p>
                   </motion.li>
                 </Link>
                 <Link className="link " to="/search">
@@ -124,7 +142,9 @@ function Navbar() {
                     exit="exit"
                     className="mobile-menu-item"
                   >
-                    Search
+                    <p>
+                      <MdSearch /> Search
+                    </p>
                   </motion.li>
                 </Link>
                 <Link className="link " to="/categories">
@@ -135,7 +155,10 @@ function Navbar() {
                     exit="exit"
                     className="mobile-menu-item"
                   >
-                    Categories
+                    <p>
+                      <MdOutlineGridOn />
+                      Categories
+                    </p>
                   </motion.li>
                 </Link>
                 <Link className="link " to="/search">
@@ -146,7 +169,10 @@ function Navbar() {
                     exit="exit"
                     className="mobile-menu-item"
                   >
-                    Recipes
+                    <p>
+                      <MdLibraryBooks />
+                      Recipes
+                    </p>
                   </motion.li>
                 </Link>
                 <Link className="link " to="/">
@@ -157,7 +183,10 @@ function Navbar() {
                     exit="exit"
                     className="mobile-menu-item"
                   >
-                    About
+                    <p>
+                      <MdInfoOutline />
+                      About
+                    </p>
                   </motion.li>
                 </Link>
 
@@ -172,7 +201,10 @@ function Navbar() {
                         exit="exit"
                         className="mobile-menu-item"
                       >
-                        Profile
+                        <p>
+                          <MdOutlinePerson />
+                          Profile
+                        </p>
                       </motion.li>
                     </Link>
                     <Link className="link" to="/add-recipe">
@@ -183,19 +215,28 @@ function Navbar() {
                         exit="exit"
                         className="mobile-menu-item"
                       >
-                        Add Recipe
+                        <p>
+                          <MdOutlinePostAdd />
+                          Add Recipe
+                        </p>
                       </motion.li>
                     </Link>
-                    <motion.li
-                      onClick={signOut}
-                      variants={mobileListItem}
-                      initial="hidden"
-                      animate="show"
-                      exit="exit"
-                      className="mobile-menu-item"
-                    >
-                      Sign Out
-                    </motion.li>
+
+                    <Link className="link" to="/">
+                      <motion.li
+                        onClick={signOut}
+                        variants={mobileListItem}
+                        initial="hidden"
+                        animate="show"
+                        exit="exit"
+                        className="mobile-menu-item"
+                      >
+                        <p>
+                          <MdLogout />
+                          Sign Out
+                        </p>
+                      </motion.li>
+                    </Link>
                   </>
                 ) : (
                   <Link className="link " to="/login">

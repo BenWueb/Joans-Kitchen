@@ -222,7 +222,7 @@ li {
   display: flex;
   flex-direction: column;
   justify-content: center;
-  align-items: center;
+  margin: auto;
   gap: 2rem;
   border-radius: 5px;
 }
@@ -232,6 +232,13 @@ li {
   font-weight: 500;
   color: black;
   list-style: none;
+}
+
+.mobile-menu-item p {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding-left: 15%;
 }
 
 .mobile-menu-item:hover {
@@ -1544,5 +1551,23 @@ li {
 
   .form-container {
     width: 100%;
+  }
+
+  .search-bar-container {
+    width: 100%;
+  }
+
+  .search-bar-container input {
+    width: 100%;
+    height: 60px;
+    padding-left: 20px;
+  }
+
+  .search-bar-container button {
+    width: 30%;
+  }
+
+  .mobile-menu-item p {
+    padding-left: 25%;
   }
 }
