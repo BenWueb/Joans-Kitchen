@@ -22,7 +22,7 @@ function Navbar() {
   const [search, setSearch] = useState("");
   const [searchedRecipes, setSearchedRecipes] = useState([]);
 
-  const { recipes, Logout } = useContext(RecipeContext);
+  const { Logout } = useContext(RecipeContext);
 
   const navigate = useNavigate();
   const auth = getAuth();

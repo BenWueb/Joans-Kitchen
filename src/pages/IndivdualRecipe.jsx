@@ -31,11 +31,11 @@ function IndividualRecipe() {
         const recipeSnap = await getDocs(q);
 
         recipeSnap.forEach((doc) => {
-          const date = doc.data().created.toDate().toDateString();
+          // const date = doc.data().created.toDate().toDateString();
           setRecipe(doc.data());
           setRecipe((prevState) => ({
             ...prevState,
-            created: date,
+            // created: date,
           }));
         });
       } catch (error) {

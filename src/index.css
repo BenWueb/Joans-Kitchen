@@ -698,6 +698,10 @@ li {
   margin: auto;
 }
 
+.single-notes {
+  line-height: 1.5;
+}
+
 .single-grid-container {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
@@ -775,6 +779,7 @@ li {
 
 .single-recipe > li {
   margin-bottom: 0.5rem;
+  line-height: 1.75;
 }
 
 .single-recipe li::first-letter,
