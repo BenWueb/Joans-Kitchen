@@ -112,7 +112,7 @@ li {
 }
 
 .search-bar-container {
-  width: 80%;
+  width: 60%;
   display: flex;
   justify-content: center;
   margin: 20px 0;
@@ -120,7 +120,7 @@ li {
 
 .search-bar-container input {
   width: 100%;
-  height: 70px;
+  height: 60px;
   outline: none;
   border: none;
   padding-left: 20px;
@@ -131,7 +131,7 @@ li {
 }
 
 .search-bar-container button {
-  width: 200px;
+  width: 150px;
   border-bottom-left-radius: 0px;
   border-top-left-radius: 0px;
   background-color: var(--secondary-dark);
