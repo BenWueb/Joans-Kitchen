@@ -15,7 +15,7 @@ function CategorySection() {
         <div className="container">
           <div className="category-section-container">
             <div className="category-cards-container">
-              {shuffled.slice(0, 8).map((category) => (
+              {shuffled.slice(0, 10).map((category) => (
                 <CategoryCard
                   name={category.id}
                   key={category.id}

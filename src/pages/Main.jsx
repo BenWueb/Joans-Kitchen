@@ -17,8 +17,7 @@ function Main() {
           <header className="header-container">
             <div className="header-content">
               <div className="main-title">
-                <h1>Joan's</h1>
-                <h1 className="kitchen">Kitchen</h1>
+                <h1>Joan's Kitchen</h1>
               </div>
 
               <SearchBar />
