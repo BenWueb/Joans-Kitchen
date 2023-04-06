@@ -247,7 +247,10 @@ function Navbar() {
                       exit="exit"
                       className="mobile-menu-item"
                     >
-                      Login
+                      <p>
+                        <MdLogout />
+                        Login
+                      </p>
                     </motion.li>
                   </Link>
                 )}
