@@ -99,6 +99,10 @@ li {
   font-family: Poppins, sans-serif;
 }
 
+ul > li {
+  list-style-type: none;
+}
+
 .btn {
   padding: 1.2em 2em 1em 2em;
   font-weight: 600;
