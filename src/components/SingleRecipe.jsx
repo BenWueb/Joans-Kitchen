@@ -88,8 +88,6 @@ function SingleRecipe({
     });
   };
 
-  console.log(created.toDate().toString());
-
   return (
     <>
       <div className="single-recipe-card">
