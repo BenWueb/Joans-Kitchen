@@ -88,12 +88,16 @@ function SingleRecipe({
     });
   };
 
+  console.log(created.toDate().toString());
+
   return (
     <>
       <div className="single-recipe-card">
         <h4 className="created-by">Created By: {createdBy}</h4>
         {createdBy !== "Joan" && (
-          <h4 className="created-by">Created: {created}</h4>
+          <h4 className="created-by">
+            Created: {created.toDate().toDateString()}
+          </h4>
         )}
 
         <div className="single-icons">

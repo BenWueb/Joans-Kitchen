@@ -51,9 +51,9 @@ function Profile() {
   //   setUserRecipes(userRecipes);
   // }, [currentUserData]);
 
-  // if (!currentUserData) {
-  //   return;
-  // }
+  if (!currentUserData) {
+    return;
+  }
 
   const { name, email, favorites } = currentUserData;
 

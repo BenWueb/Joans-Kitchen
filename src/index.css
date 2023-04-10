@@ -92,7 +92,7 @@ button:focus {
 }
 
 h2 {
-  font-family: Montserrat, sans-serif;
+  font-family: montserrat, sans-serif;
 }
 
 li {
@@ -265,6 +265,7 @@ li {
     rgba(0, 0, 0, 0.3) 50%,
     rgba(0, 0, 0, 0.9) 100%
   );
+  position: -webkit-sticky;
   position: sticky;
   top: 0;
   z-index: 5;
@@ -442,7 +443,7 @@ li {
 
 .main-title {
   font-family: Josefin Sans, sans-serif;
-
+  font-weight: 500;
   line-height: 0.8;
   margin-bottom: 4rem;
   max-width: 1000px;
