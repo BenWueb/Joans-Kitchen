@@ -1,4 +1,3 @@
-import Navbar from "./components/Navbar";
 import Main from "./pages/Main";
 import Categories from "./pages/Categories";
 import Category from "./pages/Category";

@@ -1,31 +1,22 @@
-import { useEffect, useContext, useState } from "react";
+import { useEffect, useContext } from "react";
 import { useNavigate } from "react-router-dom";
 import Navbar from "../components/Navbar";
-import {
-  getDocs,
-  collectionGroup,
-  collection,
-  query,
-  where,
-} from "firebase/firestore";
-import { db } from "../firestore.config";
+// import {
+//   getDocs,
+//   collectionGroup,
+//   collection,
+//   query,
+//   where,
+// } from "firebase/firestore";
 import RecipesContext from "../context/RecipesContext";
-import { getAuth } from "firebase/auth";
 import RecipeCardMobile from "../components/RecipeCardMobile";
 import ProfileRecipeCard from "../components/ProfileRecipeCard";
 import { MdEmail, MdPerson } from "react-icons/md";
 
 function Profile() {
   const navigate = useNavigate();
-  const auth = getAuth();
-  const {
-    currentUserData,
-    setCurrentUserData,
-    setCurrentUser,
-    getCurrentUserData,
-    fetchRecipes,
-    recipes,
-  } = useContext(RecipesContext);
+  const { currentUserData, setCurrentUser, getCurrentUserData, recipes } =
+    useContext(RecipesContext);
 
   useEffect(() => {
     getCurrentUserData();

@@ -8,7 +8,6 @@ import {
 } from "react-instantsearch-hooks-web";
 import { Link } from "react-router-dom";
 import Navbar from "../components/Navbar";
-import { useSearchParams } from "react-router-dom";
 
 // Algolia credentials
 const searchClient = algoliasearch(
@@ -20,7 +19,7 @@ const searchClient = algoliasearch(
 const Hit = ({ hit }) => {
   const searchUrl = hit.title
     .toLowerCase()
-    .replace(/[._~:\/?#[\]@!$+;=%]/g, "")
+    .replace(/[._~:/?#[\]@!$+;=%]/g, "")
     .replace(/\s/gi, "_");
 
   return (
@@ -53,10 +52,6 @@ function Content() {
 }
 
 function Search() {
-  const [searchParams] = useSearchParams();
-
-  const search = searchParams.get("search");
-
   return (
     <>
       <div className="background"></div>
@@ -69,7 +64,7 @@ function Search() {
           <InstantSearch
             searchClient={searchClient}
             indexName="Recipes"
-            routing="true"
+            routing={true}
           >
             <header className="search-container">
               <SearchBox placeholder="Search by Title, Author or Notes content" />

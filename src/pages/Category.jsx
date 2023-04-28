@@ -1,14 +1,11 @@
-import { useParams, Link } from "react-router-dom";
-import { useContext, useEffect, useState } from "react";
-import RecipesContext from "../context/RecipesContext";
+import { useParams } from "react-router-dom";
+import { useEffect, useState } from "react";
 import RecipeCard from "../components/RecipeCard";
 import Navbar from "../components/Navbar";
 import { db } from "../firestore.config";
 import { collection, getDocs } from "firebase/firestore";
 
 function Category() {
-  const { setLoading } = useContext(RecipesContext);
-
   const [categoryRecipes, setCategoryRecipes] = useState([]);
 
   const params = useParams();
@@ -51,11 +48,6 @@ function Category() {
           <h1 className="page-title">{categoryName}</h1>
           <div className="category-container">
             {categoryRecipes.map((recipe) => {
-              const recipeUrl = recipe.data.title
-                .toLowerCase()
-                .replace(/[\s0-9._~:\/?#[\]@!$+,;=%]/g, "_")
-                .replace(/\s/gi, "");
-
               return (
                 <RecipeCard
                   title={recipe.data.title}

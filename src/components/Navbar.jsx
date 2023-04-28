@@ -19,8 +19,6 @@ import { getAuth } from "firebase/auth";
 function Navbar() {
   const [menuVisible, setMenuVisible] = useState(false);
   const [windowWidth, setWindowWidth] = useState(window.innerWidth);
-  const [search, setSearch] = useState("");
-  const [searchedRecipes, setSearchedRecipes] = useState([]);
 
   const { Logout } = useContext(RecipeContext);
 
