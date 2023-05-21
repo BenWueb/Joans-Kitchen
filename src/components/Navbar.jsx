@@ -25,6 +25,8 @@ function Navbar() {
   const navigate = useNavigate();
   const auth = getAuth();
 
+  const windowHeight = window.innerHeight;
+
   // Monitor window size for nav layout
   useEffect(() => {
     const handleWindowResize = () => {
@@ -36,10 +38,11 @@ function Navbar() {
 
   // Styling for nav container
   const mobileContainer = {
-    hidden: { opacity: 0, height: 100 },
+    hidden: { opacity: 0, width: 0, height: windowHeight },
     show: {
       opacity: 1,
-      height: 0,
+      width: 0,
+
       transition: {
         duration: 1,
         staggerChildren: 0.2,
@@ -109,12 +112,12 @@ function Navbar() {
           <AnimatePresence>
             {menuVisible && (
               <motion.div
-                initial={{ height: 0, width: 0 }}
+                initial={{ height: windowHeight, width: 0 }}
                 animate={{
                   height: window.innerWidth <= 900 ? "100%" : "800px",
                   width: window.innerWidth < 400 ? "100%" : "20rem",
                 }}
-                exit={{ height: 0, width: 0 }}
+                exit={{ height: windowHeight, width: 0 }}
                 variants={mobileContainer}
                 className="mobile-menu-container"
               >

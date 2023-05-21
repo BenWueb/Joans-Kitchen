@@ -23,7 +23,7 @@ function RecipeCard({ title }) {
             />
           </div>
           <div className="category-card-title-container">
-            <h2>{title.toLowerCase()}</h2>
+            <h3>{title.toLowerCase()}</h3>
           </div>
         </div>
       </Link>

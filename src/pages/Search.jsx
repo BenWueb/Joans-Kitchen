@@ -33,7 +33,7 @@ const Hit = ({ hit }) => {
           />
         </div>
         <div className="search-card-title-container">
-          <h2>{hit.title}</h2>
+          <h4>{hit.title}</h4>
           <p>Created by: {hit.createdBy}</p>
         </div>
       </Link>
