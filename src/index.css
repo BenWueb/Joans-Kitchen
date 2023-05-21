@@ -498,7 +498,7 @@ ul > li {
 /***** Categories / Category *****/
 .category-container {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(275px, 1fr));
+  grid-template-columns: repeat(auto-fit, minmax(195px, 1fr));
   gap: 2rem 0.5rem;
   width: 100%;
   background-color: rgba(230, 235, 224, 0.7);
@@ -539,7 +539,7 @@ ul > li {
   display: flex;
   flex-direction: column;
   line-height: 1.1;
-  font-size: fs(--fs-800);
+  font-size: var(--fs-800);
   height: 18rem;
   width: 12rem;
   border-radius: 15px;
