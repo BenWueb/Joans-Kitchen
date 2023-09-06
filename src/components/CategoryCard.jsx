@@ -24,7 +24,7 @@ function CategoryCard({ name, imgUrl }) {
             />
           </div>
           <div className="category-card-title-container">
-            <h3>{name}</h3>
+            <h4>{name}</h4>
           </div>
         </div>
       </Link>

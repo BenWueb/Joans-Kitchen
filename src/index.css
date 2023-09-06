@@ -12,7 +12,7 @@
   --fs-900: clamp(1.5rem, 4vw + 0.5rem, 1.75rem);
   --fs-1000: clamp(1rem, 1vw + 0.25rem, 1.5rem);
   --fs-1200: clamp(0.75rem, 1vw + 0.25rem, 1rem);
-  --font: Montserrat, sans-serif;
+  --font: "Montserrat", sans-serif;
   --secondary-dark: #ed6a5aff;
   --secondary: #f4f1bbff;
   --primary-light: #9bc1bcff;
@@ -226,29 +226,33 @@ ul > li {
   position: absolute;
   right: 0px;
   top: 0px;
-  padding-top: 8rem;
   z-index: 1;
   display: flex;
   flex-direction: column;
-  /* justify-content: center; */
+  justify-content: center;
+  /* align-items: center; */
   gap: 2rem;
   border-radius: 5px;
+  width: 80%;
+  height: 100vh;
 }
 
 .mobile-menu-item {
-  font-size: var(--fs-1000);
-  font-weight: 600;
+  font-size: var(--fs-800);
+  font-weight: 400;
   color: black;
   list-style: none;
   text-transform: uppercase;
-  letter-spacing: 2px;
+  letter-spacing: 4px;
 }
 
 .mobile-menu-item p {
   display: flex;
   align-items: center;
-  gap: 10px;
-  padding-left: 20%;
+  gap: 20px;
+  margin-left: auto;
+  width: 66%;
+  /* padding-left: 20%; */
 }
 
 .mobile-menu-item:hover {
@@ -336,7 +340,6 @@ ul > li {
   display: flex;
   flex-direction: column;
   line-height: 1.1;
-  font-size: fs(--fs-800);
   height: 18rem;
   width: 12rem;
   border-radius: 15px;
@@ -453,6 +456,7 @@ ul > li {
   line-height: 0.8;
   margin-bottom: 4rem;
   max-width: 1000px;
+  letter-spacing: 5px;
 }
 
 .kitchen {
@@ -539,7 +543,6 @@ ul > li {
   display: flex;
   flex-direction: column;
   line-height: 1.1;
-  font-size: var(--fs-800);
   height: 18rem;
   width: 12rem;
   border-radius: 15px;
@@ -597,6 +600,13 @@ ul > li {
   align-items: center;
   flex: 1;
   padding: 0.5rem;
+  text-transform: uppercase;
+}
+
+.category-card-title-container h4 {
+  font-family: "poppins";
+  font-size: 0.875rem;
+  font-weight: 700;
 }
 
 .category-card-title-container p {
@@ -644,6 +654,7 @@ ul > li {
 .title {
   text-align: center;
   font-size: var(--fs-800);
+  font-weight: bold;
   text-transform: capitalize;
 }
 
@@ -871,7 +882,8 @@ ul > li {
 }
 
 .form {
-  display: grid;
+  display: flex;
+  flex-direction: column;
   width: 80%;
 }
 
@@ -1521,10 +1533,12 @@ ul > li {
   }
   .mobile-menu-container {
     position: fixed;
-    right: 0px;
+    left: 0px;
     top: 0px;
-    justify-content: flex-start;
-    padding-top: 8rem;
+    justify-content: center;
+    align-items: center;
+    padding-top: 0;
+    width: 100%;
   }
 
   .header-content {
@@ -1551,6 +1565,7 @@ ul > li {
   }
 
   .mobile-menu-item p {
-    padding-left: 25%;
+    padding-left: 0;
+    gap: 10px;
   }
 }

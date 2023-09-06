@@ -6,7 +6,6 @@ import SearchBar from "../components/SearchBar";
 
 function Main() {
   const auth = getAuth();
-
   return (
     <>
       <section className="header">

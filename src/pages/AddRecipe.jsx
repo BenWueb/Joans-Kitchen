@@ -110,7 +110,10 @@ function AddRecipe() {
             reject(error);
           },
           () => {
-            getDownloadURL(uploadTask.snapshot.ref).then((downloadURL) => {
+            console.log(uploadTask.snapshot.ref._location.path_);
+            getDownloadURL(
+              ref(storage, `${uploadTask.snapshot.ref._location.path_}_800x800`)
+            ).then((downloadURL) => {
               resolve(downloadURL);
             });
           }

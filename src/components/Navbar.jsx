@@ -38,10 +38,9 @@ function Navbar() {
 
   // Styling for nav container
   const mobileContainer = {
-    hidden: { opacity: 0, width: 0, height: windowHeight },
+    hidden: { opacity: 0 },
     show: {
       opacity: 1,
-      width: 0,
 
       transition: {
         duration: 1,
@@ -112,11 +111,11 @@ function Navbar() {
           <AnimatePresence>
             {menuVisible && (
               <motion.div
-                initial={{ height: windowHeight, width: 0 }}
-                animate={{
-                  height: window.innerWidth <= 900 ? "100%" : "800px",
-                  width: window.innerWidth < 400 ? "100%" : "20rem",
-                }}
+                // initial={{ height: windowHeight, width: 0 }}
+                // animate={{
+                //   height: window.innerWidth <= 900 ? "100%" : "800px",
+                //   width: window.innerWidth < 400 ? "100%" : "20rem",
+                // }}
                 exit={{ height: windowHeight, width: 0 }}
                 variants={mobileContainer}
                 className="mobile-menu-container"
