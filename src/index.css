@@ -421,10 +421,17 @@ ul > li {
     url("./assets/brooke-lark-kXQ3J7_2fpc-unsplash.jpg") no-repeat;
   background-attachment: fixed;
   background-size: cover;
+  height: 100vh;
 }
 
 .header-container {
   padding-bottom: 8rem;
+}
+
+.main-container {
+  display: flex;
+  align-items: center;
+  height: 100vh + 89px;
 }
 
 .header-content {
@@ -436,7 +443,7 @@ ul > li {
   width: 80%;
   margin-bottom: 2rem;
   max-width: 2000px;
-  margin: 8rem auto;
+  margin: 20% auto;
 }
 
 .header-content h1 {
@@ -1543,7 +1550,7 @@ ul > li {
 
   .header-content {
     width: 100%;
-    margin: 0 auto 2rem;
+    margin: 30% auto 2rem;
   }
 
   .form-container {
@@ -1551,7 +1558,7 @@ ul > li {
   }
 
   .search-bar-container {
-    width: 100%;
+    width: 90%;
   }
 
   .search-bar-container input {
@@ -1567,5 +1574,7 @@ ul > li {
   .mobile-menu-item p {
     padding-left: 0;
     gap: 10px;
+    margin-left: 0;
+    width: 100%;
   }
 }
