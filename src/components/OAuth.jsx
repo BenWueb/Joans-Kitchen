@@ -28,7 +28,7 @@ function OAuth() {
           timestamp: serverTimestamp(),
         });
       }
-      navigate("/");
+      navigate("/profile");
     } catch (error) {
       toast.error("Could Not Authenticate with Google");
     }

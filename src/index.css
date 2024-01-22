@@ -431,7 +431,8 @@ ul > li {
 .main-container {
   display: flex;
   align-items: center;
-  height: 100vh + 89px;
+  justify-content: center;
+  height: calc(100vh + 89px);
 }
 
 .header-content {
@@ -443,7 +444,7 @@ ul > li {
   width: 80%;
   margin-bottom: 2rem;
   max-width: 2000px;
-  margin: 20% auto;
+  transform: translateY(-150px);
 }
 
 .header-content h1 {
