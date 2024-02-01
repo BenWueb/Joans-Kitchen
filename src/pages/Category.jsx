@@ -35,7 +35,7 @@ function Category() {
     };
 
     fetchCategoryRecipes();
-  });
+  }, []);
 
   return (
     <>
